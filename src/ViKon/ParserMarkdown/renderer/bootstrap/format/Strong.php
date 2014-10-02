@@ -13,13 +13,13 @@ class Strong extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(StrongRule::NAME . '_open', array($this, 'renderStrongOpen'), $this->skin);
-        $renderer->addTokenRenderer(StrongRule::NAME, array($this, 'renderStrong'), $this->skin);
-        $renderer->addTokenRenderer(StrongRule::NAME . '_close', array($this, 'renderStrongClose'), $this->skin);
+        $renderer->setTokenRenderer(StrongRule::NAME . '_open', array($this, 'renderStrongOpen'), $this->skin);
+        $renderer->setTokenRenderer(StrongRule::NAME, array($this, 'renderStrong'), $this->skin);
+        $renderer->setTokenRenderer(StrongRule::NAME . '_close', array($this, 'renderStrongClose'), $this->skin);
 
-        $renderer->addTokenRenderer(StrongAltRule::NAME . '_open', array($this, 'renderStrongOpen'), $this->skin);
-        $renderer->addTokenRenderer(StrongAltRule::NAME, array($this, 'renderStrong'), $this->skin);
-        $renderer->addTokenRenderer(StrongAltRule::NAME . '_close', array($this, 'renderStrongClose'), $this->skin);
+        $renderer->setTokenRenderer(StrongAltRule::NAME . '_open', array($this, 'renderStrongOpen'), $this->skin);
+        $renderer->setTokenRenderer(StrongAltRule::NAME, array($this, 'renderStrong'), $this->skin);
+        $renderer->setTokenRenderer(StrongAltRule::NAME . '_close', array($this, 'renderStrongClose'), $this->skin);
     }
 
     public function renderStrongOpen(Token $token)

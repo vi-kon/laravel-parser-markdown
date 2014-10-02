@@ -14,13 +14,13 @@ class ListBlock extends AbstractBootstrapRuleRender
 
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(ListBlockRule::NAME . '_open', array($this, 'renderListBlockOpen'), $this->skin);
-        $renderer->addTokenRenderer(ListBlockRule::NAME . '_level_open', array($this, 'renderListBlockLevelOpen'), $this->skin);
-        $renderer->addTokenRenderer(ListBlockRule::NAME . '_item_open', array($this, 'renderListBlockItemOpen'), $this->skin);
-        $renderer->addTokenRenderer(ListBlockRule::NAME, array($this, 'renderListBlockItem'), $this->skin);
-        $renderer->addTokenRenderer(ListBlockRule::NAME . '_item_close', array($this, 'renderListBlockItemClose'), $this->skin);
-        $renderer->addTokenRenderer(ListBlockRule::NAME . '_level_close', array($this, 'renderListBlockLevelClose'), $this->skin);
-        $renderer->addTokenRenderer(ListBlockRule::NAME . '_close', array($this, 'renderListBlockClose'), $this->skin);
+        $renderer->setTokenRenderer(ListBlockRule::NAME . '_open', array($this, 'renderListBlockOpen'), $this->skin);
+        $renderer->setTokenRenderer(ListBlockRule::NAME . '_level_open', array($this, 'renderListBlockLevelOpen'), $this->skin);
+        $renderer->setTokenRenderer(ListBlockRule::NAME . '_item_open', array($this, 'renderListBlockItemOpen'), $this->skin);
+        $renderer->setTokenRenderer(ListBlockRule::NAME, array($this, 'renderListBlockItem'), $this->skin);
+        $renderer->setTokenRenderer(ListBlockRule::NAME . '_item_close', array($this, 'renderListBlockItemClose'), $this->skin);
+        $renderer->setTokenRenderer(ListBlockRule::NAME . '_level_close', array($this, 'renderListBlockLevelClose'), $this->skin);
+        $renderer->setTokenRenderer(ListBlockRule::NAME . '_close', array($this, 'renderListBlockClose'), $this->skin);
     }
 
     public function renderListBlockOpen(Token $token)

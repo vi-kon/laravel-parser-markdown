@@ -13,13 +13,13 @@ class Italic extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(ItalicRule::NAME . '_open', array($this, 'renderItalicOpen'), $this->skin);
-        $renderer->addTokenRenderer(ItalicRule::NAME, array($this, 'renderItalic'), $this->skin);
-        $renderer->addTokenRenderer(ItalicRule::NAME . '_close', array($this, 'renderItalicClose'), $this->skin);
+        $renderer->setTokenRenderer(ItalicRule::NAME . '_open', array($this, 'renderItalicOpen'), $this->skin);
+        $renderer->setTokenRenderer(ItalicRule::NAME, array($this, 'renderItalic'), $this->skin);
+        $renderer->setTokenRenderer(ItalicRule::NAME . '_close', array($this, 'renderItalicClose'), $this->skin);
 
-        $renderer->addTokenRenderer(ItalicAltRule::NAME . '_open', array($this, 'renderItalicOpen'), $this->skin);
-        $renderer->addTokenRenderer(ItalicAltRule::NAME, array($this, 'renderItalic'), $this->skin);
-        $renderer->addTokenRenderer(ItalicAltRule::NAME . '_close', array($this, 'renderItalicClose'), $this->skin);
+        $renderer->setTokenRenderer(ItalicAltRule::NAME . '_open', array($this, 'renderItalicOpen'), $this->skin);
+        $renderer->setTokenRenderer(ItalicAltRule::NAME, array($this, 'renderItalic'), $this->skin);
+        $renderer->setTokenRenderer(ItalicAltRule::NAME . '_close', array($this, 'renderItalicClose'), $this->skin);
     }
 
     public function renderItalicOpen(Token $token)

@@ -13,7 +13,7 @@ class Reference extends AbstractBootstrapRuleRender
 
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(ReferenceRule::NAME, array($this, 'renderReference'), $this->skin);
+        $renderer->setTokenRenderer(ReferenceRule::NAME, array($this, 'renderReference'), $this->skin);
     }
 
     public function renderReference(Token $token)

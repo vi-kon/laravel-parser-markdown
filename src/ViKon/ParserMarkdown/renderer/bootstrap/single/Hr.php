@@ -12,7 +12,7 @@ class Hr extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(HrRule::NAME, array($this, 'renderHr'), $this->skin);
+        $renderer->setTokenRenderer(HrRule::NAME, array($this, 'renderHr'), $this->skin);
     }
 
     public function renderHr(Token $token)

@@ -12,7 +12,7 @@ class Base extends AbstractBootstrapRuleRender
 
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(BaseRule::NAME, array($this, 'renderBase'), $this->skin);
+        $renderer->setTokenRenderer(BaseRule::NAME, array($this, 'renderBase'), $this->skin);
     }
 
     public function renderBase(Token $token)

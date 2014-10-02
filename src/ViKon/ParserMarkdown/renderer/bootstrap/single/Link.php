@@ -16,9 +16,9 @@ class Link extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(LinkInlineRule::NAME, array($this, 'renderLinkInline'), $this->skin);
-        $renderer->addTokenRenderer(LinkReferenceRule::NAME, array($this, 'renderLinkReference'), $this->skin);
-        $renderer->addTokenRenderer(LinkAutomaticRule::NAME, array($this, 'renderLinkAutomatic'), $this->skin);
+        $renderer->setTokenRenderer(LinkInlineRule::NAME, array($this, 'renderLinkInline'), $this->skin);
+        $renderer->setTokenRenderer(LinkReferenceRule::NAME, array($this, 'renderLinkReference'), $this->skin);
+        $renderer->setTokenRenderer(LinkAutomaticRule::NAME, array($this, 'renderLinkAutomatic'), $this->skin);
     }
 
     public function renderLinkInline(Token $token)

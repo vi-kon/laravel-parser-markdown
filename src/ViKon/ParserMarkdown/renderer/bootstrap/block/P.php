@@ -13,9 +13,9 @@ class P extends AbstractBootstrapRuleRender
 
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer('p_open', array($this, 'renderPOpen'), $this->skin);
-        $renderer->addTokenRenderer('p', array($this, 'renderP'), $this->skin);
-        $renderer->addTokenRenderer('p_close', array($this, 'renderPClose'), $this->skin);
+        $renderer->setTokenRenderer('p_open', array($this, 'renderPOpen'), $this->skin);
+        $renderer->setTokenRenderer('p', array($this, 'renderP'), $this->skin);
+        $renderer->setTokenRenderer('p_close', array($this, 'renderPClose'), $this->skin);
     }
 
     public function renderPOpen(Token $token)

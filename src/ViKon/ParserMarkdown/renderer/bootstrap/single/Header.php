@@ -14,8 +14,8 @@ class Header extends AbstractBootstrapRuleRender
 
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(HeaderAtxRule::NAME, array($this, 'renderHeader'), $this->skin);
-        $renderer->addTokenRenderer(HeaderSetextRule::NAME, array($this, 'renderHeader'), $this->skin);
+        $renderer->setTokenRenderer(HeaderAtxRule::NAME, array($this, 'renderHeader'), $this->skin);
+        $renderer->setTokenRenderer(HeaderSetextRule::NAME, array($this, 'renderHeader'), $this->skin);
     }
 
     public function renderHeader(Token $token)

@@ -12,7 +12,7 @@ class Escape extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(EscapeRule::NAME, array($this, 'renderEscape'), $this->skin);
+        $renderer->setTokenRenderer(EscapeRule::NAME, array($this, 'renderEscape'), $this->skin);
     }
 
     public function renderEscape(Token $token)

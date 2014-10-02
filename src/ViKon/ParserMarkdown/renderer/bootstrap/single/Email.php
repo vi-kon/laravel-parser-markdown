@@ -12,7 +12,7 @@ class Email extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(EmailAutomaticRule::NAME, array($this, 'renderEmailAutomatic'), $this->skin);
+        $renderer->setTokenRenderer(EmailAutomaticRule::NAME, array($this, 'renderEmailAutomatic'), $this->skin);
     }
 
     public function renderEmailAutomatic(Token $token)

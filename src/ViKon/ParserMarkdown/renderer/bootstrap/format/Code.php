@@ -13,13 +13,13 @@ class Code extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(CodeRule::NAME . '_open', array($this, 'renderCodeOpen'), $this->skin);
-        $renderer->addTokenRenderer(CodeRule::NAME, array($this, 'renderCode'), $this->skin);
-        $renderer->addTokenRenderer(CodeRule::NAME . '_close', array($this, 'renderCodeClose'), $this->skin);
+        $renderer->setTokenRenderer(CodeRule::NAME . '_open', array($this, 'renderCodeOpen'), $this->skin);
+        $renderer->setTokenRenderer(CodeRule::NAME, array($this, 'renderCode'), $this->skin);
+        $renderer->setTokenRenderer(CodeRule::NAME . '_close', array($this, 'renderCodeClose'), $this->skin);
 
-        $renderer->addTokenRenderer(CodeAltRule::NAME . '_open', array($this, 'renderCodeOpen'), $this->skin);
-        $renderer->addTokenRenderer(CodeAltRule::NAME, array($this, 'renderCode'), $this->skin);
-        $renderer->addTokenRenderer(CodeAltRule::NAME . '_close', array($this, 'renderCodeClose'), $this->skin);
+        $renderer->setTokenRenderer(CodeAltRule::NAME . '_open', array($this, 'renderCodeOpen'), $this->skin);
+        $renderer->setTokenRenderer(CodeAltRule::NAME, array($this, 'renderCode'), $this->skin);
+        $renderer->setTokenRenderer(CodeAltRule::NAME . '_close', array($this, 'renderCodeClose'), $this->skin);
     }
 
     public function renderCodeOpen(Token $token)

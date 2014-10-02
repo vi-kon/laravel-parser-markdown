@@ -15,8 +15,8 @@ class Image extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(ImageInlineRule::NAME, array($this, 'renderImage'), $this->skin);
-        $renderer->addTokenRenderer(ImageReferenceRule::NAME, array($this, 'renderImageReference'), $this->skin);
+        $renderer->setTokenRenderer(ImageInlineRule::NAME, array($this, 'renderImage'), $this->skin);
+        $renderer->setTokenRenderer(ImageReferenceRule::NAME, array($this, 'renderImageReference'), $this->skin);
     }
 
     public function renderImage(Token $token)

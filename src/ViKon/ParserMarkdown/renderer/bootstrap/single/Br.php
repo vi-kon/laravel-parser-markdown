@@ -12,7 +12,7 @@ class Br extends AbstractBootstrapRuleRender
 {
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(BrRule::NAME, array($this, 'renderBr'), $this->skin);
+        $renderer->setTokenRenderer(BrRule::NAME, array($this, 'renderBr'), $this->skin);
     }
 
     public function renderBr(Token $token)

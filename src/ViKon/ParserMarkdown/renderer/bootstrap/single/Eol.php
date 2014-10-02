@@ -13,7 +13,7 @@ class Eol extends AbstractBootstrapRuleRender
 
     public function register(Renderer $renderer)
     {
-        $renderer->addTokenRenderer(EolRule::NAME, array($this, 'renderEol'), $this->skin);
+        $renderer->setTokenRenderer(EolRule::NAME, array($this, 'renderEol'), $this->skin);
     }
 
     public function renderEol(Token $token)
