@@ -1,0 +1,23 @@
+{
+    "name":              "vi-kon/parser-markdown",
+    "description":       "",
+    "authors":           [
+        {
+            "name":  "Kovács Vince",
+            "email": "vincekovacs@hotmail.com"
+        }
+    ],
+    "require":           {
+        "php":                ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload":          {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0":    {
+            "ViKon\\ParserMarkdown\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
