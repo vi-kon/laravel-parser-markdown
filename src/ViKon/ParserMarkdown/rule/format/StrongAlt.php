@@ -12,6 +12,6 @@ class StrongAlt extends AbstractFormatRule
 
     public function __construct(AbstractSet $set)
     {
-        parent::__construct(self::NAME, 70, '__(?=[^ ][^\n]*__[^_])', '__[^_]', $set);
+        parent::__construct(self::NAME, 70, '__(?:\\.|[^\n\\_])__', '__(?=[^_])', $set);
     }
 }
