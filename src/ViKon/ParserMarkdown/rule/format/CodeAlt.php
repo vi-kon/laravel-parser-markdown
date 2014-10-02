@@ -13,7 +13,7 @@ class CodeAlt extends AbstractFormatRule
 
     public function __construct(AbstractSet $set)
     {
-        parent::__construct(self::NAME, 140, '``(?=[^\n]*``)', '``', $set);
+        parent::__construct(self::NAME, 130, '``(?=[^\n]*``)', '``', $set);
     }
 
     public function prepare(Lexer $lexer)
