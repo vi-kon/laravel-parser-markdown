@@ -3,11 +3,11 @@
 
 namespace ViKon\ParserMarkdown\renderer\bootstrap\single;
 
+use ViKon\Parser\renderer\Renderer;
+use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 use ViKon\ParserMarkdown\rule\single\HeaderAtx as HeaderAtxRule;
 use ViKon\ParserMarkdown\rule\single\HeaderSetext as HeaderSetextRule;
-use ViKon\Parser\renderer\Renderer;
-use ViKon\Parser\Token;
 
 class Header extends AbstractBootstrapRuleRender
 {
@@ -22,7 +22,8 @@ class Header extends AbstractBootstrapRuleRender
     {
         $level   = $token->get('level', 1);
         $content = $token->get('content', '');
+        $id      = strtolower(preg_replace(array('/[^\dA-Za-z ]/', '/ /'), array('', '-'), $content));
 
-        return '<h' . $level . '>' . htmlspecialchars($content) . '</h' . $level . '>';
+        return '<h' . $level . ' id="' . $id . '">' . htmlspecialchars($content) . '</h' . $level . '>';
     }
 }
