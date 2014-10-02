@@ -18,7 +18,7 @@ class LinkAutomatic extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 100, '<\\b(?:ftp|http|https)://(?:[\\da-z-]++\\.)+[a-z]{2,6}/?>', $set);
+        parent::__construct(self::NAME, 170, '<\\b(?:ftp|http|https)://(?:[\\da-z-]++\\.)+[a-z]{2,6}/?>', $set);
     }
 
     protected function handleSingleState($content, $position, TokenList $tokenList)

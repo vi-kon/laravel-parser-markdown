@@ -14,7 +14,7 @@ class P extends AbstractRule
 
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 1000, $set);
+        parent::__construct(self::NAME, 230, $set);
     }
 
     public function finalize(TokenList $tokenList)

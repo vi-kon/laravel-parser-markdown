@@ -18,7 +18,7 @@ class HeaderAtx extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 50, '^[ \t]*#{1,6}[^\n]+(?=\n)', $set);
+        parent::__construct(self::NAME, 60, '^[ \t]*#{1,6}[^\n]+(?=\n)', $set);
     }
 
     protected function handleSingleState($content, $position, TokenList $tokenList)

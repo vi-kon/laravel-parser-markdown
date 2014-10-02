@@ -18,6 +18,6 @@ class Eol extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 370, '(?:^[ \t]*)?\n', $set);
+        parent::__construct(self::NAME, 220, '(?:^[ \t]*)?\n', $set);
     }
 }

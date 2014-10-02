@@ -12,6 +12,6 @@ class ItalicAlt extends AbstractFormatRule
 
     public function __construct(AbstractSet $set)
     {
-        parent::__construct(self::NAME, 80, '_(?:\\.|[^\n\\_])_', '_', $set);
+        parent::__construct(self::NAME, 110, '_(?:\\.|[^\n\\_])_', '_', $set);
     }
 }

@@ -18,7 +18,7 @@ class HeaderSetext extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 50, '^[^\n]*\n[=-]{2,}$', $set);
+        parent::__construct(self::NAME, 70, '^[^\n]*\n[=-]{2,}$', $set);
     }
 
     protected function handleSingleState($content, $position, TokenList $tokenList)

@@ -18,7 +18,7 @@ class Reference extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 110, '\\n\\[(?:\\\\.|[^]\\\\])*\\]:[ \\t]*[^ \\t\\n]+[ \\t]*\\n?[ \\t]*(?:"(?:\\\\.|[^"\\\\])+"|\'(?:\\\\.|[^\'\\\\])+\'|\\((?:\\\\.|[^\\(\\\\])+\\))?(?=\\n)', $set);
+        parent::__construct(self::NAME, 210, '\\n\\[(?:\\\\.|[^]\\\\])*\\]:[ \\t]*[^ \\t\\n]+[ \\t]*\\n?[ \\t]*(?:"(?:\\\\.|[^"\\\\])+"|\'(?:\\\\.|[^\'\\\\])+\'|\\((?:\\\\.|[^\\(\\\\])+\\))?(?=\\n)', $set);
     }
 
     protected function handleSingleState($content, $position, TokenList $tokenList)

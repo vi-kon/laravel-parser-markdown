@@ -17,6 +17,6 @@ class Br extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 140, '  \n', $set);
+        parent::__construct(self::NAME, 20, '  \n', $set);
     }
 }

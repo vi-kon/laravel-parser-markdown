@@ -17,6 +17,6 @@ class Italic extends AbstractFormatRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 80, '\*(?=(?:\\\\.|[^\n*\\\\])*\*)', '\*', $set);
+        parent::__construct(self::NAME, 100, '\*(?=(?:\\\\.|[^\n*\\\\])*\*)', '\*', $set);
     }
 }

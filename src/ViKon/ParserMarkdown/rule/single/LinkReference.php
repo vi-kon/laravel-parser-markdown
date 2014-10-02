@@ -19,7 +19,7 @@ class LinkReference extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 100, '\\[(?:\\\\.|[^]\\\\])+\\][\\t ]*\\[(?:\\\\.|[^]\\\\])*\\]', $set);
+        parent::__construct(self::NAME, 150, '\\[(?:\\\\.|[^]\\\\])+\\][\\t ]*\\[(?:\\\\.|[^]\\\\])*\\]', $set);
     }
 
     protected function handleSingleState($content, $position, TokenList $tokenList)

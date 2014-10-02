@@ -17,6 +17,6 @@ class Hr extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 10, '\n(?:[\*\_\-] *){3,}', $set);
+        parent::__construct(self::NAME, 30, '\n(?:[\*\_\-] *){3,}', $set);
     }
 }

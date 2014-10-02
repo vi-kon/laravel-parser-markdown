@@ -18,7 +18,7 @@ class Escape extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 140, '\\\\\\\\|\\\\`|\\\\\*|\\\\\_|\\\\\{|\\\\\}|\\\\\[|\\\\\]|\\\\\(|\\\\\)|\\\\\#|\\\\\+|\\\\\-|\\\\\.|\\\\\!', $set);
+        parent::__construct(self::NAME, 10, '\\\\\\\\|\\\\`|\\\\\*|\\\\\_|\\\\\{|\\\\\}|\\\\\[|\\\\\]|\\\\\(|\\\\\)|\\\\\#|\\\\\+|\\\\\-|\\\\\.|\\\\\!', $set);
     }
 
     protected function handleSingleState($content, $position, TokenList $tokenList)

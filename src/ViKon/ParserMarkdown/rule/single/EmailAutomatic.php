@@ -18,7 +18,7 @@ class EmailAutomatic extends AbstractSingleRule
      */
     public function __construct(MarkdownSet $set)
     {
-        parent::__construct(self::NAME, 100, '<[\\d!#$%&\'*+/=?_`a-z{|}~^-]++(?:\\.[\\d!#$%&\'*+/=?_`a-z{|}~^-]+)*@(?:[\\da-z-]++\\.)+[a-z]{2,6}>', $set);
+        parent::__construct(self::NAME, 120, '<[\\d!#$%&\'*+/=?_`a-z{|}~^-]++(?:\\.[\\d!#$%&\'*+/=?_`a-z{|}~^-]+)*@(?:[\\da-z-]++\\.)+[a-z]{2,6}>', $set);
     }
 
     protected function handleSingleState($content, $position, TokenList $tokenList)
