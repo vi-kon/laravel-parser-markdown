@@ -9,6 +9,7 @@ use ViKon\ParserMarkdown\renderer\bootstrap\block\ListBlock as ListBlockBootstra
 use ViKon\ParserMarkdown\renderer\bootstrap\block\P as PBootstrapRenderer;
 use ViKon\ParserMarkdown\renderer\bootstrap\format\Code as CodeBootstrapRenderer;
 use ViKon\ParserMarkdown\renderer\bootstrap\format\Italic as ItalicBootstrapRenderer;
+use ViKon\ParserMarkdown\renderer\bootstrap\format\Math as MathBootstrapRenderer;
 use ViKon\ParserMarkdown\renderer\bootstrap\format\Strong as StrongBootstrapRenderer;
 use ViKon\ParserMarkdown\renderer\bootstrap\single\Br as BrBootstrapRenderer;
 use ViKon\ParserMarkdown\renderer\bootstrap\single\Email as EmailBootstrapRenderer;
@@ -27,6 +28,7 @@ use ViKon\ParserMarkdown\rule\format\Code;
 use ViKon\ParserMarkdown\rule\format\CodeAlt;
 use ViKon\ParserMarkdown\rule\format\Italic;
 use ViKon\ParserMarkdown\rule\format\ItalicAlt;
+use ViKon\ParserMarkdown\rule\format\Math;
 use ViKon\ParserMarkdown\rule\format\Strong;
 use ViKon\ParserMarkdown\rule\format\StrongAlt;
 use ViKon\ParserMarkdown\rule\single\Br;
@@ -47,7 +49,7 @@ class MarkdownSet extends AbstractSet
 {
     public function __construct()
     {
-        \Event::listen('vikon.parser.before.parse', array($this, 'normalizeLineBreak'));
+        \Event::listen('vikon.parser.before.parse', [$this, 'normalizeLineBreak']);
 
         $this->setStartRule(new Base($this), self::CATEGORY_NONE);
 
@@ -96,6 +98,12 @@ class MarkdownSet extends AbstractSet
         $this->addRuleRender(new ImageBootstrapRenderer($this));
         $this->addRuleRender(new LinkBootstrapRenderer($this));
         $this->addRuleRender(new ReferenceBootstrapRenderer($this));
+
+        if (config('parser-markdown::extra-rules'))
+        {
+            $this->addRule(new Math($this), self::CATEGORY_FORMAT);
+            $this->addRuleRender(new MathBootstrapRenderer($this));
+        }
     }
 
     public function normalizeLineBreak(&$text)
