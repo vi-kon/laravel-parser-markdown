@@ -20,7 +20,7 @@ class P extends AbstractBootstrapRuleRender
 
     public function renderPOpen(Token $token)
     {
-        return '<p>';
+        return '<p class="text-justify">';
     }
 
     public function renderP(Token $token)
