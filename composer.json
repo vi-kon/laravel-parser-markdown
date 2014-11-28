@@ -1,6 +1,12 @@
 {
   "name": "vi-kon/laravel-parser-markdown",
-  "description": "",
+  "description": "Markdown parser for Laravel 5",
+  "keywords": [
+    "laravel",
+    "parser",
+    "markdown"
+  ],
+  "license": "MIT",
   "authors": [
     {
       "name": "Kovács Vince",
