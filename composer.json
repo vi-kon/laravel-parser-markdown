@@ -16,7 +16,7 @@
   "require"          : {
     "php"                  : ">=5.4.0",
     "illuminate/support"   : "~5.0",
-    "vi-kon/laravel-parser": "dev-develop"
+    "vi-kon/laravel-parser": "0.1.0"
   },
   "autoload"         : {
     "psr-0": {
