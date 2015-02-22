@@ -14,8 +14,9 @@
     }
   ],
   "require"          : {
-    "php"               : ">=5.4.0",
-    "illuminate/support": "~5.0"
+    "php"                  : ">=5.4.0",
+    "illuminate/support"   : "~5.0",
+    "vi-kon/laravel-parser": "dev-develop"
   },
   "autoload"         : {
     "psr-0": {
