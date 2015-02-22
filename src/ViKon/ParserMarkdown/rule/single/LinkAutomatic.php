@@ -7,8 +7,7 @@ use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
 
-class LinkAutomatic extends AbstractSingleRule
-{
+class LinkAutomatic extends AbstractSingleRule {
     const NAME = 'link_automatic';
 
     /**
@@ -16,16 +15,14 @@ class LinkAutomatic extends AbstractSingleRule
      *
      * @param \ViKon\ParserMarkdown\MarkdownSet $set rule set instance
      */
-    public function __construct(MarkdownSet $set)
-    {
+    public function __construct(MarkdownSet $set) {
         parent::__construct(self::NAME, 170, '<\\b(?:ftp|http|https)://(?:[\\da-z-]++\\.)+[a-z]{2,6}/?>', $set);
     }
 
-    protected function handleSingleState($content, $position, TokenList $tokenList)
-    {
+    protected function handleSingleState($content, $position, TokenList $tokenList) {
         preg_match('/<(\\b(?:ftp|http|https):\\/\\/(?:[\\da-z-]++\\.)+[a-z]{2,6}\\/?)>/', $content, $matches);
 
         $tokenList->addToken($this->name, $position)
-                  ->set('url', $matches[1]);
+            ->set('url', $matches[1]);
     }
 }

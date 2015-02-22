@@ -9,20 +9,17 @@ use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 use ViKon\ParserMarkdown\rule\single\HeaderAtx as HeaderAtxRule;
 use ViKon\ParserMarkdown\rule\single\HeaderSetext as HeaderSetextRule;
 
-class Header extends AbstractBootstrapRuleRender
-{
+class Header extends AbstractBootstrapRuleRender {
 
-    public function register(Renderer $renderer)
-    {
+    public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(HeaderAtxRule::NAME, array($this, 'renderHeader'), $this->skin);
         $renderer->setTokenRenderer(HeaderSetextRule::NAME, array($this, 'renderHeader'), $this->skin);
     }
 
-    public function renderHeader(Token $token)
-    {
-        $level   = $token->get('level', 1);
+    public function renderHeader(Token $token) {
+        $level = $token->get('level', 1);
         $content = $token->get('content', '');
-        $id      = strtolower(preg_replace(array('/[^\dA-Za-z ]/', '/ /'), array('', '-'), $content));
+        $id = strtolower(preg_replace(array('/[^\dA-Za-z ]/', '/ /'), array('', '-'), $content));
 
         return '<h' . $level . ' id="' . $id . '">' . htmlspecialchars($content) . '</h' . $level . '>';
     }

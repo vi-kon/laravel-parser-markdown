@@ -8,18 +8,14 @@ use ViKon\ParserMarkdown\rule\single\Reference as ReferenceRule;
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
 
-class Reference extends AbstractBootstrapRuleRender
-{
+class Reference extends AbstractBootstrapRuleRender {
 
-    public function register(Renderer $renderer)
-    {
+    public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(ReferenceRule::NAME, array($this, 'renderReference'), $this->skin);
     }
 
-    public function renderReference(Token $token)
-    {
-        if ($token->get('used', false))
-        {
+    public function renderReference(Token $token) {
+        if ($token->get('used', false)) {
             return '';
         }
 

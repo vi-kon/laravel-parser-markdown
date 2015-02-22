@@ -9,10 +9,8 @@ use ViKon\ParserMarkdown\rule\format\CodeAlt as CodeAltRule;
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
 
-class Code extends AbstractBootstrapRuleRender
-{
-    public function register(Renderer $renderer)
-    {
+class Code extends AbstractBootstrapRuleRender {
+    public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(CodeRule::NAME . '_open', array($this, 'renderCodeOpen'), $this->skin);
         $renderer->setTokenRenderer(CodeRule::NAME, array($this, 'renderCode'), $this->skin);
         $renderer->setTokenRenderer(CodeRule::NAME . '_close', array($this, 'renderCodeClose'), $this->skin);
@@ -22,18 +20,15 @@ class Code extends AbstractBootstrapRuleRender
         $renderer->setTokenRenderer(CodeAltRule::NAME . '_close', array($this, 'renderCodeClose'), $this->skin);
     }
 
-    public function renderCodeOpen(Token $token)
-    {
+    public function renderCodeOpen(Token $token) {
         return '<code>';
     }
 
-    public function renderCode(Token $token)
-    {
+    public function renderCode(Token $token) {
         return htmlspecialchars(trim($token->get('content', '')));
     }
 
-    public function renderCodeClose(Token $token)
-    {
+    public function renderCodeClose(Token $token) {
         return '</code>';
     }
 }

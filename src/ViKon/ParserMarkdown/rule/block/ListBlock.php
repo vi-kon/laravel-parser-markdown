@@ -12,41 +12,35 @@ use ViKon\ParserMarkdown\rule\single\Eol;
 use ViKon\ParserMarkdown\rule\single\LinkInline;
 use ViKon\ParserMarkdown\rule\single\LinkReference;
 
-class ListBlock extends AbstractBlockRule
-{
+class ListBlock extends AbstractBlockRule {
     const NAME = 'list_block';
 
     protected $open = array();
 
     protected $level = -1;
 
-    public function __construct(AbstractSet $set)
-    {
+    public function __construct(AbstractSet $set) {
         parent::__construct(self::NAME, 50, '^(?: {2}|\t)*(?:[\-\+\*]|\d+\.)(?: |\t)+', '\n', $set);
     }
 
-    public function prepare(Lexer $lexer)
-    {
+    public function prepare(Lexer $lexer) {
         $this->acceptedRuleNames = array_merge(array(
-                                                   CodeBlock::NAME,
-                                                   Eol::NAME,
-                                                   LinkInline::NAME,
-                                                   LinkReference::NAME,
-                                               ), $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_FORMAT));
+            CodeBlock::NAME,
+            Eol::NAME,
+            LinkInline::NAME,
+            LinkReference::NAME,
+        ), $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_FORMAT));
     }
 
-    public function embedInto($parentRuleNameName, Lexer $lexer)
-    {
+    public function embedInto($parentRuleNameName, Lexer $lexer) {
         parent::embedInto($parentRuleNameName, $lexer);
         $lexer->addSimplePattern('(?:\n[ \t]*)*\n(?: {2}|\t)*(?:[\-\+\*]|\d+\.)(?: |\t)+', $this->name);
         $lexer->addSimplePattern('(?:\n[ \t]*)*\n[ \t]+', $this->name);
         $lexer->addSimplePattern('\n[^ \t\n][^\n]*', $this->name);
     }
 
-    public function parseToken($content, $position, $state, TokenList $tokenList)
-    {
-        switch ($state)
-        {
+    public function parseToken($content, $position, $state, TokenList $tokenList) {
+        switch ($state) {
             case Lexer::STATE_MATCHED:
                 $this->handleMatchedState($content, $position, $tokenList);
                 break;
@@ -58,17 +52,16 @@ class ListBlock extends AbstractBlockRule
     }
 
     /**
-     * @param string                  $content
-     * @param int                     $position
+     * @param string $content
+     * @param int $position
      * @param \ViKon\Parser\TokenList $tokenList
      *
      * @return bool
      */
-    protected function handleEntryState($content, $position, TokenList $tokenList)
-    {
+    protected function handleEntryState($content, $position, TokenList $tokenList) {
         $this->level = -1;
-        $this->open  = array();
-        $content     = "\n" . $content;
+        $this->open = array();
+        $content = "\n" . $content;
 
         $tokenList->addToken($this->name . '_open', $position);
 
@@ -76,41 +69,34 @@ class ListBlock extends AbstractBlockRule
     }
 
     /**
-     * @param string                  $content
-     * @param int                     $position
+     * @param string $content
+     * @param int $position
      * @param \ViKon\Parser\TokenList $tokenList
      */
-    protected function handleMatchedState($content, $position, TokenList $tokenList)
-    {
-        if (preg_match('/((?:\n[ \t]*)*)\n((?: {2}|\t)*)([\-\+\*]|\d+\.)(?: |\t)+/', $content, $matches))
-        {
-            $level   = strlen(str_replace('  ', "\t", $matches[2]));
+    protected function handleMatchedState($content, $position, TokenList $tokenList) {
+        if (preg_match('/((?:\n[ \t]*)*)\n((?: {2}|\t)*)([\-\+\*]|\d+\.)(?: |\t)+/', $content, $matches)) {
+            $level = strlen(str_replace('  ', "\t", $matches[2]));
             $ordered = is_numeric(substr($matches[3], 0, -1));
 
             $paragraph = strlen($matches[1]) > 0;
-            if ($paragraph)
-            {
+            if ($paragraph) {
                 $tokenList->lastByName($this->name . '_open')
-                          ->set('forceParagraph', true);
+                    ->set('forceParagraph', true);
             }
 
             $this->closeLevels($tokenList, $level, $position);
 
             $this->openLevels($tokenList, $level, $ordered, $position);
 
-            if (isset($this->open[$this->level]) && $this->open[$this->level])
-            {
+            if (isset($this->open[$this->level]) && $this->open[$this->level]) {
                 $this->itemClose($tokenList, $position);
             }
             $this->open[$this->level] = true;
             $tokenList->addToken($this->name . '_item_open', $position);
-        }
-        else
-        {
+        } else {
             $lastToken = $tokenList->last();
-            $content   = explode("\n", $content);
-            array_walk($content, function (&$item)
-            {
+            $content = explode("\n", $content);
+            array_walk($content, function (&$item) {
                 $item = preg_replace('/^(?: {4}|\t)/', '', $item);
             });
             $lastToken->set('content', $lastToken->get('content', '') . implode("\n", $content));
@@ -118,51 +104,43 @@ class ListBlock extends AbstractBlockRule
     }
 
     /**
-     * @param string                  $content
-     * @param int                     $position
+     * @param string $content
+     * @param int $position
      * @param \ViKon\Parser\TokenList $tokenList
      *
      * @return bool
      */
-    protected function handleUnmatchedState($content, $position, TokenList $tokenList)
-    {
+    protected function handleUnmatchedState($content, $position, TokenList $tokenList) {
         $lastToken = $tokenList->last();
-        if ($tokenList->size() > 0 && $lastToken->getName() === $this->name)
-        {
+        if ($tokenList->size() > 0 && $lastToken->getName() === $this->name) {
             $lastToken->set('content', $lastToken->get('content', '') . $content);
-        }
-        else
-        {
+        } else {
             $tokenList->addToken($this->name, $position)
-                      ->set('content', $content);
+                ->set('content', $content);
         }
     }
 
     /**
-     * @param string                  $content
-     * @param int                     $position
+     * @param string $content
+     * @param int $position
      * @param \ViKon\Parser\TokenList $tokenList
      */
-    protected function handleExitState($content, $position, TokenList $tokenList)
-    {
+    protected function handleExitState($content, $position, TokenList $tokenList) {
         $forceParagraph = $tokenList->lastByName($this->name . '_open')
-                                    ->get('forceParagraph', false);
-        if (!$forceParagraph)
-        {
-            $eolCount                    = 0;
-            $paragraph                   = false;
-            $openTokenIndex              = 0;
+            ->get('forceParagraph', false);
+        if (!$forceParagraph) {
+            $eolCount = 0;
+            $paragraph = false;
+            $openTokenIndex = 0;
             $lastListBlockOpenTokenIndex = $tokenList->lastIndexByName($this->name . '_open');
 
-            for ($i = $lastListBlockOpenTokenIndex; $i < $tokenList->size(); $i++)
-            {
+            for ($i = $lastListBlockOpenTokenIndex; $i < $tokenList->size(); $i++) {
                 $tokenI = $tokenList->getTokenAt($i);
 
-                switch ($tokenI->getName())
-                {
+                switch ($tokenI->getName()) {
                     case $this->name . '_item_open':
-                        $eolCount       = 0;
-                        $paragraph      = false;
+                        $eolCount = 0;
+                        $paragraph = false;
                         $openTokenIndex = $i;
                         break;
 
@@ -172,13 +150,10 @@ class ListBlock extends AbstractBlockRule
 
                     case $this->name . '_item_close':
                     case $this->name . '_level_open':
-                        if ($openTokenIndex > 0 && !$paragraph)
-                        {
-                            for ($j = $openTokenIndex; $j < $i; $j++)
-                            {
+                        if ($openTokenIndex > 0 && !$paragraph) {
+                            for ($j = $openTokenIndex; $j < $i; $j++) {
                                 $tokenJ = $tokenList->getTokenAt($j);
-                                if ($tokenJ->getName() === Eol::NAME)
-                                {
+                                if ($tokenJ->getName() === Eol::NAME) {
                                     $tokenList->removeTokenAt($j);
                                     $i--;
                                     $j--;
@@ -188,8 +163,7 @@ class ListBlock extends AbstractBlockRule
                         break;
 
                     default:
-                        if ($eolCount > 1)
-                        {
+                        if ($eolCount > 1) {
                             $paragraph = true;
                         }
                         $eolCount = 0;
@@ -204,38 +178,32 @@ class ListBlock extends AbstractBlockRule
 
     /**
      * @param TokenList $tokenList token list
-     * @param int       $level     actual level deep
-     * @param bool      $ordered   level is ordered or not
-     * @param int       $position  match position
+     * @param int $level actual level deep
+     * @param bool $ordered level is ordered or not
+     * @param int $position match position
      */
-    protected function openLevels(TokenList $tokenList, $level, $ordered, $position)
-    {
+    protected function openLevels(TokenList $tokenList, $level, $ordered, $position) {
         $lastToken = $tokenList->last();
-        if ($lastToken->getName() === $this->name)
-        {
+        if ($lastToken->getName() === $this->name) {
             $content = "\n" . $lastToken->get('content') . "\n";
             $tokenList->removeTokenAt($tokenList->size() - 1);
             $this->parseContent($content, $tokenList);
         }
-        for ($this->level; $this->level < $level; $this->level++)
-        {
+        for ($this->level; $this->level < $level; $this->level++) {
             $tokenList->addToken($this->name . '_level_open', $position)
-                      ->set('level', $this->level)
-                      ->set('ordered', $ordered);
+                ->set('level', $this->level)
+                ->set('ordered', $ordered);
         }
     }
 
     /**
      * @param TokenList $tokenList token list
-     * @param int       $level     actual level deep
-     * @param int       $position  match position
+     * @param int $level actual level deep
+     * @param int $position match position
      */
-    protected function closeLevels(TokenList $tokenList, $level, $position)
-    {
-        for ($this->level; $this->level > $level; $this->level--)
-        {
-            if (isset($this->open[$this->level]) && $this->open[$this->level])
-            {
+    protected function closeLevels(TokenList $tokenList, $level, $position) {
+        for ($this->level; $this->level > $level; $this->level--) {
+            if (isset($this->open[$this->level]) && $this->open[$this->level]) {
                 $this->itemClose($tokenList, $position);
             }
             $tokenList->addToken($this->name . '_level_close', $position);
@@ -246,13 +214,11 @@ class ListBlock extends AbstractBlockRule
      * Add close element
      *
      * @param TokenList $tokenList
-     * @param int       $position
+     * @param int $position
      */
-    protected function itemClose(TokenList $tokenList, $position)
-    {
+    protected function itemClose(TokenList $tokenList, $position) {
         $lastToken = $tokenList->last();
-        if ($lastToken->getName() === $this->name)
-        {
+        if ($lastToken->getName() === $this->name) {
             $content = "\n" . $lastToken->get('content') . "\n";
             $tokenList->removeTokenAt($tokenList->size() - 1);
             $this->parseContent($content, $tokenList);

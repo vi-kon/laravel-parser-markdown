@@ -6,8 +6,7 @@ namespace ViKon\ParserMarkdown\rule\single;
 use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractSingleRule;
 
-class Hr extends AbstractSingleRule
-{
+class Hr extends AbstractSingleRule {
     const NAME = 'hr';
 
     /**
@@ -15,8 +14,7 @@ class Hr extends AbstractSingleRule
      *
      * @param \ViKon\ParserMarkdown\MarkdownSet $set rule set instance
      */
-    public function __construct(MarkdownSet $set)
-    {
+    public function __construct(MarkdownSet $set) {
         parent::__construct(self::NAME, 30, '\n\*{3,}|-{3,}|_{3,}|(?:\* ){3,}|(?:- ){3,}|(?:_ ){3,}', $set);
     }
 }

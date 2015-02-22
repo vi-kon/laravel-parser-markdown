@@ -11,16 +11,13 @@ use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
 use ViKon\Parser\TokenList;
 
-class Image extends AbstractBootstrapRuleRender
-{
-    public function register(Renderer $renderer)
-    {
+class Image extends AbstractBootstrapRuleRender {
+    public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(ImageInlineRule::NAME, array($this, 'renderImage'), $this->skin);
         $renderer->setTokenRenderer(ImageReferenceRule::NAME, array($this, 'renderImageReference'), $this->skin);
     }
 
-    public function renderImage(Token $token)
-    {
+    public function renderImage(Token $token) {
         $title = $token->get('title', null) === null
             ? ''
             : ' title="' . $token->get('title') . '"';
@@ -28,27 +25,20 @@ class Image extends AbstractBootstrapRuleRender
         return '<img src="' . $token->get('url') . '"' . $title . ' alt="' . $token->get('alt') . '" />';
     }
 
-    public function renderImageReference(Token $token, TokenList $tokenList)
-    {
+    public function renderImageReference(Token $token, TokenList $tokenList) {
         $reference = $token->get('reference');
-        if ($reference instanceof Token)
-        {
+        if ($reference instanceof Token) {
             $referenceToken = $reference;
-        }
-        else
-        {
-            if (trim($reference) === '')
-            {
+        } else {
+            if (trim($reference) === '') {
                 $reference = strtolower(trim($token->get('label')));
             }
 
-            $tokens = $tokenList->getTokensByCallback(function (Token $token) use ($reference)
-            {
+            $tokens = $tokenList->getTokensByCallback(function (Token $token) use ($reference) {
                 return $token->getName() === ReferenceRule::NAME && $token->get('reference', null) === $reference;
             });
 
-            if (($referenceToken = reset($tokens)) === false)
-            {
+            if (($referenceToken = reset($tokens)) === false) {
                 return $token->get('match', '');
             }
 

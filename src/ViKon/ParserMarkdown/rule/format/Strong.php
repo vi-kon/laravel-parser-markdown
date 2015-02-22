@@ -6,8 +6,7 @@ namespace ViKon\ParserMarkdown\rule\format;
 use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractFormatRule;
 
-class Strong extends AbstractFormatRule
-{
+class Strong extends AbstractFormatRule {
     const NAME = 'strong';
 
     /**
@@ -15,8 +14,7 @@ class Strong extends AbstractFormatRule
      *
      * @param \ViKon\ParserMarkdown\MarkdownSet $set rule set instance
      */
-    public function __construct(MarkdownSet $set)
-    {
+    public function __construct(MarkdownSet $set) {
         parent::__construct(self::NAME, 80, '\*\*(?=(?:\\\\.|[^\n*\\\\])*\*\*)', '\*\*(?=[^\*])', $set);
     }
 }

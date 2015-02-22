@@ -8,15 +8,12 @@ use ViKon\ParserMarkdown\rule\single\Escape as EscapeRule;
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
 
-class Escape extends AbstractBootstrapRuleRender
-{
-    public function register(Renderer $renderer)
-    {
+class Escape extends AbstractBootstrapRuleRender {
+    public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(EscapeRule::NAME, array($this, 'renderEscape'), $this->skin);
     }
 
-    public function renderEscape(Token $token)
-    {
+    public function renderEscape(Token $token) {
         return htmlspecialchars($token->get('char'));
     }
 }

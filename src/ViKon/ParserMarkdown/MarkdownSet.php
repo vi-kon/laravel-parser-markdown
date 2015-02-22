@@ -45,10 +45,8 @@ use ViKon\ParserMarkdown\rule\single\LinkInline;
 use ViKon\ParserMarkdown\rule\single\LinkReference;
 use ViKon\ParserMarkdown\rule\single\Reference;
 
-class MarkdownSet extends AbstractSet
-{
-    public function __construct()
-    {
+class MarkdownSet extends AbstractSet {
+    public function __construct() {
         \Event::listen('vikon.parser.before.parse', [$this, 'normalizeLineBreak']);
 
         $this->setStartRule(new Base($this), self::CATEGORY_NONE);
@@ -99,15 +97,13 @@ class MarkdownSet extends AbstractSet
         $this->addRuleRender(new LinkBootstrapRenderer($this));
         $this->addRuleRender(new ReferenceBootstrapRenderer($this));
 
-        if (config('parser-markdown::extra-rules'))
-        {
+        if (config('parser-markdown::extra-rules')) {
             $this->addRule(new Math($this), self::CATEGORY_FORMAT);
             $this->addRuleRender(new MathBootstrapRenderer($this));
         }
     }
 
-    public function normalizeLineBreak(&$text)
-    {
+    public function normalizeLineBreak(&$text) {
         $text = str_replace("\r\n", "\n", $text);
     }
 }

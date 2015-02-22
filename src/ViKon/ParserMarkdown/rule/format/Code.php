@@ -7,17 +7,14 @@ use ViKon\Parser\lexer\Lexer;
 use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractFormatRule;
 
-class Code extends AbstractFormatRule
-{
+class Code extends AbstractFormatRule {
     const NAME = 'code';
 
-    public function __construct(MarkdownSet $set)
-    {
+    public function __construct(MarkdownSet $set) {
         parent::__construct(self::NAME, 140, '`(?=[^\n]*`)', '`', $set);
     }
 
-    public function prepare(Lexer $lexer)
-    {
+    public function prepare(Lexer $lexer) {
         return $this;
     }
 }

@@ -12,17 +12,14 @@ use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
 use ViKon\Parser\TokenList;
 
-class Link extends AbstractBootstrapRuleRender
-{
-    public function register(Renderer $renderer)
-    {
+class Link extends AbstractBootstrapRuleRender {
+    public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(LinkInlineRule::NAME, array($this, 'renderLinkInline'), $this->skin);
         $renderer->setTokenRenderer(LinkReferenceRule::NAME, array($this, 'renderLinkReference'), $this->skin);
         $renderer->setTokenRenderer(LinkAutomaticRule::NAME, array($this, 'renderLinkAutomatic'), $this->skin);
     }
 
-    public function renderLinkInline(Token $token)
-    {
+    public function renderLinkInline(Token $token) {
         $title = $token->get('title', null) === null
             ? ''
             : ' title="' . $token->get('title') . '"';
@@ -30,27 +27,20 @@ class Link extends AbstractBootstrapRuleRender
         return '<a href="' . $token->get('url') . '"' . $title . '>' . $token->get('label') . '</a>';
     }
 
-    public function renderLinkReference(Token $token, TokenList $tokenList)
-    {
+    public function renderLinkReference(Token $token, TokenList $tokenList) {
         $reference = $token->get('reference');
-        if ($reference instanceof Token)
-        {
+        if ($reference instanceof Token) {
             $referenceToken = $reference;
-        }
-        else
-        {
-            if (trim($reference) === '')
-            {
+        } else {
+            if (trim($reference) === '') {
                 $reference = strtolower(trim($token->get('label')));
             }
 
-            $tokens = $tokenList->getTokensByCallback(function (Token $token) use ($reference)
-            {
+            $tokens = $tokenList->getTokensByCallback(function (Token $token) use ($reference) {
                 return $token->getName() === ReferenceRule::NAME && $token->get('reference', null) === $reference;
             });
 
-            if (($referenceToken = reset($tokens)) === false)
-            {
+            if (($referenceToken = reset($tokens)) === false) {
                 return $token->get('match', '');
             }
 
@@ -64,8 +54,7 @@ class Link extends AbstractBootstrapRuleRender
         return '<a href="' . $referenceToken->get('url') . '"' . $title . '>' . $token->get('label') . '</a>';
     }
 
-    public function renderLinkAutomatic(Token $token)
-    {
+    public function renderLinkAutomatic(Token $token) {
         return '<a href="' . $token->get('url') . '">' . htmlspecialchars($token->get('url')) . '</a>';
     }
 }

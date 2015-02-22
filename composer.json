@@ -1,23 +1,23 @@
 {
-  "name": "vi-kon/laravel-parser-markdown",
-  "description": "Markdown parser for Laravel 5",
-  "keywords": [
+  "name"             : "vi-kon/laravel-parser-markdown",
+  "description"      : "Markdown parser for Laravel 5",
+  "keywords"         : [
     "laravel",
     "parser",
     "markdown"
   ],
-  "license": "MIT",
-  "authors": [
+  "license"          : "MIT",
+  "authors"          : [
     {
-      "name": "Kovács Vince",
+      "name" : "Kovács Vince",
       "email": "vincekovacs@hotmail.com"
     }
   ],
-  "require": {
-    "php": ">=5.4.0",
+  "require"          : {
+    "php"               : ">=5.4.0",
     "illuminate/support": "~5.0"
   },
-  "autoload": {
+  "autoload"         : {
     "psr-0": {
       "ViKon\\ParserMarkdown\\": "src/"
     }

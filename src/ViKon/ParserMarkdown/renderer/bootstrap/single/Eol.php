@@ -8,16 +8,13 @@ use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\rule\single\Eol as EolRule;
 
-class Eol extends AbstractBootstrapRuleRender
-{
+class Eol extends AbstractBootstrapRuleRender {
 
-    public function register(Renderer $renderer)
-    {
+    public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(EolRule::NAME, array($this, 'renderEol'), $this->skin);
     }
 
-    public function renderEol(Token $token)
-    {
+    public function renderEol(Token $token) {
         return "\n";
     }
 }
