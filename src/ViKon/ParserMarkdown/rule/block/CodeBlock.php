@@ -4,9 +4,9 @@
 namespace ViKon\ParserMarkdown\rule\block;
 
 use ViKon\Parser\lexer\Lexer;
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractBlockRule;
 use ViKon\Parser\TokenList;
+use ViKon\ParserMarkdown\MarkdownSet;
 
 class CodeBlock extends AbstractBlockRule {
     const NAME = 'code_block';

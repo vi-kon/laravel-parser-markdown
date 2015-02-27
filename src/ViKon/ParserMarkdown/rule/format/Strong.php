@@ -3,8 +3,8 @@
 
 namespace ViKon\ParserMarkdown\rule\format;
 
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractFormatRule;
+use ViKon\ParserMarkdown\MarkdownSet;
 
 class Strong extends AbstractFormatRule {
     const NAME = 'strong';

@@ -3,9 +3,9 @@
 
 namespace ViKon\ParserMarkdown\rule\single;
 
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
+use ViKon\ParserMarkdown\MarkdownSet;
 
 class LinkAutomatic extends AbstractSingleRule {
     const NAME = 'link_automatic';

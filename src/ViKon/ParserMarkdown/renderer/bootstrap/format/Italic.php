@@ -3,21 +3,21 @@
 
 namespace ViKon\ParserMarkdown\renderer\bootstrap\format;
 
+use ViKon\Parser\renderer\Renderer;
+use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 use ViKon\ParserMarkdown\rule\format\Italic as ItalicRule;
 use ViKon\ParserMarkdown\rule\format\ItalicAlt as ItalicAltRule;
-use ViKon\Parser\renderer\Renderer;
-use ViKon\Parser\Token;
 
 class Italic extends AbstractBootstrapRuleRender {
     public function register(Renderer $renderer) {
-        $renderer->setTokenRenderer(ItalicRule::NAME . '_open', array($this, 'renderItalicOpen'), $this->skin);
-        $renderer->setTokenRenderer(ItalicRule::NAME, array($this, 'renderItalic'), $this->skin);
-        $renderer->setTokenRenderer(ItalicRule::NAME . '_close', array($this, 'renderItalicClose'), $this->skin);
+        $renderer->setTokenRenderer(ItalicRule::NAME . '_open', [$this, 'renderItalicOpen'], $this->skin);
+        $renderer->setTokenRenderer(ItalicRule::NAME, [$this, 'renderItalic'], $this->skin);
+        $renderer->setTokenRenderer(ItalicRule::NAME . '_close', [$this, 'renderItalicClose'], $this->skin);
 
-        $renderer->setTokenRenderer(ItalicAltRule::NAME . '_open', array($this, 'renderItalicOpen'), $this->skin);
-        $renderer->setTokenRenderer(ItalicAltRule::NAME, array($this, 'renderItalic'), $this->skin);
-        $renderer->setTokenRenderer(ItalicAltRule::NAME . '_close', array($this, 'renderItalicClose'), $this->skin);
+        $renderer->setTokenRenderer(ItalicAltRule::NAME . '_open', [$this, 'renderItalicOpen'], $this->skin);
+        $renderer->setTokenRenderer(ItalicAltRule::NAME, [$this, 'renderItalic'], $this->skin);
+        $renderer->setTokenRenderer(ItalicAltRule::NAME . '_close', [$this, 'renderItalicClose'], $this->skin);
     }
 
     public function renderItalicOpen(Token $token) {

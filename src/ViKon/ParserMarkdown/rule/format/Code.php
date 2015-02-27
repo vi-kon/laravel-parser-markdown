@@ -4,8 +4,8 @@
 namespace ViKon\ParserMarkdown\rule\format;
 
 use ViKon\Parser\lexer\Lexer;
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractFormatRule;
+use ViKon\ParserMarkdown\MarkdownSet;
 
 class Code extends AbstractFormatRule {
     const NAME = 'code';

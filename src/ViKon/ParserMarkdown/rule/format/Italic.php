@@ -3,8 +3,8 @@
 
 namespace ViKon\ParserMarkdown\rule\format;
 
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractFormatRule;
+use ViKon\ParserMarkdown\MarkdownSet;
 
 class Italic extends AbstractFormatRule {
     const NAME = 'italic';

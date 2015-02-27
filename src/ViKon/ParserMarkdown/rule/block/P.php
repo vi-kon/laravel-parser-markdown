@@ -3,10 +3,10 @@
 
 namespace ViKon\ParserMarkdown\rule\block;
 
-use ViKon\ParserMarkdown\MarkdownSet;
-use ViKon\ParserMarkdown\rule\single\Eol as EolRule;
 use ViKon\Parser\rule\AbstractRule;
 use ViKon\Parser\TokenList;
+use ViKon\ParserMarkdown\MarkdownSet;
+use ViKon\ParserMarkdown\rule\single\Eol as EolRule;
 
 class P extends AbstractRule {
     const NAME = 'p';
@@ -17,8 +17,8 @@ class P extends AbstractRule {
 
     public function finalize(TokenList $tokenList) {
         $pOpened = false;
-        $pOpenTokens = array();
-        $pCloseTokens = array();
+        $pOpenTokens = [];
+        $pCloseTokens = [];
         $eolCount = 0;
         $blockRuleNames = $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_BLOCK);
         $singleRuleNames = $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_SINGLE);

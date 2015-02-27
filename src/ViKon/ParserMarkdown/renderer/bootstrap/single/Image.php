@@ -3,18 +3,18 @@
 
 namespace ViKon\ParserMarkdown\renderer\bootstrap\single;
 
+use ViKon\Parser\renderer\Renderer;
+use ViKon\Parser\Token;
+use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 use ViKon\ParserMarkdown\rule\single\ImageInline as ImageInlineRule;
 use ViKon\ParserMarkdown\rule\single\ImageReference as ImageReferenceRule;
 use ViKon\ParserMarkdown\rule\single\Reference as ReferenceRule;
-use ViKon\Parser\renderer\Renderer;
-use ViKon\Parser\Token;
-use ViKon\Parser\TokenList;
 
 class Image extends AbstractBootstrapRuleRender {
     public function register(Renderer $renderer) {
-        $renderer->setTokenRenderer(ImageInlineRule::NAME, array($this, 'renderImage'), $this->skin);
-        $renderer->setTokenRenderer(ImageReferenceRule::NAME, array($this, 'renderImageReference'), $this->skin);
+        $renderer->setTokenRenderer(ImageInlineRule::NAME, [$this, 'renderImage'], $this->skin);
+        $renderer->setTokenRenderer(ImageReferenceRule::NAME, [$this, 'renderImageReference'], $this->skin);
     }
 
     public function renderImage(Token $token) {

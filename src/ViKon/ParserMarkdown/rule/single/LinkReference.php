@@ -3,10 +3,10 @@
 
 namespace ViKon\ParserMarkdown\rule\single;
 
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractSingleRule;
 use ViKon\Parser\Token;
 use ViKon\Parser\TokenList;
+use ViKon\ParserMarkdown\MarkdownSet;
 
 class LinkReference extends AbstractSingleRule {
     const NAME = 'link_reference';

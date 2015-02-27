@@ -15,7 +15,7 @@ use ViKon\ParserMarkdown\rule\single\LinkReference;
 class ListBlock extends AbstractBlockRule {
     const NAME = 'list_block';
 
-    protected $open = array();
+    protected $open = [];
 
     protected $level = -1;
 
@@ -24,12 +24,12 @@ class ListBlock extends AbstractBlockRule {
     }
 
     public function prepare(Lexer $lexer) {
-        $this->acceptedRuleNames = array_merge(array(
+        $this->acceptedRuleNames = array_merge([
             CodeBlock::NAME,
             Eol::NAME,
             LinkInline::NAME,
             LinkReference::NAME,
-        ), $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_FORMAT));
+        ], $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_FORMAT));
     }
 
     public function embedInto($parentRuleNameName, Lexer $lexer) {
@@ -52,15 +52,15 @@ class ListBlock extends AbstractBlockRule {
     }
 
     /**
-     * @param string $content
-     * @param int $position
+     * @param string                  $content
+     * @param int                     $position
      * @param \ViKon\Parser\TokenList $tokenList
      *
      * @return bool
      */
     protected function handleEntryState($content, $position, TokenList $tokenList) {
         $this->level = -1;
-        $this->open = array();
+        $this->open = [];
         $content = "\n" . $content;
 
         $tokenList->addToken($this->name . '_open', $position);
@@ -69,8 +69,8 @@ class ListBlock extends AbstractBlockRule {
     }
 
     /**
-     * @param string $content
-     * @param int $position
+     * @param string                  $content
+     * @param int                     $position
      * @param \ViKon\Parser\TokenList $tokenList
      */
     protected function handleMatchedState($content, $position, TokenList $tokenList) {
@@ -104,8 +104,8 @@ class ListBlock extends AbstractBlockRule {
     }
 
     /**
-     * @param string $content
-     * @param int $position
+     * @param string                  $content
+     * @param int                     $position
      * @param \ViKon\Parser\TokenList $tokenList
      *
      * @return bool
@@ -121,8 +121,8 @@ class ListBlock extends AbstractBlockRule {
     }
 
     /**
-     * @param string $content
-     * @param int $position
+     * @param string                  $content
+     * @param int                     $position
      * @param \ViKon\Parser\TokenList $tokenList
      */
     protected function handleExitState($content, $position, TokenList $tokenList) {
@@ -178,9 +178,9 @@ class ListBlock extends AbstractBlockRule {
 
     /**
      * @param TokenList $tokenList token list
-     * @param int $level actual level deep
-     * @param bool $ordered level is ordered or not
-     * @param int $position match position
+     * @param int       $level     actual level deep
+     * @param bool      $ordered   level is ordered or not
+     * @param int       $position  match position
      */
     protected function openLevels(TokenList $tokenList, $level, $ordered, $position) {
         $lastToken = $tokenList->last();
@@ -198,8 +198,8 @@ class ListBlock extends AbstractBlockRule {
 
     /**
      * @param TokenList $tokenList token list
-     * @param int $level actual level deep
-     * @param int $position match position
+     * @param int       $level     actual level deep
+     * @param int       $position  match position
      */
     protected function closeLevels(TokenList $tokenList, $level, $position) {
         for ($this->level; $this->level > $level; $this->level--) {
@@ -214,7 +214,7 @@ class ListBlock extends AbstractBlockRule {
      * Add close element
      *
      * @param TokenList $tokenList
-     * @param int $position
+     * @param int       $position
      */
     protected function itemClose(TokenList $tokenList, $position) {
         $lastToken = $tokenList->last();

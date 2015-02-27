@@ -3,8 +3,8 @@
 
 namespace ViKon\ParserMarkdown\rule\single;
 
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractSingleRule;
+use ViKon\ParserMarkdown\MarkdownSet;
 
 class Hr extends AbstractSingleRule {
     const NAME = 'hr';

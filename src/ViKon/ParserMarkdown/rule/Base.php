@@ -4,9 +4,9 @@
 namespace ViKon\ParserMarkdown\rule;
 
 use ViKon\Parser\lexer\Lexer;
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\Parser\rule\AbstractRule;
 use ViKon\Parser\TokenList;
+use ViKon\ParserMarkdown\MarkdownSet;
 
 class Base extends AbstractRule {
     const NAME = 'base';
