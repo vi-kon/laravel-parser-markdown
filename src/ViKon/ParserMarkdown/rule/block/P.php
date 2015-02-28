@@ -8,6 +8,13 @@ use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\ParserMarkdown\rule\single\Eol as EolRule;
 
+/**
+ * Class P
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule\block
+ */
 class P extends AbstractRule {
     const NAME = 'p';
 

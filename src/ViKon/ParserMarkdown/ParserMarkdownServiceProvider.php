@@ -2,6 +2,13 @@
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class ParserMarkdownServiceProvider
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown
+ */
 class ParserMarkdownServiceProvider extends ServiceProvider {
 
     /**
@@ -26,7 +33,6 @@ class ParserMarkdownServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        //
     }
 
 }

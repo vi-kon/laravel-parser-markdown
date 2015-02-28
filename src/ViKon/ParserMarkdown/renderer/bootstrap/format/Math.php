@@ -13,6 +13,13 @@ use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 use ViKon\ParserMarkdown\rule\format\Math as MathRule;
 
+/**
+ * Class Math
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\renderer\bootstrap\format
+ */
 class Math extends AbstractBootstrapRuleRender {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(MathRule::NAME . '_open', [$this, 'renderMathOpen'], $this->skin);

@@ -6,6 +6,13 @@ namespace ViKon\ParserMarkdown\rule\single;
 use ViKon\Parser\rule\AbstractSingleRule;
 use ViKon\ParserMarkdown\MarkdownSet;
 
+/**
+ * Class Eol
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule\single
+ */
 class Eol extends AbstractSingleRule {
     const NAME = 'eol';
 

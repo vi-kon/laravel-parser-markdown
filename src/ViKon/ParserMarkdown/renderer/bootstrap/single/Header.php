@@ -9,6 +9,13 @@ use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 use ViKon\ParserMarkdown\rule\single\HeaderAtx as HeaderAtxRule;
 use ViKon\ParserMarkdown\rule\single\HeaderSetext as HeaderSetextRule;
 
+/**
+ * Class Header
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\renderer\bootstrap\single
+ */
 class Header extends AbstractBootstrapRuleRender {
 
     public function register(Renderer $renderer) {

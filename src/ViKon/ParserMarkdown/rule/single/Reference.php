@@ -7,6 +7,13 @@ use ViKon\Parser\rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\MarkdownSet;
 
+/**
+ * Class Reference
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule\single
+ */
 class Reference extends AbstractSingleRule {
     const NAME = 'reference';
 

@@ -6,6 +6,13 @@ use ViKon\Parser\lexer\Lexer;
 use ViKon\Parser\rule\AbstractFormatRule;
 use ViKon\ParserMarkdown\MarkdownSet;
 
+/**
+ * Class Math
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule\format
+ */
 class Math extends AbstractFormatRule {
     const NAME = 'math';
 

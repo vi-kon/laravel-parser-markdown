@@ -6,6 +6,13 @@ namespace ViKon\ParserMarkdown\rule\format;
 use ViKon\Parser\rule\AbstractFormatRule;
 use ViKon\ParserMarkdown\MarkdownSet;
 
+/**
+ * Class Strong
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule\format
+ */
 class Strong extends AbstractFormatRule {
     const NAME = 'strong';
 

@@ -7,6 +7,13 @@ use ViKon\Parser\rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\MarkdownSet;
 
+/**
+ * Class LinkInline
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule\single
+ */
 class LinkInline extends AbstractSingleRule {
     const NAME = 'link_inline';
 

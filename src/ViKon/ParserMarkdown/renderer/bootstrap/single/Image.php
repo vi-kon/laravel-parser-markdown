@@ -11,6 +11,13 @@ use ViKon\ParserMarkdown\rule\single\ImageInline as ImageInlineRule;
 use ViKon\ParserMarkdown\rule\single\ImageReference as ImageReferenceRule;
 use ViKon\ParserMarkdown\rule\single\Reference as ReferenceRule;
 
+/**
+ * Class Image
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\renderer\bootstrap\single
+ */
 class Image extends AbstractBootstrapRuleRender {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(ImageInlineRule::NAME, [$this, 'renderImage'], $this->skin);

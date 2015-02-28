@@ -8,6 +8,13 @@ use ViKon\Parser\Token;
 use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\MarkdownSet;
 
+/**
+ * Class LinkReference
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule\single
+ */
 class LinkReference extends AbstractSingleRule {
     const NAME = 'link_reference';
 

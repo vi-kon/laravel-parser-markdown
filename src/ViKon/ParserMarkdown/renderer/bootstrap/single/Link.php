@@ -12,6 +12,13 @@ use ViKon\ParserMarkdown\rule\single\LinkInline as LinkInlineRule;
 use ViKon\ParserMarkdown\rule\single\LinkReference as LinkReferenceRule;
 use ViKon\ParserMarkdown\rule\single\Reference as ReferenceRule;
 
+/**
+ * Class Link
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\renderer\bootstrap\single
+ */
 class Link extends AbstractBootstrapRuleRender {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(LinkInlineRule::NAME, [$this, 'renderLinkInline'], $this->skin);

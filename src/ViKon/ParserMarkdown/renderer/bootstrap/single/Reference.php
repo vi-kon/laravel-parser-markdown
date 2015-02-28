@@ -8,6 +8,13 @@ use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 use ViKon\ParserMarkdown\rule\single\Reference as ReferenceRule;
 
+/**
+ * Class Reference
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\renderer\bootstrap\single
+ */
 class Reference extends AbstractBootstrapRuleRender {
 
     public function register(Renderer $renderer) {

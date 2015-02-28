@@ -8,6 +8,13 @@ use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 use ViKon\ParserMarkdown\rule\block\ListBlock as ListBlockRule;
 
+/**
+ * Class ListBlock
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\renderer\bootstrap\block
+ */
 class ListBlock extends AbstractBootstrapRuleRender {
     protected $ordered = [];
 

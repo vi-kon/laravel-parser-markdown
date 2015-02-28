@@ -7,6 +7,13 @@ use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
 
+/**
+ * Class P
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\renderer\bootstrap\block
+ */
 class P extends AbstractBootstrapRuleRender {
     const NAME = 'p';
 

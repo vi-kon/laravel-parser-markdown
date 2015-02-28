@@ -45,6 +45,13 @@ use ViKon\ParserMarkdown\rule\single\LinkInline;
 use ViKon\ParserMarkdown\rule\single\LinkReference;
 use ViKon\ParserMarkdown\rule\single\Reference;
 
+/**
+ * Class MarkdownSet
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown
+ */
 class MarkdownSet extends AbstractSet {
     public function __construct() {
         \Event::listen('vikon.parser.before.parse', [$this, 'normalizeLineBreak']);
@@ -103,6 +110,11 @@ class MarkdownSet extends AbstractSet {
         }
     }
 
+    /**
+     * Change windows type line break to linux type
+     *
+     * @param string $text
+     */
     public function normalizeLineBreak(&$text) {
         $text = str_replace("\r\n", "\n", $text);
     }

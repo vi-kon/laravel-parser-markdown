@@ -8,6 +8,13 @@ use ViKon\Parser\rule\AbstractRule;
 use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\MarkdownSet;
 
+/**
+ * Class Base
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule
+ */
 class Base extends AbstractRule {
     const NAME = 'base';
 

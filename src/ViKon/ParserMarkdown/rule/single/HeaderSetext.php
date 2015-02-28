@@ -7,6 +7,13 @@ use ViKon\Parser\rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\MarkdownSet;
 
+/**
+ * Class HeaderSetext
+ *
+ * @author  Kovács Vince <vincekovacs@hotmail.com>
+ *
+ * @package ViKon\ParserMarkdown\rule\single
+ */
 class HeaderSetext extends AbstractSingleRule {
     const NAME = 'header_setext';
 
