@@ -21,6 +21,6 @@ class Email extends AbstractBootstrapRuleRenderer {
     }
 
     public function renderEmailAutomatic(Token $token) {
-        return '<a href="' . \HTML::email('mailto:' . $token->get('url')) . '">' . \HTML::email($token->get('url')) . '</a>';
+        return '<a href="' . app('html')->email('mailto:' . $token->get('url')) . '">' . app('html')->email($token->get('url')) . '</a>';
     }
 }
