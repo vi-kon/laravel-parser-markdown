@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\single;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\single\EmailAutomatic as EmailAutomaticRule;
 
 /**
@@ -15,7 +15,7 @@ use ViKon\ParserMarkdown\rule\single\EmailAutomatic as EmailAutomaticRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\single
  */
-class Email extends AbstractBootstrapRuleRender {
+class Email extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(EmailAutomaticRule::NAME, [$this, 'renderEmailAutomatic'], $this->skin);
     }

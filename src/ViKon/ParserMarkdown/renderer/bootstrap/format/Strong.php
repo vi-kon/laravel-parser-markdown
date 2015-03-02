@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\format;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\format\Strong as StrongRule;
 use ViKon\ParserMarkdown\rule\format\StrongAlt as StrongAltRule;
 
@@ -16,7 +16,7 @@ use ViKon\ParserMarkdown\rule\format\StrongAlt as StrongAltRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\format
  */
-class Strong extends AbstractBootstrapRuleRender {
+class Strong extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(StrongRule::NAME . '_open', [$this, 'renderStrongOpen'], $this->skin);
         $renderer->setTokenRenderer(StrongRule::NAME, [$this, 'renderStrong'], $this->skin);

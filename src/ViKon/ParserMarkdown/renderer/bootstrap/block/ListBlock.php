@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\block;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\block\ListBlock as ListBlockRule;
 
 /**
@@ -15,7 +15,7 @@ use ViKon\ParserMarkdown\rule\block\ListBlock as ListBlockRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\block
  */
-class ListBlock extends AbstractBootstrapRuleRender {
+class ListBlock extends AbstractBootstrapRuleRenderer {
     protected $ordered = [];
 
     public function register(Renderer $renderer) {

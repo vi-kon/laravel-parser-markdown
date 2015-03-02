@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\single;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\single\HeaderAtx as HeaderAtxRule;
 use ViKon\ParserMarkdown\rule\single\HeaderSetext as HeaderSetextRule;
 
@@ -16,7 +16,7 @@ use ViKon\ParserMarkdown\rule\single\HeaderSetext as HeaderSetextRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\single
  */
-class Header extends AbstractBootstrapRuleRender {
+class Header extends AbstractBootstrapRuleRenderer {
 
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(HeaderAtxRule::NAME, [$this, 'renderHeader'], $this->skin);

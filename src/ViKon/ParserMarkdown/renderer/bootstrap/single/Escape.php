@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\single;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\single\Escape as EscapeRule;
 
 /**
@@ -15,7 +15,7 @@ use ViKon\ParserMarkdown\rule\single\Escape as EscapeRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\single
  */
-class Escape extends AbstractBootstrapRuleRender {
+class Escape extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(EscapeRule::NAME, [$this, 'renderEscape'], $this->skin);
     }

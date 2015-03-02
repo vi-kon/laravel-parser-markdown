@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\single;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\single\Hr as HrRule;
 
 /**
@@ -15,7 +15,7 @@ use ViKon\ParserMarkdown\rule\single\Hr as HrRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\single
  */
-class Hr extends AbstractBootstrapRuleRender {
+class Hr extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(HrRule::NAME, [$this, 'renderHr'], $this->skin);
     }

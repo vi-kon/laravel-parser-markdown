@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\format;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\format\Code as CodeRule;
 use ViKon\ParserMarkdown\rule\format\CodeAlt as CodeAltRule;
 
@@ -16,7 +16,7 @@ use ViKon\ParserMarkdown\rule\format\CodeAlt as CodeAltRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\format
  */
-class Code extends AbstractBootstrapRuleRender {
+class Code extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(CodeRule::NAME . '_open', [$this, 'renderCodeOpen'], $this->skin);
         $renderer->setTokenRenderer(CodeRule::NAME, [$this, 'renderCode'], $this->skin);

@@ -10,7 +10,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\format;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\format\Math as MathRule;
 
 /**
@@ -20,7 +20,7 @@ use ViKon\ParserMarkdown\rule\format\Math as MathRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\format
  */
-class Math extends AbstractBootstrapRuleRender {
+class Math extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(MathRule::NAME . '_open', [$this, 'renderMathOpen'], $this->skin);
         $renderer->setTokenRenderer(MathRule::NAME, [$this, 'renderMath'], $this->skin);

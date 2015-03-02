@@ -13,7 +13,7 @@ use ViKon\Parser\renderer\AbstractRuleRenderer;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap
  */
-abstract class AbstractBootstrapRuleRender extends AbstractRuleRenderer {
+abstract class AbstractBootstrapRuleRenderer extends AbstractRuleRenderer {
     public function __construct(AbstractSet $set) {
         parent::__construct($set, 'bootstrap');
     }

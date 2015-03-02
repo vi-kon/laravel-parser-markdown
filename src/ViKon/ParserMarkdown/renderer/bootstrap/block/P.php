@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\block;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 
 /**
  * Class P
@@ -14,7 +14,7 @@ use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\block
  */
-class P extends AbstractBootstrapRuleRender {
+class P extends AbstractBootstrapRuleRenderer {
     const NAME = 'p';
 
     public function register(Renderer $renderer) {

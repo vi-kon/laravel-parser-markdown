@@ -14,7 +14,7 @@ use ViKon\ParserMarkdown\rule\Base as BaseRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap
  */
-class Base extends AbstractBootstrapRuleRender {
+class Base extends AbstractBootstrapRuleRenderer {
 
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(BaseRule::NAME, [$this, 'renderBase'], $this->skin);

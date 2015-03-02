@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\single;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\single\Reference as ReferenceRule;
 
 /**
@@ -15,7 +15,7 @@ use ViKon\ParserMarkdown\rule\single\Reference as ReferenceRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\single
  */
-class Reference extends AbstractBootstrapRuleRender {
+class Reference extends AbstractBootstrapRuleRenderer {
 
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(ReferenceRule::NAME, [$this, 'renderReference'], $this->skin);

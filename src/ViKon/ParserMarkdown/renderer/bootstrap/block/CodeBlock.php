@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\renderer\bootstrap\block;
 
 use ViKon\Parser\renderer\Renderer;
 use ViKon\Parser\Token;
-use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRender;
+use ViKon\ParserMarkdown\renderer\bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\rule\block\CodeBlock as CodeBlockRule;
 
 /**
@@ -15,7 +15,7 @@ use ViKon\ParserMarkdown\rule\block\CodeBlock as CodeBlockRule;
  *
  * @package ViKon\ParserMarkdown\renderer\bootstrap\block
  */
-class CodeBlock extends AbstractBootstrapRuleRender {
+class CodeBlock extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->setTokenRenderer(CodeBlockRule::NAME . '_open', [$this, 'renderCodeBlockOpen'], $this->skin);
         $renderer->setTokenRenderer(CodeBlockRule::NAME, [$this, 'renderCodeBlock'], $this->skin);
