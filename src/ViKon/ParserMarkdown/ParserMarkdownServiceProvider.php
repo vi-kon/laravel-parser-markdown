@@ -30,15 +30,6 @@ class ParserMarkdownServiceProvider extends ServiceProvider {
     }
 
     /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides() {
-        return [];
-    }
-
-    /**
      * Register the service provider.
      *
      * @return void
