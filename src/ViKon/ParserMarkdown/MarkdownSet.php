@@ -5,13 +5,20 @@ namespace ViKon\ParserMarkdown;
 use ViKon\Parser\AbstractSet;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\BaseBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrikethroughBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrongBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\HeaderBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\BaseMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrikethroughMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrongMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\HeaderMarkdownRenderer;
 use ViKon\ParserMarkdown\Rule\BaseRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicAltRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicRule;
+use ViKon\ParserMarkdown\Rule\Format\StrikethroughRule;
+use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
+use ViKon\ParserMarkdown\Rule\Format\StrongRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderSetextRule;
 
@@ -44,6 +51,19 @@ class MarkdownSet extends AbstractSet {
         $this->addRule(new ItalicAltRule($this), self::CATEGORY_FORMAT);
         $this->addRuleRender(new ItalicBootstrapRenderer($this));
         $this->addRuleRender(new ItalicMarkdownRenderer($this));
+
+        // EMPHASIS / STRONG
+        $this->addRule(new StrongRule($this), self::CATEGORY_FORMAT);
+        $this->addRule(new StrongAltRule($this), self::CATEGORY_FORMAT);
+        $this->addRuleRender(new StrongBootstrapRenderer($this));
+        $this->addRuleRender(new StrongMarkdownRenderer($this));
+
+        // EMPHASIS / STRIKETHROUGH
+        $this->addRule(new StrikethroughRule($this), self::CATEGORY_FORMAT);
+        $this->addRuleRender(new StrikethroughBootstrapRenderer($this));
+        $this->addRuleRender(new StrikethroughMarkdownRenderer($this));
+
+
     }
 
     /**
