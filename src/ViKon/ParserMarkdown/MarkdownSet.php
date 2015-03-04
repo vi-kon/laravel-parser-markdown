@@ -8,11 +8,15 @@ use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrikethroughBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrongBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\HeaderBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\LinkBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ReferenceBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\BaseMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrikethroughMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrongMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\HeaderMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Single\LinkMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Single\ReferenceMarkdownRenderer;
 use ViKon\ParserMarkdown\Rule\BaseRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicAltRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicRule;
@@ -21,6 +25,10 @@ use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderSetextRule;
+use ViKon\ParserMarkdown\Rule\Single\LinkInlineRule;
+use ViKon\ParserMarkdown\Rule\Single\LinkAutomaticRule;
+use ViKon\ParserMarkdown\Rule\Single\LinkReferenceRule;
+use ViKon\ParserMarkdown\Rule\Single\ReferenceRule;
 
 /**
  * Class MarkdownSet
@@ -38,13 +46,22 @@ class MarkdownSet extends AbstractSet {
         $this->addRuleRender(new BaseBootstrapRenderer($this));
         $this->addRuleRender(new BaseMarkdownRenderer($this));
 
-        // Single rules
-
         // HEADER
         $this->addRule(new HeaderAtxRule($this), self::CATEGORY_SINGLE);
         $this->addRule(new HeaderSetextRule($this), self::CATEGORY_SINGLE);
         $this->addRuleRender(new HeaderBootstrapRenderer($this));
         $this->addRuleRender(new HeaderMarkdownRenderer($this));
+
+        // REFERENCE
+        $this->addRule(new ReferenceRule($this), self::CATEGORY_SINGLE);
+        $this->addRuleRender(new ReferenceBootstrapRenderer($this));
+        $this->addRuleRender(new ReferenceMarkdownRenderer($this));
+
+        // URL
+        $this->addRule(new LinkInlineRule($this), self::CATEGORY_SINGLE);
+        $this->addRule(new LinkReferenceRule($this), self::CATEGORY_SINGLE);
+        $this->addRuleRender(new LinkBootstrapRenderer($this));
+        $this->addRuleRender(new LinkMarkdownRenderer($this));
 
         // EMPHASIS / ITALIC
         $this->addRule(new ItalicRule($this), self::CATEGORY_FORMAT);
