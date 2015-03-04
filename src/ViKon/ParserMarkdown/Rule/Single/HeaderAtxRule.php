@@ -18,26 +18,22 @@ class HeaderAtxRule extends AbstractSingleRule {
     const ORDER = 60;
 
     /**
+     *
+     * Match:
+     *
+     * # H1
+     * ## H2
+     * ### H3
+     * #### H4
+     * ##### H6
+     * ###### H7
+     *
+     * # H1 #
+     *
      * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
     public function __construct(MarkdownSet $set) {
-        /**
-         * Match:
-         *
-         * # H1
-         * ## H2
-         * ### H3
-         * #### H4
-         * ##### H6
-         * ###### H7
-         *
-         * # H1 #
-         *
-         * @var string
-         */
-        $pattern = '^#{1,6}[^\n]+(?=\n)';
-
-        parent::__construct(self::NAME, self::ORDER, $pattern, $set);
+        parent::__construct(self::NAME, self::ORDER, '^#{1,6}[^\n]+(?=\n)', $set);
     }
 
     /**

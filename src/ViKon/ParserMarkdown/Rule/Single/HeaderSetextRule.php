@@ -17,24 +17,32 @@ class HeaderSetextRule extends AbstractSingleRule {
     const NAME = 'HEADER_SETEXT';
     const ORDER = 70;
 
+    /**
+     * Match
+     *
+     * Alt-H1
+     * ======
+     *
+     * Alt-H2
+     *
+     * @param \ViKon\ParserMarkdown\MarkdownSet $set
+     */
     public function __construct(MarkdownSet $set) {
-        /**
-         * Match
-         *
-         * Alt-H1
-         * ======
-         *
-         * Alt-H2
-         * ------
-         *
-         * @var string
-         */
-        $pattern = '^[^\n]*\n[=-]{2,}$';
-
-        parent::__construct(self::NAME, self::ORDER, $pattern, $set);
+        parent::__construct(self::NAME, self::ORDER, '^[^\n]*\n[=-]{2,}$', $set);
     }
 
 
+    /**
+     * Add token with data:
+     * * level   - header level (depend on # count)
+     * * content - header
+     *
+     * @param string                  $content
+     * @param int                     $position
+     * @param \ViKon\Parser\TokenList $tokenList
+     *
+     * @return bool
+     */
     protected function handleSingleState($content, $position, TokenList $tokenList) {
         list($content, $level) = explode("\n", $content);
         $content = trim($content);
