@@ -58,12 +58,14 @@ class LinkBootstrapRenderer extends AbstractBootstrapRuleRenderer {
     public function renderLinkReference(Token $token, TokenList $tokenList) {
         $reference = $token->get('reference');
         $label = $token->get('label');
+
         if ($reference instanceof Token) {
             $referenceToken = $reference;
         } else {
-            if (trim($reference) === '') {
-                $reference = strtolower(trim($token->get('label')));
+            if (empty($reference) === '') {
+                $reference = strtolower($token->get('label'));
             }
+
             $tokens = $tokenList->getTokensByCallback(function (Token $token) use ($reference) {
                 return $token->getName() === ReferenceRule::NAME && $token->get('reference', null) === $reference;
             });

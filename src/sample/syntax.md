@@ -38,7 +38,7 @@ Combined emphasis with **asterisks and _underscores_**.
 
 Strikethrough uses two tildes. ~~Scratch this~~.
 
-## Links
+# Links
 
 There are two ways to create links.
 
