@@ -59,3 +59,15 @@ Some text to show that the reference links can follow later.
 [arbitrary case-insensitive reference text]: https://www.mozilla.org
 [1]: http://slashdot.org
 [link text itself]: http://www.reddit.com
+
+# Images
+
+Here's our logo (hover to see the title text):
+
+Inline-style: 
+![alt text](https://path/to/image.jpg "Image Title Text 1")
+
+Reference-style: 
+![alt text][image]
+
+[image]: https://path/to/image.jpg "Image Title Text 2"

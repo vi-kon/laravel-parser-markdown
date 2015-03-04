@@ -8,6 +8,7 @@ use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrikethroughBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrongBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\HeaderBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ImageBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\LinkBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ReferenceBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\BaseMarkdownRenderer;
@@ -15,6 +16,7 @@ use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrikethroughMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrongMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\HeaderMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Single\ImageMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\LinkMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\ReferenceMarkdownRenderer;
 use ViKon\ParserMarkdown\Rule\BaseRule;
@@ -25,8 +27,10 @@ use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderSetextRule;
-use ViKon\ParserMarkdown\Rule\Single\LinkInlineRule;
+use ViKon\ParserMarkdown\Rule\Single\ImageInlineRule;
+use ViKon\ParserMarkdown\Rule\Single\ImageReferenceRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkAutomaticRule;
+use ViKon\ParserMarkdown\Rule\Single\LinkInlineRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkReferenceRule;
 use ViKon\ParserMarkdown\Rule\Single\ReferenceRule;
 
@@ -62,6 +66,12 @@ class MarkdownSet extends AbstractSet {
         $this->addRule(new LinkReferenceRule($this), self::CATEGORY_SINGLE);
         $this->addRuleRender(new LinkBootstrapRenderer($this));
         $this->addRuleRender(new LinkMarkdownRenderer($this));
+
+        // IMAGE
+        $this->addRule(new ImageInlineRule($this), self::CATEGORY_SINGLE);
+        $this->addRule(new ImageReferenceRule($this), self::CATEGORY_SINGLE);
+        $this->addRuleRender(new ImageBootstrapRenderer($this), self::CATEGORY_SINGLE);
+        $this->addRuleRender(new ImageMarkdownRenderer($this), self::CATEGORY_SINGLE);
 
         // EMPHASIS / ITALIC
         $this->addRule(new ItalicRule($this), self::CATEGORY_FORMAT);
