@@ -50,7 +50,7 @@ class CodeBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return string
      */
     public function renderCodeBlockClose(Token $token) {
-        return '';
+        return "\n";
     }
 
     /**
