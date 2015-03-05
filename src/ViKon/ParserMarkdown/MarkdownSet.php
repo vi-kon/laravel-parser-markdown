@@ -9,6 +9,7 @@ use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\CodeBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrikethroughBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrongBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\PBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\EolBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\HeaderBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ImageBootstrapRenderer;
@@ -20,6 +21,7 @@ use ViKon\ParserMarkdown\Renderer\Markdown\Format\CodeMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrikethroughMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrongMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\PMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\EolMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\HeaderMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\ImageMarkdownRenderer;
@@ -35,6 +37,7 @@ use ViKon\ParserMarkdown\Rule\Format\ItalicRule;
 use ViKon\ParserMarkdown\Rule\Format\StrikethroughRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
+use ViKon\ParserMarkdown\Rule\PRule;
 use ViKon\ParserMarkdown\Rule\Single\EolRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderSetextRule;
@@ -73,16 +76,16 @@ class MarkdownSet extends AbstractSet {
         $this->addRuleRender(new ReferenceMarkdownRenderer($this));
 
         // URL
-        $this->addRule(new LinkInlineRule($this), self::CATEGORY_SINGLE);
-        $this->addRule(new LinkReferenceRule($this), self::CATEGORY_SINGLE);
+        $this->addRule(new LinkInlineRule($this), self::CATEGORY_FORMAT);
+        $this->addRule(new LinkReferenceRule($this), self::CATEGORY_FORMAT);
         $this->addRuleRender(new LinkBootstrapRenderer($this));
         $this->addRuleRender(new LinkMarkdownRenderer($this));
 
         // IMAGE
         $this->addRule(new ImageInlineRule($this), self::CATEGORY_SINGLE);
         $this->addRule(new ImageReferenceRule($this), self::CATEGORY_SINGLE);
-        $this->addRuleRender(new ImageBootstrapRenderer($this), self::CATEGORY_SINGLE);
-        $this->addRuleRender(new ImageMarkdownRenderer($this), self::CATEGORY_SINGLE);
+        $this->addRuleRender(new ImageBootstrapRenderer($this));
+        $this->addRuleRender(new ImageMarkdownRenderer($this));
 
         // EMPHASIS / ITALIC
         $this->addRule(new ItalicRule($this), self::CATEGORY_FORMAT);
@@ -117,6 +120,12 @@ class MarkdownSet extends AbstractSet {
         $this->addRule(new EolRule($this), self::CATEGORY_SINGLE);
         $this->addRuleRender(new EolBootstrapRenderer($this));
         $this->addRuleRender(new EolMarkdownRenderer($this));
+
+        // PARAGRAPH RULE
+        $this->addRule(new PRule($this), self::CATEGORY_BLOCK);
+        $this->addRuleRender(new PBootstrapRenderer($this));
+        $this->addRuleRender(new PMarkdownRenderer($this));
+
     }
 
     /**
