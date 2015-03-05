@@ -14,7 +14,7 @@ use ViKon\ParserMarkdown\MarkdownSet;
  * @package ViKon\ParserMarkdown\Rule\Format
  */
 class CodeRule extends AbstractFormatRule {
-    const NAME = 'code';
+    const NAME = 'CODE';
     const ORDER = 140;
 
     /**

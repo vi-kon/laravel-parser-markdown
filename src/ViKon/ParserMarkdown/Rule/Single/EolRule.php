@@ -13,7 +13,7 @@ use ViKon\ParserMarkdown\MarkdownSet;
  * @package ViKon\ParserMarkdown\Rule\Single
  */
 class EolRule extends AbstractSingleRule {
-    const NAME = 'eol';
+    const NAME = 'EOL';
     const ORDER = 220;
 
     /**

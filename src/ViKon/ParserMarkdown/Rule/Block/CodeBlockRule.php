@@ -15,7 +15,7 @@ use ViKon\ParserMarkdown\MarkdownSet;
  * @package ViKon\ParserMarkdown\Rule\Block
  */
 class CodeBlockRule extends AbstractBlockRule {
-    const NAME = 'code_block';
+    const NAME = 'CODE_BLOCK';
     const ORDER = 40;
 
     /**
