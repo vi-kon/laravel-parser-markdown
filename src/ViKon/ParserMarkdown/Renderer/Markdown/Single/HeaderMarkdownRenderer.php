@@ -38,7 +38,7 @@ class HeaderMarkdownRenderer extends AbstractMarkdownRuleRenderer {
         $level = $token->get('level', 1);
         $content = $token->get('content', '');
 
-        return str_pad('', $level, '#') . ' ' . $content;
+        return "\n" . str_pad('', $level, '#') . ' ' . $content;
     }
 
     /**
@@ -52,6 +52,6 @@ class HeaderMarkdownRenderer extends AbstractMarkdownRuleRenderer {
 
         $line = str_pad('', max(2, strlen($content)), $level === 1 ? '=' : '-');
 
-        return $content . "\n" . $line;
+        return "\n" . $content . "\n" . $line;
     }
 }

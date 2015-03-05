@@ -28,7 +28,7 @@ class HeaderSetextRule extends AbstractSingleRule {
      * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
     public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '^[^\n]*\n[=-]{2,}$', $set);
+        parent::__construct(self::NAME, self::ORDER, '\n[^\n]*\n[=-]{2,}$', $set);
     }
 
 
@@ -44,7 +44,7 @@ class HeaderSetextRule extends AbstractSingleRule {
      * @return bool
      */
     protected function handleSingleState($content, $position, TokenList $tokenList) {
-        list($content, $level) = explode("\n", $content);
+        list(, $content, $level) = explode("\n", $content);
         $content = trim($content);
         $level = $level[0] === '=' ? 1 : 2;
         $tokenList->addToken($this->name, $position)
