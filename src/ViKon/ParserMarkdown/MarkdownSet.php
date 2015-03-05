@@ -4,6 +4,8 @@ namespace ViKon\ParserMarkdown;
 
 use ViKon\Parser\AbstractSet;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\BaseBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\CodeBlockBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\CodeBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrikethroughBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrongBootstrapRenderer;
@@ -12,6 +14,8 @@ use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ImageBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\LinkBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ReferenceBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\BaseMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Block\CodeBlockMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Format\CodeMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrikethroughMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrongMarkdownRenderer;
@@ -20,6 +24,10 @@ use ViKon\ParserMarkdown\Renderer\Markdown\Single\ImageMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\LinkMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\ReferenceMarkdownRenderer;
 use ViKon\ParserMarkdown\Rule\BaseRule;
+use ViKon\ParserMarkdown\Rule\Block\CodeBlockAltRule;
+use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
+use ViKon\ParserMarkdown\Rule\Format\CodeAltRule;
+use ViKon\ParserMarkdown\Rule\Format\CodeRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicAltRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicRule;
 use ViKon\ParserMarkdown\Rule\Format\StrikethroughRule;
@@ -90,6 +98,17 @@ class MarkdownSet extends AbstractSet {
         $this->addRuleRender(new StrikethroughBootstrapRenderer($this));
         $this->addRuleRender(new StrikethroughMarkdownRenderer($this));
 
+        // CODE
+        $this->addRule(new CodeRule($this), self::CATEGORY_FORMAT);
+        $this->addRule(new CodeAltRule($this), self::CATEGORY_FORMAT);
+        $this->addRuleRender(new CodeBootstrapRenderer($this));
+        $this->addRuleRender(new CodeMarkdownRenderer($this));
+
+        // CODE BLOCK
+        $this->addRule(new CodeBlockRule($this), self::CATEGORY_BLOCK);
+        $this->addRule(new CodeBlockAltRule($this), self::CATEGORY_BLOCK);
+        $this->addRuleRender(new CodeBlockBootstrapRenderer($this));
+        $this->addRuleRender(new CodeBlockMarkdownRenderer($this));
 
     }
 

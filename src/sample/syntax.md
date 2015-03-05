@@ -71,3 +71,36 @@ Reference-style:
 ![alt text][image]
 
 [image]: https://path/to/image.jpg "Image Title Text 2"
+
+# Code and Syntax Highlighting
+
+Code blocks are part of the Markdown spec, but syntax highlighting isn't.
+However, many renderers -- like Github's -- support syntax highlighting.
+Which languages are supported and how those language names should be written
+will vary from renderer to renderer.
+
+Inline `code` has `back-ticks around` or ``double back-ticks`` it. You can escape
+back tick via `` ` ``.
+
+Blocks of code are either fenced by lines with three back-ticks <code>```</code>,
+or are indented with four spaces. I recommend only using the fenced code blocks
+-- they're easier and only they support syntax highlighting.
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
+```python
+s = "Python syntax highlighting"
+print s
+```
+
+```
+No language indicated, so no syntax highlighting in Markdown Here (varies on Github). 
+But let's throw in a <b>tag</b>.
+```
+
+    Also work indent with four spaces.
+    
+    But here is no syntax highlight.
