@@ -28,7 +28,7 @@ class HeaderSetextRule extends AbstractSingleRule {
      * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
     public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n[^\n]*\n[=-]{2,}$', $set);
+        parent::__construct(self::NAME, self::ORDER, '\n[^\n]*\n[=-]{2,}(?=\n)', $set);
     }
 
 

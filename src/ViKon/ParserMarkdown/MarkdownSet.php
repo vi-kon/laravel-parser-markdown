@@ -9,6 +9,7 @@ use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\CodeBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrikethroughBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrongBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\EolBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\HeaderBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ImageBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\LinkBootstrapRenderer;
@@ -19,6 +20,7 @@ use ViKon\ParserMarkdown\Renderer\Markdown\Format\CodeMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrikethroughMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrongMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Single\EolMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\HeaderMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\ImageMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\LinkMarkdownRenderer;
@@ -33,6 +35,7 @@ use ViKon\ParserMarkdown\Rule\Format\ItalicRule;
 use ViKon\ParserMarkdown\Rule\Format\StrikethroughRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
+use ViKon\ParserMarkdown\Rule\Single\EolRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderSetextRule;
 use ViKon\ParserMarkdown\Rule\Single\ImageInlineRule;
@@ -110,6 +113,10 @@ class MarkdownSet extends AbstractSet {
         $this->addRuleRender(new CodeBlockBootstrapRenderer($this));
         $this->addRuleRender(new CodeBlockMarkdownRenderer($this));
 
+        // END OF LINE
+        $this->addRule(new EolRule($this), self::CATEGORY_SINGLE);
+        $this->addRuleRender(new EolBootstrapRenderer($this));
+        $this->addRuleRender(new EolMarkdownRenderer($this));
     }
 
     /**

@@ -27,7 +27,7 @@ class CodeBlockRule extends AbstractBlockRule {
      * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
     public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n(?: {4}|\t)', '\n', $set);
+        parent::__construct(self::NAME, self::ORDER, '\n(?: {4}|\t)', '(?=\n)', $set);
     }
 
     /**
