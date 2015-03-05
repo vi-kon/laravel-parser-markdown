@@ -24,9 +24,9 @@ class StrikethroughMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(StrikethroughRule::NAME . '_open', [$this, 'renderStrikethroughOpen'], $this->skin);
+        $renderer->registerTokenRenderer(StrikethroughRule::NAME . StrikethroughRule::OPEN, [$this, 'renderStrikethroughOpen'], $this->skin);
         $renderer->registerTokenRenderer(StrikethroughRule::NAME, [$this, 'renderStrikethrough'], $this->skin);
-        $renderer->registerTokenRenderer(StrikethroughRule::NAME . '_close', [$this, 'renderStrikethroughClose'], $this->skin);
+        $renderer->registerTokenRenderer(StrikethroughRule::NAME . StrikethroughRule::CLOSE, [$this, 'renderStrikethroughClose'], $this->skin);
 
     }
 

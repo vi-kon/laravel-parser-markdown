@@ -23,7 +23,7 @@ class ReferenceRule extends AbstractSingleRule {
      * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
     public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\\n[ \t]*\\[(?:\\\\.|[^]\\\\])*\\]:[ \\t]*[^ \\t\\n]+[ \\t]*\\n?[ \\t]*(?:"(?:\\\\.|[^"\\\\])+"|\'(?:\\\\.|[^\'\\\\])+\'|\\((?:\\\\.|[^\\(\\\\])+\\))?(?=\\n)', $set);
+        parent::__construct(self::NAME, self::ORDER, '\n[ \t]*\[(?:\\\\.|[^]\\\\])*\]:[ \t]*[^ \t\n]+[ \t]*\n?[ \t]*(?:"(?:\\\\.|[^"\\\\])+"|\'(?:\\\\.|[^\'\\\\])+\'|\((?:\\\\.|[^\(\\\\])+\))?(?=\n)', $set);
     }
 
     /**
@@ -39,7 +39,7 @@ class ReferenceRule extends AbstractSingleRule {
      * @param \ViKon\Parser\TokenList $tokenList
      */
     protected function handleSingleState($content, $position, TokenList $tokenList) {
-        preg_match('/\\[((?:\\\\.|[^]\\\\])*)\\]:[ \\t]*([^ \\t\\n]+)[ \\t]*\\n?[ \\t]*(?:["\'\\(]((?:\\\\.|[^"\\\\])+)["\'\\)])?/', $content, $matches);
+        preg_match('/\[((?:\\\\.|[^]\\\\])*)\]:[ \t]*([^ \t\n]+)[ \t]*\n?[ \t]*(?:["\'\(]((?:\\\\.|[^"\\\\])+)["\'\)])?/', $content, $matches);
 
         $tokenList->addToken($this->name, $position)
             ->set('match', $content)

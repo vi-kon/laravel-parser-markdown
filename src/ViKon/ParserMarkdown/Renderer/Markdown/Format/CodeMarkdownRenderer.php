@@ -25,13 +25,13 @@ class CodeMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(CodeRule::NAME . '_open', [$this, 'renderCodeOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::OPEN, [$this, 'renderCodeOpen'], $this->skin);
         $renderer->registerTokenRenderer(CodeRule::NAME, [$this, 'renderCode'], $this->skin);
-        $renderer->registerTokenRenderer(CodeRule::NAME . '_close', [$this, 'renderCodeClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::CLOSE, [$this, 'renderCodeClose'], $this->skin);
 
-        $renderer->registerTokenRenderer(CodeAltRule::NAME . '_open', [$this, 'renderCodeAltOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::OPEN, [$this, 'renderCodeAltOpen'], $this->skin);
         $renderer->registerTokenRenderer(CodeAltRule::NAME, [$this, 'renderCodeAlt'], $this->skin);
-        $renderer->registerTokenRenderer(CodeAltRule::NAME . '_close', [$this, 'renderCodeAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::CLOSE, [$this, 'renderCodeAltClose'], $this->skin);
     }
 
     /**

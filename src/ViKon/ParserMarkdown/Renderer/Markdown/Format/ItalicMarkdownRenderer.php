@@ -25,13 +25,13 @@ class ItalicMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(ItalicRule::NAME . '_open', [$this, 'renderItalicOpen'], $this->skin);
+        $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::OPEN, [$this, 'renderItalicOpen'], $this->skin);
         $renderer->registerTokenRenderer(ItalicRule::NAME, [$this, 'renderItalic'], $this->skin);
-        $renderer->registerTokenRenderer(ItalicRule::NAME . '_close', [$this, 'renderItalicClose'], $this->skin);
+        $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::CLOSE, [$this, 'renderItalicClose'], $this->skin);
 
-        $renderer->registerTokenRenderer(ItalicAltRule::NAME . '_open', [$this, 'renderItalicAltOpen'], $this->skin);
+        $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::OPEN, [$this, 'renderItalicAltOpen'], $this->skin);
         $renderer->registerTokenRenderer(ItalicAltRule::NAME, [$this, 'renderItalicAlt'], $this->skin);
-        $renderer->registerTokenRenderer(ItalicAltRule::NAME . '_close', [$this, 'renderItalicAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::CLOSE, [$this, 'renderItalicAltClose'], $this->skin);
     }
 
     /**

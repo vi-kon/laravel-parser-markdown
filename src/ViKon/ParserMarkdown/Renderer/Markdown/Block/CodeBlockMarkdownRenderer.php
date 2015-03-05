@@ -17,13 +17,13 @@ use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
  */
 class CodeBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME . '_open', [$this, 'renderCodeBlockOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'renderCodeBlockOpen'], $this->skin);
         $renderer->registerTokenRenderer(CodeBlockRule::NAME, [$this, 'renderCodeBlock'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME . '_close', [$this, 'renderCodeBlockClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'renderCodeBlockClose'], $this->skin);
 
-        $renderer->registerTokenRenderer(CodeBlockAltRule::NAME . '_open', [$this, 'renderCodeBlockAltOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockAltRule::NAME . CodeBlockAltRule::OPEN, [$this, 'renderCodeBlockAltOpen'], $this->skin);
         $renderer->registerTokenRenderer(CodeBlockAltRule::NAME, [$this, 'renderCodeBlockAlt'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockAltRule::NAME . '_close', [$this, 'renderCodeBlockAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockAltRule::NAME . CodeBlockAltRule::CLOSE, [$this, 'renderCodeBlockAltClose'], $this->skin);
     }
 
     /**

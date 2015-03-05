@@ -41,7 +41,7 @@ class CodeBlockAltRule extends AbstractBlockRule {
      */
     protected function handleEntryState($content, $position, TokenList $tokenList) {
         $lang = trim($content, " `\t\n\r\0\x0B");
-        $tokenList->addToken($this->name . '_open', $position)
+        $tokenList->addToken($this->name . self::OPEN, $position)
             ->set('lang', $lang);
     }
 

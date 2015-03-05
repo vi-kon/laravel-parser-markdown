@@ -25,13 +25,13 @@ class StrongMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(StrongRule::NAME . '_open', [$this, 'renderStrongOpen'], $this->skin);
+        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::OPEN, [$this, 'renderStrongOpen'], $this->skin);
         $renderer->registerTokenRenderer(StrongRule::NAME, [$this, 'renderStrong'], $this->skin);
-        $renderer->registerTokenRenderer(StrongRule::NAME . '_close', [$this, 'renderStrongClose'], $this->skin);
+        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::CLOSE, [$this, 'renderStrongClose'], $this->skin);
 
-        $renderer->registerTokenRenderer(StrongAltRule::NAME . '_open', [$this, 'renderStrongAltOpen'], $this->skin);
+        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::OPEN, [$this, 'renderStrongAltOpen'], $this->skin);
         $renderer->registerTokenRenderer(StrongAltRule::NAME, [$this, 'renderStrongAlt'], $this->skin);
-        $renderer->registerTokenRenderer(StrongAltRule::NAME . '_close', [$this, 'renderStrongAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::CLOSE, [$this, 'renderStrongAltClose'], $this->skin);
     }
 
     /**

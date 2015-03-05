@@ -25,13 +25,13 @@ class CodeBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(CodeRule::NAME . '_open', [$this, 'renderCodeOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::OPEN, [$this, 'renderCodeOpen'], $this->skin);
         $renderer->registerTokenRenderer(CodeRule::NAME, [$this, 'renderCode'], $this->skin);
-        $renderer->registerTokenRenderer(CodeRule::NAME . '_close', [$this, 'renderCodeClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::CLOSE, [$this, 'renderCodeClose'], $this->skin);
 
-        $renderer->registerTokenRenderer(CodeAltRule::NAME . '_open', [$this, 'renderCodeOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::OPEN, [$this, 'renderCodeOpen'], $this->skin);
         $renderer->registerTokenRenderer(CodeAltRule::NAME, [$this, 'renderCode'], $this->skin);
-        $renderer->registerTokenRenderer(CodeAltRule::NAME . '_close', [$this, 'renderCodeClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::CLOSE, [$this, 'renderCodeClose'], $this->skin);
     }
 
     /**
