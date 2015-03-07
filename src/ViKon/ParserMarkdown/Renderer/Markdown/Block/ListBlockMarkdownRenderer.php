@@ -72,7 +72,7 @@ class ListBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return string
      */
     public function renderListBlockItem(Token $token) {
-        return '<span style="color: #AA0000;">' . $token->get('content', '') . '</span>';
+        return $token->get('content', '');
     }
 
     /**
