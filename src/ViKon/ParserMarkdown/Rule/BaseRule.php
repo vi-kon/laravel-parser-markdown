@@ -31,8 +31,10 @@ class BaseRule extends AbstractRule {
      * @param \ViKon\Parser\TokenList $tokenList
      */
     public function parseToken($content, $position, $state, TokenList $tokenList) {
-        $tokenList->addToken($this->name, $position)
-            ->set('content', $content);
+        if (!empty($content)) {
+            $tokenList->addToken($this->name, $position)
+                ->set('content', $content);
+        }
     }
 
     /**
