@@ -135,7 +135,7 @@ class MarkdownSet extends AbstractSet {
             'LIST_BLOCK_LEVEL_CLOSE',
             'LIST_BLOCK_ITEM_OPEN',
             'LIST_BLOCK_ITEM_CLOSE',
-        ]), self::CATEGORY_BLOCK);
+        ]), self::CATEGORY_NONE);
         $this->addRuleRender(new PBootstrapRenderer($this));
         $this->addRuleRender(new PMarkdownRenderer($this));
     }

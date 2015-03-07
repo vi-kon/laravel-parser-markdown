@@ -242,7 +242,7 @@ class ListBlockRule extends AbstractBlockRule {
 
             $content = "\n" . $content . "\n";
 
-            $contentTokenList = $this->parseContent($content);
+            $contentTokenList = $this->parseContent($content, null, true);
 
             // Remove beginning and ending new line feed
             if ($contentTokenList->first()->getName() === EolRule::NAME
@@ -265,7 +265,7 @@ class ListBlockRule extends AbstractBlockRule {
             for ($i = 0; $i < count($contentTokenList); $i++) {
                 $token = $contentTokenList->getTokenAt($i);
                 if ($token->getName() === EolRule::NAME) {
-                    $i++;
+                    $contentTokenList->removeTokenAt($i);
                     $contentTokenList->insertTokenAt($this->name . '_ITEM_EOL', $token->getPosition(), $i);
                 }
             }

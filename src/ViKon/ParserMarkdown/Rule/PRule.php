@@ -45,6 +45,10 @@ class PRule extends AbstractRule {
      * @return $this
      */
     public function finalize(TokenList $tokenList, $recursive) {
+        if ($recursive) {
+            return $this;
+        }
+
         $eolCount = 0;
         $pOpened = false;
 
@@ -83,6 +87,7 @@ class PRule extends AbstractRule {
                 $i++;
             }
         }
+
 
         // Close p if left opened
         if ($pOpened) {

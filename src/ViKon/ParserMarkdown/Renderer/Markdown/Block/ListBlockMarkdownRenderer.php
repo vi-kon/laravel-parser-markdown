@@ -108,6 +108,6 @@ class ListBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return string
      */
     public function renderListBlockItemEol(Token $token) {
-        return '    ';
+        return "\n    ";
     }
 }
