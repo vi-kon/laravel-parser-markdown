@@ -5,6 +5,7 @@ namespace ViKon\ParserMarkdown;
 use ViKon\Parser\AbstractSet;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\BaseBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\CodeBlockBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\ListBlockBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\CodeBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrikethroughBootstrapRenderer;
@@ -17,6 +18,7 @@ use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\LinkBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ReferenceBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\BaseMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Block\CodeBlockMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Block\ListBlockMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\CodeMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrikethroughMarkdownRenderer;
@@ -30,6 +32,7 @@ use ViKon\ParserMarkdown\Renderer\Markdown\Single\ReferenceMarkdownRenderer;
 use ViKon\ParserMarkdown\Rule\BaseRule;
 use ViKon\ParserMarkdown\Rule\Block\CodeBlockAltRule;
 use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
+use ViKon\ParserMarkdown\Rule\Block\ListBlockRule;
 use ViKon\ParserMarkdown\Rule\Format\CodeAltRule;
 use ViKon\ParserMarkdown\Rule\Format\CodeRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicAltRule;
@@ -121,11 +124,20 @@ class MarkdownSet extends AbstractSet {
         $this->addRuleRender(new EolBootstrapRenderer($this));
         $this->addRuleRender(new EolMarkdownRenderer($this));
 
+        // LIST RULE
+        $this->addRule(new ListBlockRule($this), self::CATEGORY_BLOCK);
+        $this->addRuleRender(new ListBlockBootstrapRenderer($this));
+        $this->addRuleRender(new ListBlockMarkdownRenderer($this));
+
         // PARAGRAPH RULE
-        $this->addRule(new PRule($this), self::CATEGORY_BLOCK);
+        $this->addRule(new PRule($this, [], [
+            'LIST_BLOCK_LEVEL_OPEN',
+            'LIST_BLOCK_LEVEL_CLOSE',
+            'LIST_BLOCK_ITEM_OPEN',
+            'LIST_BLOCK_ITEM_CLOSE',
+        ]), self::CATEGORY_BLOCK);
         $this->addRuleRender(new PBootstrapRenderer($this));
         $this->addRuleRender(new PMarkdownRenderer($this));
-
     }
 
     /**
