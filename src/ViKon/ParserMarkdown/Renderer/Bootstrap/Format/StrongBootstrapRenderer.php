@@ -26,11 +26,9 @@ class StrongBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      */
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::OPEN, [$this, 'renderStrongOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrongRule::NAME, [$this, 'renderStrong'], $this->skin);
         $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::CLOSE, [$this, 'renderStrongClose'], $this->skin);
 
         $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::OPEN, [$this, 'renderStrongOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrongAltRule::NAME, [$this, 'renderStrong'], $this->skin);
         $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::CLOSE, [$this, 'renderStrongClose'], $this->skin);
     }
 
@@ -41,15 +39,6 @@ class StrongBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      */
     public function renderStrongOpen(Token $token) {
         return '<strong>';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderStrong(Token $token) {
-        return $token->get('content', '');
     }
 
     /**

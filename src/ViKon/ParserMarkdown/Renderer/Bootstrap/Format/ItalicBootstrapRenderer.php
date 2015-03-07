@@ -26,11 +26,9 @@ class ItalicBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      */
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::OPEN, [$this, 'renderItalicOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ItalicRule::NAME, [$this, 'renderItalic'], $this->skin);
         $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::CLOSE, [$this, 'renderItalicClose'], $this->skin);
 
         $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::OPEN, [$this, 'renderItalicOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ItalicAltRule::NAME, [$this, 'renderItalic'], $this->skin);
         $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::CLOSE, [$this, 'renderItalicClose'], $this->skin);
     }
 
@@ -41,15 +39,6 @@ class ItalicBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      */
     public function renderItalicOpen(Token $token) {
         return '<em>';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderItalic(Token $token) {
-        return $token->get('content', '');
     }
 
     /**

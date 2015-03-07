@@ -26,11 +26,9 @@ class StrongMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      */
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::OPEN, [$this, 'renderStrongOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrongRule::NAME, [$this, 'renderStrong'], $this->skin);
         $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::CLOSE, [$this, 'renderStrongClose'], $this->skin);
 
         $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::OPEN, [$this, 'renderStrongAltOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrongAltRule::NAME, [$this, 'renderStrongAlt'], $this->skin);
         $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::CLOSE, [$this, 'renderStrongAltClose'], $this->skin);
     }
 
@@ -41,15 +39,6 @@ class StrongMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      */
     public function renderStrongOpen(Token $token) {
         return '**';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderStrong(Token $token) {
-        return $token->get('content', '');
     }
 
     /**
@@ -68,15 +57,6 @@ class StrongMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      */
     public function renderStrongAltOpen(Token $token) {
         return '__';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderStrongAlt(Token $token) {
-        return $token->get('content', '');
     }
 
     /**

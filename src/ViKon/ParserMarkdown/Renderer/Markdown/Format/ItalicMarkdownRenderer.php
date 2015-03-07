@@ -26,11 +26,9 @@ class ItalicMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      */
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::OPEN, [$this, 'renderItalicOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ItalicRule::NAME, [$this, 'renderItalic'], $this->skin);
         $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::CLOSE, [$this, 'renderItalicClose'], $this->skin);
 
         $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::OPEN, [$this, 'renderItalicAltOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ItalicAltRule::NAME, [$this, 'renderItalicAlt'], $this->skin);
         $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::CLOSE, [$this, 'renderItalicAltClose'], $this->skin);
     }
 
@@ -41,15 +39,6 @@ class ItalicMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      */
     public function renderItalicOpen(Token $token) {
         return '*';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderItalic(Token $token) {
-        return $token->get('content', '');
     }
 
     /**
@@ -68,15 +57,6 @@ class ItalicMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      */
     public function renderItalicAltOpen(Token $token) {
         return '_';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderItalicAlt(Token $token) {
-        return $token->get('content', '');
     }
 
     /**

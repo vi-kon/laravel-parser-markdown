@@ -33,6 +33,15 @@ class CodeBlockAltRule extends AbstractBlockRule {
     }
 
     /**
+     * @param \ViKon\Parser\Lexer\Lexer $lexer
+     *
+     * @return $this
+     */
+    public function prepare(Lexer $lexer) {
+        return $this;
+    }
+
+    /**
      * Handle lexers entry state
      *
      * @param string                  $content
@@ -46,11 +55,15 @@ class CodeBlockAltRule extends AbstractBlockRule {
     }
 
     /**
-     * @param \ViKon\Parser\Lexer\Lexer $lexer
+     * Handle lexers unmatched state
      *
-     * @return $this
+     * @param string                  $content
+     * @param int                     $position
+     * @param \ViKon\Parser\TokenList $tokenList
      */
-    public function prepare(Lexer $lexer) {
-        return $this;
+    protected function handleUnmatchedState($content, $position, TokenList $tokenList) {
+        if (!empty($content)) {
+            $this->parseContent($content, $tokenList);
+        }
     }
 }

@@ -25,7 +25,6 @@ class StrikethroughBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      */
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(StrikethroughRule::NAME . StrikethroughRule::OPEN, [$this, 'renderStrikethroughOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrikethroughRule::NAME, [$this, 'renderStrikethrough'], $this->skin);
         $renderer->registerTokenRenderer(StrikethroughRule::NAME . StrikethroughRule::CLOSE, [$this, 'renderStrikethroughClose'], $this->skin);
     }
 
@@ -36,15 +35,6 @@ class StrikethroughBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      */
     public function renderStrikethroughOpen(Token $token) {
         return '<s>';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderStrikethrough(Token $token) {
-        return $token->get('content', '');
     }
 
     /**

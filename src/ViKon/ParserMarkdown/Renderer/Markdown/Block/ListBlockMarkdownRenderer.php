@@ -26,7 +26,6 @@ class ListBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
         $renderer->registerTokenRenderer(ListBlockRule::NAME . ListBlockRule::OPEN, [$this, 'renderListBlockOpen'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . '_LEVEL_OPEN', [$this, 'renderListBlockLevelOpen'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_OPEN', [$this, 'renderListBlockItemOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ListBlockRule::NAME, [$this, 'renderListBlockItem'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_CLOSE', [$this, 'renderListBlockItemClose'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . '_LEVEL_CLOSE', [$this, 'renderListBlockLevelClose'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . ListBlockRule::CLOSE, [$this, 'renderListBlockClose'], $this->skin);
@@ -64,15 +63,6 @@ class ListBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
         }
 
         return "\n*   ";
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return string
-     */
-    public function renderListBlockItem(Token $token) {
-        return $token->get('content', '');
     }
 
     /**

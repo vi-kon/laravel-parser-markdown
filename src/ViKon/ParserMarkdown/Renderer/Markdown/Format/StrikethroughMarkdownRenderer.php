@@ -25,7 +25,6 @@ class StrikethroughMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      */
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(StrikethroughRule::NAME . StrikethroughRule::OPEN, [$this, 'renderStrikethroughOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrikethroughRule::NAME, [$this, 'renderStrikethrough'], $this->skin);
         $renderer->registerTokenRenderer(StrikethroughRule::NAME . StrikethroughRule::CLOSE, [$this, 'renderStrikethroughClose'], $this->skin);
 
     }
@@ -37,15 +36,6 @@ class StrikethroughMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      */
     public function renderStrikethroughOpen(Token $token) {
         return '~~';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderStrikethrough(Token $token) {
-        return $token->get('content', '');
     }
 
     /**

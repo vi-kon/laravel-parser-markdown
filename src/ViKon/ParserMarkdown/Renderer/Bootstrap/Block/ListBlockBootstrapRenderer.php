@@ -26,7 +26,6 @@ class ListBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
         $renderer->registerTokenRenderer(ListBlockRule::NAME . ListBlockRule::OPEN, [$this, 'renderListBlockOpen'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . '_LEVEL_OPEN', [$this, 'renderListBlockLevelOpen'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_OPEN', [$this, 'renderListBlockItemOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ListBlockRule::NAME, [$this, 'renderListBlockItem'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_CLOSE', [$this, 'renderListBlockItemClose'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . '_LEVEL_CLOSE', [$this, 'renderListBlockLevelClose'], $this->skin);
         $renderer->registerTokenRenderer(ListBlockRule::NAME . ListBlockRule::CLOSE, [$this, 'renderListBlockClose'], $this->skin);
@@ -64,15 +63,6 @@ class ListBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      */
     public function renderListBlockItemOpen(Token $token) {
         return '<li>';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderListBlockItem(Token $token) {
-        return $token->get('content', '');
     }
 
     /**

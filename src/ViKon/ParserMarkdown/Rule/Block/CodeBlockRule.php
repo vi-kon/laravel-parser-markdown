@@ -77,4 +77,17 @@ class CodeBlockRule extends AbstractBlockRule {
     public function prepare(Lexer $lexer) {
         return $this;
     }
+
+    /**
+     * Handle lexers unmatched state
+     *
+     * @param string                  $content
+     * @param int                     $position
+     * @param \ViKon\Parser\TokenList $tokenList
+     */
+    protected function handleUnmatchedState($content, $position, TokenList $tokenList) {
+        if (!empty($content)) {
+            $this->parseContent($content, $tokenList);
+        }
+    }
 }

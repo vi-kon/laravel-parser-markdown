@@ -270,6 +270,18 @@ class ListBlockRule extends AbstractBlockRule {
                 }
             }
 
+            // Change LIST_BLOCK to BASE token
+            $startRule = $this->set->getStartRule();
+
+            for ($i = 0; $i < count($contentTokenList); $i++) {
+                if ($contentTokenList->getTokenAt($i)->getName() === $this->name) {
+                    $token = $contentTokenList->getTokenAt($i);
+                    $contentTokenList->removeTokenAt($i);
+                    $contentTokenList->insertTokenAt($startRule->getName(), $token->getPosition(), $i)
+                        ->set('content', $token->get('content', ''));
+                }
+            }
+
             $tokenList->merge($contentTokenList);
         }
     }

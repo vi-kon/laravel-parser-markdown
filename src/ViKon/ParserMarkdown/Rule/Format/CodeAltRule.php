@@ -4,6 +4,7 @@ namespace ViKon\ParserMarkdown\Rule\Format;
 
 use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractFormatRule;
+use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
@@ -36,5 +37,18 @@ class CodeAltRule extends AbstractFormatRule {
      */
     public function prepare(Lexer $lexer) {
         return $this;
+    }
+
+    /**
+     * Handle lexers unmatched state
+     *
+     * @param string                  $content
+     * @param int                     $position
+     * @param \ViKon\Parser\TokenList $tokenList
+     */
+    protected function handleUnmatchedState($content, $position, TokenList $tokenList) {
+        if (!empty($content)) {
+            $this->parseContent($content, $tokenList);
+        }
     }
 }
