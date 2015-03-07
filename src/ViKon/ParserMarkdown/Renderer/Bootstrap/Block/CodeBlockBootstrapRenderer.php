@@ -16,6 +16,11 @@ use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
  * @package ViKon\ParserMarkdown\Renderer\Bootstrap\Block
  */
 class CodeBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
+    /**
+     * @param \ViKon\Parser\Renderer\Renderer $renderer
+     *
+     * @return mixed
+     */
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'renderCodeBlockOpen'], $this->skin);
         $renderer->registerTokenRenderer(CodeBlockRule::NAME, [$this, 'renderCodeBlock'], $this->skin);
@@ -50,7 +55,7 @@ class CodeBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return string
      */
     public function renderCodeBlockClose(Token $token) {
-        return '</pre></code>';
+        return '</code></pre>';
     }
 
     /**
@@ -83,6 +88,6 @@ class CodeBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return string
      */
     public function renderCodeBlockAltClose(Token $token) {
-        return "</pre></code>";
+        return "</code></pre>";
     }
 }
