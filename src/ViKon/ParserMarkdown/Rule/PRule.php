@@ -40,10 +40,11 @@ class PRule extends AbstractRule {
 
     /**
      * @param \ViKon\Parser\TokenList $tokenList
+     * @param bool                    $recursive
      *
      * @return $this
      */
-    public function finalize(TokenList $tokenList) {
+    public function finalize(TokenList $tokenList, $recursive) {
         $eolCount = 0;
         $pOpened = false;
 
@@ -56,7 +57,6 @@ class PRule extends AbstractRule {
                 $eolCount++;
                 continue;
             }
-
 
             // Close paragraph in more then 1 lines are between texts
             if ($eolCount > 1 && $pOpened) {
