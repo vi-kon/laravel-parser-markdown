@@ -17,9 +17,15 @@ class EolRule extends AbstractSingleRule {
     const ORDER = 220;
 
     /**
+     * Match
+     *
+     * new line feed (\n)
+     *
+     * match all empty characters
+     *
      * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
     public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '(?:^[ \t]*)?\n', $set);
+        parent::__construct(self::NAME, self::ORDER, '\n(?:[ \t]*(?=\n))?', $set);
     }
 }
