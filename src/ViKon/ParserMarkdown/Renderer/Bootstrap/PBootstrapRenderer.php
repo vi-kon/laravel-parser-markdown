@@ -26,6 +26,7 @@ class PBootstrapRenderer extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(PRule::NAME . AbstractBlockRule::OPEN, [$this, 'renderPOpen'], $this->skin);
         $renderer->registerTokenRenderer(PRule::NAME . AbstractBlockRule::CLOSE, [$this, 'renderPClose'], $this->skin);
+        $renderer->registerTokenRenderer(PRule::NAME . '_EOL', [$this, 'renderPEol'], $this->skin);
     }
 
     /**
@@ -44,5 +45,14 @@ class PBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      */
     public function renderPClose(Token $token) {
         return '</p>';
+    }
+
+    /**
+     * @param \ViKon\Parser\Token $token
+     *
+     * @return string
+     */
+    public function renderPEol(Token $token) {
+        return '<br/>';
     }
 }

@@ -26,6 +26,7 @@ class PMarkdownRenderer extends AbstractMarkdownRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(PRule::NAME . AbstractBlockRule::OPEN, [$this, 'renderPOpen'], $this->skin);
         $renderer->registerTokenRenderer(PRule::NAME . AbstractBlockRule::CLOSE, [$this, 'renderPClose'], $this->skin);
+        $renderer->registerTokenRenderer(PRule::NAME . '_EOL', [$this, 'renderPEol'], $this->skin);
     }
 
     /**
@@ -43,6 +44,15 @@ class PMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return string
      */
     public function renderPClose(Token $token) {
+        return '';
+    }
+
+    /**
+     * @param \ViKon\Parser\Token $token
+     *
+     * @return string
+     */
+    public function renderPEol(Token $token) {
         return '';
     }
 }

@@ -62,6 +62,10 @@ class PRule extends AbstractRule {
                 continue;
             }
 
+            if ($this->set->isModeGfm() && $eolCount === 1 && $pOpened) {
+                $tokenList->insertTokenAt($this->name . '_EOL', $position - $eolCount, $i - $eolCount);
+            }
+
             // Close paragraph in more then 1 lines are between texts
             if ($eolCount > 1 && $pOpened) {
                 $pOpened = false;
