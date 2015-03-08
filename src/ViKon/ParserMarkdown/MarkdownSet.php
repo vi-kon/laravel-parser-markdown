@@ -48,7 +48,6 @@ use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderSetextRule;
 use ViKon\ParserMarkdown\Rule\Single\ImageInlineRule;
 use ViKon\ParserMarkdown\Rule\Single\ImageReferenceRule;
-use ViKon\ParserMarkdown\Rule\Single\LinkAutomaticRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkInlineRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkReferenceRule;
 use ViKon\ParserMarkdown\Rule\Single\ReferenceRule;
