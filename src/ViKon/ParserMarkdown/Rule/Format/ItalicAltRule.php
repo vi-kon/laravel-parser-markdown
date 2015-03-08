@@ -25,7 +25,7 @@ class ItalicAltRule extends AbstractFormatRule {
      */
     public function __construct(MarkdownSet $set) {
         $startPattern = '_(?=(?:\\\\.|[^\n_\\\\])*_)';
-        if (strtolower(config('parser-markdown.mode', 'gfm')) === 'gfm') {
+        if ($set->isModeGfm()) {
             $startPattern = '_(?=(?:\\\\.|[^\n_\\\\])*_\w)';
         }
         parent::__construct(self::NAME, self::ORDER, $startPattern, '_', $set);

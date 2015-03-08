@@ -64,8 +64,6 @@ class MarkdownSet extends AbstractSet {
     public function __construct() {
         \Event::listen('vikon.parser.before.parse', [$this, 'normalizeLineBreak']);
 
-        $mode = strtolower(config('parser-markdown.mode', 'gfm'));
-
         // Base rule
         $this->setStartRule(new BaseRule($this), self::CATEGORY_NONE);
         $this->addRuleRender(new BaseBootstrapRenderer($this));
@@ -107,7 +105,7 @@ class MarkdownSet extends AbstractSet {
         $this->addRuleRender(new StrongMarkdownRenderer($this));
 
         // EMPHASIS / STRIKETHROUGH
-        if ($mode === 'gfm') {
+        if ($this->isModeGfm()) {
             $this->addRule(new StrikethroughRule($this), self::CATEGORY_FORMAT);
             $this->addRuleRender(new StrikethroughBootstrapRenderer($this));
             $this->addRuleRender(new StrikethroughMarkdownRenderer($this));
@@ -125,7 +123,7 @@ class MarkdownSet extends AbstractSet {
         $this->addRuleRender(new CodeBlockMarkdownRenderer($this));
 
         // FENCED CODE BLOCK
-        if ($mode === 'gfm') {
+        if ($this->isModeGfm()) {
             $this->addRule(new FencedCodeBlockRule($this), self::CATEGORY_BLOCK);
             $this->addRuleRender(new FencedCodeBlockBootstrapRenderer($this));
             $this->addRuleRender(new FencedCodeBlockMarkdownRenderer($this));
@@ -159,5 +157,14 @@ class MarkdownSet extends AbstractSet {
      */
     public function normalizeLineBreak(&$text) {
         $text = str_replace("\r\n", "\n", $text);
+    }
+
+    /**
+     * Is mode Github Flavored Markdown
+     *
+     * @return bool
+     */
+    public function isModeGfm() {
+        return strtolower(config('parser-markdown.mode', 'gfm')) === 'gfm';
     }
 }
