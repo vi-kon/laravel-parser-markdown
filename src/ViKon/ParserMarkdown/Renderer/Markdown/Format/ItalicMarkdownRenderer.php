@@ -3,7 +3,6 @@
 namespace ViKon\ParserMarkdown\Renderer\Markdown\Format;
 
 use ViKon\Parser\Renderer\Renderer;
-use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\Renderer\Markdown\AbstractMarkdownRuleRenderer;
 use ViKon\ParserMarkdown\Rule\Format\ItalicAltRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicRule;
@@ -25,46 +24,38 @@ class ItalicMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::OPEN, [$this, 'renderItalicOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::CLOSE, [$this, 'renderItalicClose'], $this->skin);
+        $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(ItalicRule::NAME . ItalicRule::CLOSE, [$this, 'renderClose'], $this->skin);
 
-        $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::OPEN, [$this, 'renderItalicAltOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::CLOSE, [$this, 'renderItalicAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::OPEN, [$this, 'renderAltOpen'], $this->skin);
+        $renderer->registerTokenRenderer(ItalicAltRule::NAME . ItalicAltRule::CLOSE, [$this, 'renderAltClose'], $this->skin);
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderItalicOpen(Token $token) {
+    public function renderOpen() {
         return '*';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderItalicClose(Token $token) {
+    public function renderClose() {
         return '*';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderItalicAltOpen(Token $token) {
+    public function renderAltOpen() {
         return '_';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderItalicAltClose(Token $token) {
+    public function renderAltClose() {
         return '_';
     }
 }

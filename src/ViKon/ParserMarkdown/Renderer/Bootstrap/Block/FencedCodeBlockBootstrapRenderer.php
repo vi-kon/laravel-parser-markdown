@@ -22,9 +22,9 @@ class FencedCodeBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(FencedCodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'open'], $this->skin);
-        $renderer->registerTokenRenderer(FencedCodeBlockRule::NAME, [$this, 'content'], $this->skin);
-        $renderer->registerTokenRenderer(FencedCodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'close'], $this->skin);
+        $renderer->registerTokenRenderer(FencedCodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(FencedCodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'renderClose'], $this->skin);
+        $renderer->registerTokenRenderer(FencedCodeBlockRule::NAME, [$this, 'renderContent'], $this->skin);
     }
 
     /**
@@ -32,7 +32,7 @@ class FencedCodeBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      *
      * @return string
      */
-    public function open(Token $token) {
+    public function renderOpen(Token $token) {
         $lang = $token->get('lang', '');
 
         if (!empty($lang)) {
@@ -47,14 +47,14 @@ class FencedCodeBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      *
      * @return string
      */
-    public function content(Token $token) {
+    public function renderContent(Token $token) {
         return htmlspecialchars($token->get('content', ''));
     }
 
     /**
      * @return string
      */
-    public function close() {
+    public function renderClose() {
         return "</code></pre>";
     }
 }

@@ -25,8 +25,8 @@ class HeaderBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(HeaderAtxRule::NAME, [$this, 'renderHeader'], $this->skin);
-        $renderer->registerTokenRenderer(HeaderSetextRule::NAME, [$this, 'renderHeader'], $this->skin);
+        $renderer->registerTokenRenderer(HeaderAtxRule::NAME, [$this, 'renderContent'], $this->skin);
+        $renderer->registerTokenRenderer(HeaderSetextRule::NAME, [$this, 'renderContent'], $this->skin);
     }
 
     /**
@@ -34,7 +34,7 @@ class HeaderBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      *
      * @return string
      */
-    public function renderHeader(Token $token) {
+    public function renderContent(Token $token) {
         $level = $token->get('level', 1);
         $content = $token->get('content', '');
 

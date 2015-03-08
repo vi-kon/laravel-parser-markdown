@@ -25,8 +25,8 @@ class HeaderMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(HeaderAtxRule::NAME, [$this, 'renderAtxHeader'], $this->skin);
-        $renderer->registerTokenRenderer(HeaderSetextRule::NAME, [$this, 'renderSetextHeader'], $this->skin);
+        $renderer->registerTokenRenderer(HeaderAtxRule::NAME, [$this, 'renderAtxContent'], $this->skin);
+        $renderer->registerTokenRenderer(HeaderSetextRule::NAME, [$this, 'renderSetextContent'], $this->skin);
     }
 
     /**
@@ -34,7 +34,7 @@ class HeaderMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderAtxHeader(Token $token) {
+    public function renderAtxContent(Token $token) {
         $level = $token->get('level', 1);
         $content = $token->get('content', '');
 
@@ -46,7 +46,7 @@ class HeaderMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderSetextHeader(Token $token) {
+    public function renderSetextContent(Token $token) {
         $level = $token->get('level', 1);
         $content = $token->get('content', '');
 

@@ -3,7 +3,6 @@
 namespace ViKon\ParserMarkdown\Renderer\Markdown\Format;
 
 use ViKon\Parser\Renderer\Renderer;
-use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\Renderer\Markdown\AbstractMarkdownRuleRenderer;
 use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
@@ -25,46 +24,38 @@ class StrongMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::OPEN, [$this, 'renderStrongOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::CLOSE, [$this, 'renderStrongClose'], $this->skin);
+        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::CLOSE, [$this, 'renderClose'], $this->skin);
 
-        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::OPEN, [$this, 'renderStrongAltOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::CLOSE, [$this, 'renderStrongAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::OPEN, [$this, 'renderAltOpen'], $this->skin);
+        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::CLOSE, [$this, 'renderAltClose'], $this->skin);
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderStrongOpen(Token $token) {
+    public function renderOpen() {
         return '**';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderStrongClose(Token $token) {
+    public function renderClose() {
         return '**';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderStrongAltOpen(Token $token) {
+    public function renderAltOpen() {
         return '__';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderStrongAltClose(Token $token) {
+    public function renderAltClose() {
         return '__';
     }
 }

@@ -25,8 +25,8 @@ class ImageMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(ImageInlineRule::NAME, [$this, 'renderImageInline'], $this->skin);
-        $renderer->registerTokenRenderer(ImageReferenceRule::NAME, [$this, 'renderImageReference'], $this->skin);
+        $renderer->registerTokenRenderer(ImageInlineRule::NAME, [$this, 'renderInline'], $this->skin);
+        $renderer->registerTokenRenderer(ImageReferenceRule::NAME, [$this, 'renderReference'], $this->skin);
     }
 
     /**
@@ -34,7 +34,7 @@ class ImageMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderImageInline(Token $token) {
+    public function renderInline(Token $token) {
         $alt = $token->get('alt', '');
         $url = $token->get('url', '');
         $title = $token->get('title', '');
@@ -52,7 +52,7 @@ class ImageMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return string
      * @throws \ViKon\Parser\LexerException
      */
-    public function renderImageReference(Token $token) {
+    public function renderReference(Token $token) {
         return $token->get('match', '');
     }
 }

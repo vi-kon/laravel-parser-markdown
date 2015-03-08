@@ -27,8 +27,8 @@ class LinkBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(LinkInlineRule::NAME, [$this, 'renderLinkInline'], $this->skin);
-        $renderer->registerTokenRenderer(LinkReferenceRule::NAME, [$this, 'renderLinkReference'], $this->skin);
+        $renderer->registerTokenRenderer(LinkInlineRule::NAME, [$this, 'renderInline'], $this->skin);
+        $renderer->registerTokenRenderer(LinkReferenceRule::NAME, [$this, 'renderReference'], $this->skin);
     }
 
     /**
@@ -36,7 +36,7 @@ class LinkBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      *
      * @return string
      */
-    public function renderLinkInline(Token $token) {
+    public function renderInline(Token $token) {
         $label = $token->get('label', '');
         $url = $token->get('url', '');
         $title = $token->get('title', '');
@@ -55,7 +55,7 @@ class LinkBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return string
      * @throws \ViKon\Parser\LexerException
      */
-    public function renderLinkReference(Token $token, TokenList $tokenList) {
+    public function renderReference(Token $token, TokenList $tokenList) {
         $reference = $token->get('reference');
         $label = $token->get('label');
 

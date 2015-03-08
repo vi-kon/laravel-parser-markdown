@@ -24,7 +24,7 @@ class ReferenceBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(ReferenceRule::NAME, [$this, 'renderReference'], $this->skin);
+        $renderer->registerTokenRenderer(ReferenceRule::NAME, [$this, 'renderContent'], $this->skin);
     }
 
     /**
@@ -32,7 +32,7 @@ class ReferenceBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      *
      * @return string
      */
-    public function renderReference(Token $token) {
+    public function renderContent(Token $token) {
         if ($token->get('used', false)) {
             return '';
         }

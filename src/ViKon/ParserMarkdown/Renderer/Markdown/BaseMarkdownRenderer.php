@@ -23,7 +23,7 @@ class BaseMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(BaseRule::NAME, [$this, 'renderBase'], $this->skin);
+        $renderer->registerTokenRenderer(BaseRule::NAME, [$this, 'renderContent'], $this->skin);
     }
 
     /**
@@ -31,7 +31,7 @@ class BaseMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderBase(Token $token) {
+    public function renderContent(Token $token) {
         return $token->get('content', '');
     }
 }

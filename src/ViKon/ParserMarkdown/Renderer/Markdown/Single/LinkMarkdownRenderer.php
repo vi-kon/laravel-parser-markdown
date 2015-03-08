@@ -27,16 +27,16 @@ class LinkMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(LinkInlineRule::NAME, [$this, 'renderLinkInline'], $this->skin);
-        $renderer->registerTokenRenderer(LinkReferenceRule::NAME, [$this, 'renderLinkReference'], $this->skin);
+        $renderer->registerTokenRenderer(LinkInlineRule::NAME, [$this, 'renderInline'], $this->skin);
+        $renderer->registerTokenRenderer(LinkReferenceRule::NAME, [$this, 'renderReference'], $this->skin);
     }
 
-     /**
+    /**
      * @param \ViKon\Parser\Token $token
      *
      * @return string
      */
-    public function renderLinkInline(Token $token) {
+    public function renderInline(Token $token) {
         $label = $token->get('label', '');
         $url = $token->get('url', '');
         $title = $token->get('title', '');
@@ -53,7 +53,7 @@ class LinkMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderLinkReference(Token $token) {
+    public function renderReference(Token $token) {
         return $token->get('match', '');
     }
 }

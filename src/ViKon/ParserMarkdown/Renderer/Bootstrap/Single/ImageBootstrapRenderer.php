@@ -27,8 +27,8 @@ class ImageBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(ImageInlineRule::NAME, [$this, 'renderImageInline'], $this->skin);
-        $renderer->registerTokenRenderer(ImageReferenceRule::NAME, [$this, 'renderImageReference'], $this->skin);
+        $renderer->registerTokenRenderer(ImageInlineRule::NAME, [$this, 'renderInline'], $this->skin);
+        $renderer->registerTokenRenderer(ImageReferenceRule::NAME, [$this, 'renderReference'], $this->skin);
     }
 
     /**
@@ -36,7 +36,7 @@ class ImageBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      *
      * @return string
      */
-    public function renderImageInline(Token $token) {
+    public function renderInline(Token $token) {
         $alt = $token->get('alt', '');
         $url = $token->get('url', '');
         $title = $token->get('title', '');
@@ -55,7 +55,7 @@ class ImageBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return string
      * @throws \ViKon\Parser\LexerException
      */
-    public function renderImageReference(Token $token, TokenList $tokenList) {
+    public function renderReference(Token $token, TokenList $tokenList) {
         $reference = $token->get('reference');
         $alt = $token->get('alt');
 

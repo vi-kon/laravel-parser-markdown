@@ -21,15 +21,15 @@ class CodeBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'renderCodeBlockOpen'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME, [$this, 'renderCodeBlock'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'renderCodeBlockClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'renderClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME, [$this, 'renderContent'], $this->skin);
     }
 
     /**
      * @return string
      */
-    public function renderCodeBlockOpen() {
+    public function renderOpen() {
         return '<pre><code>';
     }
 
@@ -38,14 +38,14 @@ class CodeBlockBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      *
      * @return string
      */
-    public function renderCodeBlock(Token $token) {
+    public function renderContent(Token $token) {
         return htmlspecialchars($token->get('content', ''));
     }
 
     /**
      * @return string
      */
-    public function renderCodeBlockClose() {
+    public function renderClose() {
         return '</code></pre>';
     }
 }

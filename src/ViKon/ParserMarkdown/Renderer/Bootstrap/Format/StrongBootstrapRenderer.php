@@ -3,7 +3,6 @@
 namespace ViKon\ParserMarkdown\Renderer\Bootstrap\Format;
 
 use ViKon\Parser\Renderer\Renderer;
-use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
@@ -25,28 +24,24 @@ class StrongBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::OPEN, [$this, 'renderStrongOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::CLOSE, [$this, 'renderStrongClose'], $this->skin);
+        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(StrongRule::NAME . StrongRule::CLOSE, [$this, 'renderClose'], $this->skin);
 
-        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::OPEN, [$this, 'renderStrongOpen'], $this->skin);
-        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::CLOSE, [$this, 'renderStrongClose'], $this->skin);
+        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(StrongAltRule::NAME . StrongAltRule::CLOSE, [$this, 'renderClose'], $this->skin);
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderStrongOpen(Token $token) {
+    public function renderOpen() {
         return '<strong>';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderStrongClose(Token $token) {
+    public function renderClose() {
         return '</strong>';
     }
 }

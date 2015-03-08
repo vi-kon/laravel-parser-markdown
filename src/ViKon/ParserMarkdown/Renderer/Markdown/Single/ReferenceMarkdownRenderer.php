@@ -24,7 +24,7 @@ class ReferenceMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(ReferenceRule::NAME, [$this, 'renderReference'], $this->skin);
+        $renderer->registerTokenRenderer(ReferenceRule::NAME, [$this, 'renderContent'], $this->skin);
     }
 
     /**
@@ -32,7 +32,7 @@ class ReferenceMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderReference(Token $token) {
+    public function renderContent(Token $token) {
         return $token->get('match');
     }
 }

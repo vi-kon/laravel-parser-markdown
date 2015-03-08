@@ -16,15 +16,15 @@ use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
  */
 class CodeBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'open'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME, [$this, 'content'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'close'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME, [$this, 'renderContent'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'renderClose'], $this->skin);
     }
 
     /**
      * @return string
      */
-    public function open() {
+    public function renderOpen() {
         return "\n";
     }
 
@@ -33,14 +33,14 @@ class CodeBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function content(Token $token) {
+    public function renderContent(Token $token) {
         return '    ' . $token->get('content', '');
     }
 
     /**
      * @return string
      */
-    public function close() {
+    public function renderClose() {
         return '';
     }
 }

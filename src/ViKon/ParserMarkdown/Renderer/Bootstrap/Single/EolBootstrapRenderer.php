@@ -3,7 +3,6 @@
 namespace ViKon\ParserMarkdown\Renderer\Bootstrap\Single;
 
 use ViKon\Parser\Renderer\Renderer;
-use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\AbstractBootstrapRuleRenderer;
 use ViKon\ParserMarkdown\Rule\Single\EolRule;
 
@@ -23,15 +22,13 @@ class EolBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(EolRule::NAME, [$this, 'renderEol'], $this->skin);
+        $renderer->registerTokenRenderer(EolRule::NAME, [$this, 'renderContent'], $this->skin);
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderEol(Token $token) {
+    public function renderContent() {
         return ' ';
     }
 }

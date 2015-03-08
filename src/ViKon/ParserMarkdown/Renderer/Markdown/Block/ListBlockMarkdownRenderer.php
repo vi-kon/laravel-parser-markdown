@@ -23,32 +23,28 @@ class ListBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(ListBlockRule::NAME . ListBlockRule::OPEN, [$this, 'renderListBlockOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_LEVEL_OPEN', [$this, 'renderListBlockLevelOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_OPEN', [$this, 'renderListBlockItemOpen'], $this->skin);
-        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_CLOSE', [$this, 'renderListBlockItemClose'], $this->skin);
-        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_LEVEL_CLOSE', [$this, 'renderListBlockLevelClose'], $this->skin);
-        $renderer->registerTokenRenderer(ListBlockRule::NAME . ListBlockRule::CLOSE, [$this, 'renderListBlockClose'], $this->skin);
-        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_EOL', [$this, 'renderListBlockItemEol'], $this->skin);
+        $renderer->registerTokenRenderer(ListBlockRule::NAME . ListBlockRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(ListBlockRule::NAME . ListBlockRule::CLOSE, [$this, 'renderClose'], $this->skin);
+        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_LEVEL_OPEN', [$this, 'renderLevelOpen'], $this->skin);
+        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_LEVEL_CLOSE', [$this, 'renderLevelClose'], $this->skin);
+        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_OPEN', [$this, 'renderItemOpen'], $this->skin);
+        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_CLOSE', [$this, 'renderItemClose'], $this->skin);
+        $renderer->registerTokenRenderer(ListBlockRule::NAME . '_ITEM_EOL', [$this, 'renderItemEol'], $this->skin);
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderListBlockOpen(Token $token) {
+    public function renderOpen() {
         $this->ordered = [];
 
         return '';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderListBlockLevelOpen(Token $token) {
+    public function renderLevelOpen() {
         return '';
     }
 
@@ -57,7 +53,7 @@ class ListBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderListBlockItemOpen(Token $token) {
+    public function renderItemOpen(Token $token) {
         if ($token->get('forceParagraph', false)) {
             return "\n\n*   ";
         }
@@ -66,38 +62,30 @@ class ListBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderListBlockItemClose(Token $token) {
+    public function renderItemClose() {
         return '';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderListBlockLevelClose(Token $token) {
+    public function renderLevelClose() {
         return '';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderListBlockClose(Token $token) {
+    public function renderClose() {
         return '';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderListBlockItemEol(Token $token) {
+    public function renderItemEol() {
         return "\n    ";
     }
 }

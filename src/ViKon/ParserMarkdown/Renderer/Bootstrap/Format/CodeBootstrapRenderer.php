@@ -25,39 +25,35 @@ class CodeBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::OPEN, [$this, 'renderCodeOpen'], $this->skin);
-        $renderer->registerTokenRenderer(CodeRule::NAME, [$this, 'renderCode'], $this->skin);
-        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::CLOSE, [$this, 'renderCodeClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::CLOSE, [$this, 'renderClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME, [$this, 'renderContent'], $this->skin);
 
-        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::OPEN, [$this, 'renderCodeOpen'], $this->skin);
-        $renderer->registerTokenRenderer(CodeAltRule::NAME, [$this, 'renderCode'], $this->skin);
-        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::CLOSE, [$this, 'renderCodeClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::CLOSE, [$this, 'renderClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME, [$this, 'renderContent'], $this->skin);
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderCodeOpen(Token $token) {
+    public function renderOpen() {
         return '<code>';
     }
 
     /**
      * @param \ViKon\Parser\Token $token
      *
-     * @return mixed|null
+     * @return string
      */
-    public function renderCode(Token $token) {
+    public function renderContent(Token $token) {
         return htmlspecialchars($token->get('content', ''));
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderCodeClose(Token $token) {
+    public function renderClose() {
         return '</code>';
     }
 }

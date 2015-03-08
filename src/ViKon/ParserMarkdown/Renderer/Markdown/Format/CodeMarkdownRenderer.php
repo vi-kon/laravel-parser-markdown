@@ -25,13 +25,20 @@ class CodeMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      * @return mixed
      */
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::OPEN, [$this, 'renderCodeOpen'], $this->skin);
-        $renderer->registerTokenRenderer(CodeRule::NAME, [$this, 'renderCode'], $this->skin);
-        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::CLOSE, [$this, 'renderCodeClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::OPEN, [$this, 'renderOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME . CodeRule::CLOSE, [$this, 'renderClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeRule::NAME, [$this, 'renderContent'], $this->skin);
 
-        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::OPEN, [$this, 'renderCodeAltOpen'], $this->skin);
-        $renderer->registerTokenRenderer(CodeAltRule::NAME, [$this, 'renderCodeAlt'], $this->skin);
-        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::CLOSE, [$this, 'renderCodeAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::OPEN, [$this, 'renderAltOpen'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME . CodeAltRule::CLOSE, [$this, 'renderAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeAltRule::NAME, [$this, 'renderContent'], $this->skin);
+    }
+
+    /**
+     * @return string
+     */
+    public function renderOpen() {
+        return '`';
     }
 
     /**
@@ -39,52 +46,28 @@ class CodeMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderCodeOpen(Token $token) {
-        return '`';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderCode(Token $token) {
+    public function renderContent(Token $token) {
         return $token->get('content', '');
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderCodeClose(Token $token) {
+    public function renderClose() {
         return '`';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderCodeAltOpen(Token $token) {
+    public function renderAltOpen() {
         return '``';
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return mixed|null
-     */
-    public function renderCodeAlt(Token $token) {
-        return $token->get('content', '');
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderCodeAltClose(Token $token) {
+    public function renderAltClose() {
         return '``';
     }
 }
