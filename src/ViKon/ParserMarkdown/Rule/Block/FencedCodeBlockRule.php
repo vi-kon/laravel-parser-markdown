@@ -8,14 +8,14 @@ use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
- * Class CodeBlockAltRule
+ * Class FencedCodeBlockRule
  *
  * @author  Kovács Vince <vincekovacs@hotmail.com>
  *
  * @package ViKon\ParserMarkdown\Rule\Block
  */
-class CodeBlockAltRule extends AbstractBlockRule {
-    const NAME = 'CODE_BLOCK_ALT';
+class FencedCodeBlockRule extends AbstractBlockRule {
+    const NAME = 'FENCED_CODE_BLOCK';
     const ORDER = 35;
 
     /**

@@ -5,7 +5,6 @@ namespace ViKon\ParserMarkdown\Renderer\Markdown\Block;
 use ViKon\Parser\Renderer\Renderer;
 use ViKon\Parser\Token;
 use ViKon\ParserMarkdown\Renderer\Markdown\AbstractMarkdownRuleRenderer;
-use ViKon\ParserMarkdown\Rule\Block\CodeBlockAltRule;
 use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
 
 /**
@@ -17,21 +16,15 @@ use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
  */
 class CodeBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
     public function register(Renderer $renderer) {
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'renderCodeBlockOpen'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME, [$this, 'renderCodeBlock'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'renderCodeBlockClose'], $this->skin);
-
-        $renderer->registerTokenRenderer(CodeBlockAltRule::NAME . CodeBlockAltRule::OPEN, [$this, 'renderCodeBlockAltOpen'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockAltRule::NAME, [$this, 'renderCodeBlockAlt'], $this->skin);
-        $renderer->registerTokenRenderer(CodeBlockAltRule::NAME . CodeBlockAltRule::CLOSE, [$this, 'renderCodeBlockAltClose'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::OPEN, [$this, 'open'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME, [$this, 'content'], $this->skin);
+        $renderer->registerTokenRenderer(CodeBlockRule::NAME . CodeBlockRule::CLOSE, [$this, 'close'], $this->skin);
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderCodeBlockOpen(Token $token) {
+    public function open() {
         return "\n";
     }
 
@@ -40,49 +33,14 @@ class CodeBlockMarkdownRenderer extends AbstractMarkdownRuleRenderer {
      *
      * @return string
      */
-    public function renderCodeBlock(Token $token) {
+    public function content(Token $token) {
         return '    ' . $token->get('content', '');
     }
 
     /**
-     * @param \ViKon\Parser\Token $token
-     *
      * @return string
      */
-    public function renderCodeBlockClose(Token $token) {
+    public function close() {
         return '';
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return string
-     */
-    public function renderCodeBlockAltOpen(Token $token) {
-        $lang = $token->get('lang', '');
-
-        if (!empty($lang)) {
-            return "\n```$lang";
-        }
-
-        return "\n```";
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return string
-     */
-    public function renderCodeBlockAlt(Token $token) {
-        return $token->get('content', '');
-    }
-
-    /**
-     * @param \ViKon\Parser\Token $token
-     *
-     * @return string
-     */
-    public function renderCodeBlockAltClose(Token $token) {
-        return "\n```";
     }
 }

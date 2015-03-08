@@ -5,6 +5,7 @@ namespace ViKon\ParserMarkdown;
 use ViKon\Parser\AbstractSet;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\BaseBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\CodeBlockBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\FencedCodeBlockBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\ListBlockBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\CodeBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
@@ -18,6 +19,7 @@ use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\LinkBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Single\ReferenceBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\BaseMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Block\CodeBlockMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Block\FencedCodeBlockMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Block\ListBlockMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\CodeMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
@@ -30,8 +32,8 @@ use ViKon\ParserMarkdown\Renderer\Markdown\Single\ImageMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\LinkMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Single\ReferenceMarkdownRenderer;
 use ViKon\ParserMarkdown\Rule\BaseRule;
-use ViKon\ParserMarkdown\Rule\Block\CodeBlockAltRule;
 use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
+use ViKon\ParserMarkdown\Rule\Block\FencedCodeBlockRule;
 use ViKon\ParserMarkdown\Rule\Block\ListBlockRule;
 use ViKon\ParserMarkdown\Rule\Format\CodeAltRule;
 use ViKon\ParserMarkdown\Rule\Format\CodeRule;
@@ -61,6 +63,8 @@ use ViKon\ParserMarkdown\Rule\Single\ReferenceRule;
 class MarkdownSet extends AbstractSet {
     public function __construct() {
         \Event::listen('vikon.parser.before.parse', [$this, 'normalizeLineBreak']);
+
+        $mode = strtolower(config('parser-markdown.mode', 'gfm'));
 
         // Base rule
         $this->setStartRule(new BaseRule($this), self::CATEGORY_NONE);
@@ -103,9 +107,11 @@ class MarkdownSet extends AbstractSet {
         $this->addRuleRender(new StrongMarkdownRenderer($this));
 
         // EMPHASIS / STRIKETHROUGH
-        $this->addRule(new StrikethroughRule($this), self::CATEGORY_FORMAT);
-        $this->addRuleRender(new StrikethroughBootstrapRenderer($this));
-        $this->addRuleRender(new StrikethroughMarkdownRenderer($this));
+        if ($mode === 'gfm') {
+            $this->addRule(new StrikethroughRule($this), self::CATEGORY_FORMAT);
+            $this->addRuleRender(new StrikethroughBootstrapRenderer($this));
+            $this->addRuleRender(new StrikethroughMarkdownRenderer($this));
+        }
 
         // CODE
         $this->addRule(new CodeRule($this), self::CATEGORY_FORMAT);
@@ -115,9 +121,15 @@ class MarkdownSet extends AbstractSet {
 
         // CODE BLOCK
         $this->addRule(new CodeBlockRule($this), self::CATEGORY_BLOCK);
-        $this->addRule(new CodeBlockAltRule($this), self::CATEGORY_BLOCK);
         $this->addRuleRender(new CodeBlockBootstrapRenderer($this));
         $this->addRuleRender(new CodeBlockMarkdownRenderer($this));
+
+        // FENCED CODE BLOCK
+        if ($mode === 'gfm') {
+            $this->addRule(new FencedCodeBlockRule($this), self::CATEGORY_BLOCK);
+            $this->addRuleRender(new FencedCodeBlockBootstrapRenderer($this));
+            $this->addRuleRender(new FencedCodeBlockMarkdownRenderer($this));
+        }
 
         // END OF LINE
         $this->addRule(new EolRule($this), self::CATEGORY_SINGLE);

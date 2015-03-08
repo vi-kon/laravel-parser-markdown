@@ -3,24 +3,38 @@
 return [
     /*
     | --------------------------------------------------------------------------
-    | Extra rule
+    | Markdown mode
+    | --------------------------------------------------------------------------
+    | This option indicate to use traditional markdown rules or Github Flawored
+    | Markdown (GFM)
+    |
+    | Traditional syntax: http://daringfireball.net/projects/markdown/syntax
+    | GFM syntax: https://help.github.com/articles/github-flavored-markdown
+    |
+    | Two possible values "traditional" or "gfm"
+    |
+    */
+    'mode'        => 'gfm',
+    /*
+    | --------------------------------------------------------------------------
+    | Extra Rule
     | --------------------------------------------------------------------------
     | Allow extra rules which is not in official markdown syntax
     |
-    | For example, the math rule
+    | For example, the math Rule
     |
     */
     'extra-rules' => true,
     /*
     | --------------------------------------------------------------------------
-    | Individual rule settings
+    | Individual Rule settings
     | --------------------------------------------------------------------------
     |
     */
     'rule'        => [
         /*
         | --------------------------------------------------------------------------
-        | Math rule settings
+        | Math Rule settings
         | --------------------------------------------------------------------------
         | Math plugin using for image generation
         | http://www.sciweavers.org/free-online-latex-equation-editor online tool

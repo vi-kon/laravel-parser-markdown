@@ -70,7 +70,7 @@ class ListBlockRule extends AbstractBlockRule {
     public function prepare(Lexer $lexer) {
         $this->acceptedRuleNames = array_merge([
             CodeBlockRule::NAME,
-            CodeBlockAltRule::NAME,
+            FencedCodeBlockRule::NAME,
             EolRule::NAME,
             LinkInlineRule::NAME,
             LinkReferenceRule::NAME,
