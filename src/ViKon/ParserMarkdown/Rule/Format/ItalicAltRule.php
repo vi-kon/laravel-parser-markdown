@@ -24,6 +24,10 @@ class ItalicAltRule extends AbstractFormatRule {
      * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
     public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '_(?=(?:\\\\.|[^\n_\\\\])*_)', '_', $set);
+        $startPattern = '_(?=(?:\\\\.|[^\n_\\\\])*_)';
+        if (strtolower(config('parser-markdown.mode', 'gfm')) === 'gfm') {
+            $startPattern = '_(?=(?:\\\\.|[^\n_\\\\])*_\w)';
+        }
+        parent::__construct(self::NAME, self::ORDER, $startPattern, '_', $set);
     }
 }
