@@ -6,6 +6,7 @@ use ViKon\Parser\Renderer\Renderer;
 use ViKon\Parser\Token;
 use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\AbstractBootstrapRuleRenderer;
+use ViKon\ParserMarkdown\Rule\Single\LinkAutoRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkInlineRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkReferenceRule;
 use ViKon\ParserMarkdown\Rule\Single\ReferenceRule;
@@ -29,6 +30,18 @@ class LinkBootstrapRenderer extends AbstractBootstrapRuleRenderer {
     public function register(Renderer $renderer) {
         $renderer->registerTokenRenderer(LinkInlineRule::NAME, [$this, 'renderInline'], $this->skin);
         $renderer->registerTokenRenderer(LinkReferenceRule::NAME, [$this, 'renderReference'], $this->skin);
+        $renderer->registerTokenRenderer(LinkAutoRule::NAME, [$this, 'renderAuto'], $this->skin);
+    }
+
+    /**
+     * @param \ViKon\Parser\Token $token
+     *
+     * @return string
+     */
+    public function renderAuto(Token $token) {
+        $url = $token->get('url', '');
+
+        return "<a href=\"$url\">$url</a>";
     }
 
     /**

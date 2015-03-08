@@ -48,6 +48,7 @@ use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderSetextRule;
 use ViKon\ParserMarkdown\Rule\Single\ImageInlineRule;
 use ViKon\ParserMarkdown\Rule\Single\ImageReferenceRule;
+use ViKon\ParserMarkdown\Rule\Single\LinkAutoRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkInlineRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkReferenceRule;
 use ViKon\ParserMarkdown\Rule\Single\ReferenceRule;
@@ -82,6 +83,9 @@ class MarkdownSet extends AbstractSet {
         // URL
         $this->addRule(new LinkInlineRule($this), self::CATEGORY_FORMAT);
         $this->addRule(new LinkReferenceRule($this), self::CATEGORY_FORMAT);
+        if ($this->isModeGfm()) {
+            $this->addRule(new LinkAutoRule($this), self::CATEGORY_FORMAT);
+        }
         $this->addRuleRenderer(new LinkBootstrapRenderer($this));
         $this->addRuleRenderer(new LinkMarkdownRenderer($this));
 
