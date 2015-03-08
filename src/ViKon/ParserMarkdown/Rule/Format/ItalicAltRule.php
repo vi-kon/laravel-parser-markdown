@@ -21,6 +21,8 @@ class ItalicAltRule extends AbstractFormatRule {
      *
      * _italic_
      *
+     * _italic_gfm_style_
+     *
      * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
     public function __construct(MarkdownSet $set) {
