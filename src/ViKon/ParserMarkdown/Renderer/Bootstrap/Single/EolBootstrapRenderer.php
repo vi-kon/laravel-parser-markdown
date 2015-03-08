@@ -32,6 +32,6 @@ class EolBootstrapRenderer extends AbstractBootstrapRuleRenderer {
      * @return string
      */
     public function renderEol(Token $token) {
-        return '';
+        return ' ';
     }
 }
