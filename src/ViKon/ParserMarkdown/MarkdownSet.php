@@ -65,78 +65,78 @@ class MarkdownSet extends AbstractSet {
 
         // Base rule
         $this->setStartRule(new BaseRule($this), self::CATEGORY_NONE);
-        $this->addRuleRender(new BaseBootstrapRenderer($this));
-        $this->addRuleRender(new BaseMarkdownRenderer($this));
+        $this->addRuleRenderer(new BaseBootstrapRenderer($this));
+        $this->addRuleRenderer(new BaseMarkdownRenderer($this));
 
         // HEADER
         $this->addRule(new HeaderAtxRule($this), self::CATEGORY_SINGLE);
         $this->addRule(new HeaderSetextRule($this), self::CATEGORY_SINGLE);
-        $this->addRuleRender(new HeaderBootstrapRenderer($this));
-        $this->addRuleRender(new HeaderMarkdownRenderer($this));
+        $this->addRuleRenderer(new HeaderBootstrapRenderer($this));
+        $this->addRuleRenderer(new HeaderMarkdownRenderer($this));
 
         // REFERENCE
         $this->addRule(new ReferenceRule($this), self::CATEGORY_SINGLE);
-        $this->addRuleRender(new ReferenceBootstrapRenderer($this));
-        $this->addRuleRender(new ReferenceMarkdownRenderer($this));
+        $this->addRuleRenderer(new ReferenceBootstrapRenderer($this));
+        $this->addRuleRenderer(new ReferenceMarkdownRenderer($this));
 
         // URL
         $this->addRule(new LinkInlineRule($this), self::CATEGORY_FORMAT);
         $this->addRule(new LinkReferenceRule($this), self::CATEGORY_FORMAT);
-        $this->addRuleRender(new LinkBootstrapRenderer($this));
-        $this->addRuleRender(new LinkMarkdownRenderer($this));
+        $this->addRuleRenderer(new LinkBootstrapRenderer($this));
+        $this->addRuleRenderer(new LinkMarkdownRenderer($this));
 
         // IMAGE
         $this->addRule(new ImageInlineRule($this), self::CATEGORY_SINGLE);
         $this->addRule(new ImageReferenceRule($this), self::CATEGORY_SINGLE);
-        $this->addRuleRender(new ImageBootstrapRenderer($this));
-        $this->addRuleRender(new ImageMarkdownRenderer($this));
+        $this->addRuleRenderer(new ImageBootstrapRenderer($this));
+        $this->addRuleRenderer(new ImageMarkdownRenderer($this));
 
         // EMPHASIS / ITALIC
         $this->addRule(new ItalicRule($this), self::CATEGORY_FORMAT);
         $this->addRule(new ItalicAltRule($this), self::CATEGORY_FORMAT);
-        $this->addRuleRender(new ItalicBootstrapRenderer($this));
-        $this->addRuleRender(new ItalicMarkdownRenderer($this));
+        $this->addRuleRenderer(new ItalicBootstrapRenderer($this));
+        $this->addRuleRenderer(new ItalicMarkdownRenderer($this));
 
         // EMPHASIS / STRONG
         $this->addRule(new StrongRule($this), self::CATEGORY_FORMAT);
         $this->addRule(new StrongAltRule($this), self::CATEGORY_FORMAT);
-        $this->addRuleRender(new StrongBootstrapRenderer($this));
-        $this->addRuleRender(new StrongMarkdownRenderer($this));
+        $this->addRuleRenderer(new StrongBootstrapRenderer($this));
+        $this->addRuleRenderer(new StrongMarkdownRenderer($this));
 
         // EMPHASIS / STRIKETHROUGH
         if ($this->isModeGfm()) {
             $this->addRule(new StrikethroughRule($this), self::CATEGORY_FORMAT);
-            $this->addRuleRender(new StrikethroughBootstrapRenderer($this));
-            $this->addRuleRender(new StrikethroughMarkdownRenderer($this));
+            $this->addRuleRenderer(new StrikethroughBootstrapRenderer($this));
+            $this->addRuleRenderer(new StrikethroughMarkdownRenderer($this));
         }
 
         // CODE
         $this->addRule(new CodeRule($this), self::CATEGORY_FORMAT);
         $this->addRule(new CodeAltRule($this), self::CATEGORY_FORMAT);
-        $this->addRuleRender(new CodeBootstrapRenderer($this));
-        $this->addRuleRender(new CodeMarkdownRenderer($this));
+        $this->addRuleRenderer(new CodeBootstrapRenderer($this));
+        $this->addRuleRenderer(new CodeMarkdownRenderer($this));
 
         // CODE BLOCK
         $this->addRule(new CodeBlockRule($this), self::CATEGORY_BLOCK);
-        $this->addRuleRender(new CodeBlockBootstrapRenderer($this));
-        $this->addRuleRender(new CodeBlockMarkdownRenderer($this));
+        $this->addRuleRenderer(new CodeBlockBootstrapRenderer($this));
+        $this->addRuleRenderer(new CodeBlockMarkdownRenderer($this));
 
         // FENCED CODE BLOCK
         if ($this->isModeGfm()) {
             $this->addRule(new FencedCodeBlockRule($this), self::CATEGORY_BLOCK);
-            $this->addRuleRender(new FencedCodeBlockBootstrapRenderer($this));
-            $this->addRuleRender(new FencedCodeBlockMarkdownRenderer($this));
+            $this->addRuleRenderer(new FencedCodeBlockBootstrapRenderer($this));
+            $this->addRuleRenderer(new FencedCodeBlockMarkdownRenderer($this));
         }
 
         // END OF LINE
         $this->addRule(new EolRule($this), self::CATEGORY_SINGLE);
-        $this->addRuleRender(new EolBootstrapRenderer($this));
-        $this->addRuleRender(new EolMarkdownRenderer($this));
+        $this->addRuleRenderer(new EolBootstrapRenderer($this));
+        $this->addRuleRenderer(new EolMarkdownRenderer($this));
 
         // LIST RULE
         $this->addRule(new ListBlockRule($this), self::CATEGORY_BLOCK);
-        $this->addRuleRender(new ListBlockBootstrapRenderer($this));
-        $this->addRuleRender(new ListBlockMarkdownRenderer($this));
+        $this->addRuleRenderer(new ListBlockBootstrapRenderer($this));
+        $this->addRuleRenderer(new ListBlockMarkdownRenderer($this));
 
         // PARAGRAPH RULE
         $this->addRule(new PRule($this, [], [
@@ -145,8 +145,8 @@ class MarkdownSet extends AbstractSet {
             'LIST_BLOCK_ITEM_OPEN',
             'LIST_BLOCK_ITEM_CLOSE',
         ]), self::CATEGORY_NONE);
-        $this->addRuleRender(new PBootstrapRenderer($this));
-        $this->addRuleRender(new PMarkdownRenderer($this));
+        $this->addRuleRenderer(new PBootstrapRenderer($this));
+        $this->addRuleRenderer(new PMarkdownRenderer($this));
     }
 
     /**
