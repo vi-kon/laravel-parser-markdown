@@ -12,6 +12,7 @@ use ViKon\ParserMarkdown\Rule\Format\CodeAltRule;
 use ViKon\ParserMarkdown\Rule\Format\CodeRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicAltRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicRule;
+use ViKon\ParserMarkdown\Rule\Format\MathRule;
 use ViKon\ParserMarkdown\Rule\Format\StrikethroughRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
@@ -110,6 +111,9 @@ class MarkdownRuleSet extends AbstractRuleSet {
         if ($this->isModeGfm()) {
             $this->addRule(new TableRule(), self::CATEGORY_BLOCK);
         }
+
+        // MATH
+        $this->addRule(new MathRule(), self::CATEGORY_FORMAT);
     }
 
     /**

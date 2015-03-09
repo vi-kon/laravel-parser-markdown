@@ -43,6 +43,17 @@ return [
         'math' => [
             /*
             | --------------------------------------------------------------------------
+            | Image public path
+            | --------------------------------------------------------------------------
+            | Relative public path location where new images are stored and publically
+            | access.
+            |
+            | Have to writeable.
+            |
+            */
+            'path'       => 'images/math',
+            /*
+            | --------------------------------------------------------------------------
             | Background color
             | --------------------------------------------------------------------------
             | Generated image background color.

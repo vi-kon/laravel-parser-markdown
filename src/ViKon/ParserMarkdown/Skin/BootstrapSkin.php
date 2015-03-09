@@ -11,6 +11,7 @@ use ViKon\ParserMarkdown\Skin\Bootstrap\Block\ListBlockBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Block\TableBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Format\CodeBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Format\ItalicBootstrapRenderer;
+use ViKon\ParserMarkdown\Skin\Bootstrap\Format\MathBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Format\StrikethroughBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Format\StrongBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\PBootstrapRenderer;
@@ -89,6 +90,9 @@ class BootstrapSkin extends AbstractSkin {
         if ($this->isModeGfm()) {
             $this->addRuleRenderer(new TableBootstrapRenderer());
         }
+
+        // MATH
+        $this->addRuleRenderer(new MathBootstrapRenderer());
     }
 
     /**

@@ -174,3 +174,9 @@ The following characters can escape by prepending \\ character
 * \-
 * \.
 * \!
+
+# Math expressions
+
+You can easily pass math expression with LATEX syntax.
+
+@[a_i^2 + b_j^2 = c_k^2]
