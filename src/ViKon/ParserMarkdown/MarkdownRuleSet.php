@@ -17,6 +17,7 @@ use ViKon\ParserMarkdown\Rule\Format\StrikethroughRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
 use ViKon\ParserMarkdown\Rule\PRule;
+use ViKon\ParserMarkdown\Rule\Single\BrRule;
 use ViKon\ParserMarkdown\Rule\Single\EolRule;
 use ViKon\ParserMarkdown\Rule\Single\EscapeRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
@@ -49,6 +50,11 @@ class MarkdownRuleSet extends AbstractRuleSet {
 
         // ESCAPE
         $this->addRule(new EscapeRule(), self::CATEGORY_FORMAT);
+
+        // BR
+        if (!$this->isModeGfm()) {
+            $this->addRule(new BrRule(), self::CATEGORY_SINGLE);
+        }
 
         // HEADER
         $this->addRule(new HeaderAtxRule(), self::CATEGORY_SINGLE);

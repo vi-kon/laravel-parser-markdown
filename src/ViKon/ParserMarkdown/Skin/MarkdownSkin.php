@@ -10,9 +10,11 @@ use ViKon\ParserMarkdown\Skin\Markdown\Block\ListBlockMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Block\TableMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Format\CodeMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Format\ItalicMarkdownRenderer;
+use ViKon\ParserMarkdown\Skin\Markdown\Format\MathMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Format\StrikethroughMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Format\StrongMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\PMarkdownRenderer;
+use ViKon\ParserMarkdown\Skin\Markdown\Single\BrMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Single\EolMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Single\EscapeMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Single\HeaderMarkdownRenderer;
@@ -39,6 +41,11 @@ class MarkdownSkin extends AbstractSkin {
 
         // ESCAPE
         $this->addRuleRenderer(new EscapeMarkdownRenderer());
+
+        // BR
+        if (!$this->isModeGfm()) {
+            $this->addRuleRenderer(new BrMarkdownRenderer());
+        }
 
         // HEADER
         $this->addRuleRenderer(new HeaderMarkdownRenderer());
@@ -87,6 +94,9 @@ class MarkdownSkin extends AbstractSkin {
         if ($this->isModeGfm()) {
             $this->addRuleRenderer(new TableMarkdownRenderer());
         }
+
+        // MATH
+        $this->addRuleRenderer(new MathMarkdownRenderer());
     }
 
     /**
