@@ -5,6 +5,7 @@ namespace ViKon\ParserMarkdown\Rule\Block;
 
 use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractBlockRule;
+use ViKon\Parser\Rule\AbstractRuleSet;
 use ViKon\Parser\TokenList;
 
 /**
@@ -29,6 +30,17 @@ class TableRule extends AbstractBlockRule {
      */
     public function __construct() {
         parent::__construct(self::NAME, self::ORDER, '\n\|?(?:[^|\n]+\|)+(?:[^|\n]+\|?)\n(?:(?:\| *| {0,3}):?-+:? {0,3}\|)+(?:(?:\| *| {0,3}):?-+:? {0,3}\|?)', '(?=\n)');
+    }
+
+    /**
+     * Prepare rule before connecting
+     *
+     * @param \ViKon\Parser\Lexer\Lexer $lexer lexer instance
+     *
+     * @return $this
+     */
+    public function prepare(Lexer $lexer) {
+        $this->acceptedRuleNames = $this->set->getRuleNamesByCategory(AbstractRuleSet::CATEGORY_FORMAT);
     }
 
     /**
