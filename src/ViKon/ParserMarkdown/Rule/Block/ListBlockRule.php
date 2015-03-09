@@ -8,8 +8,6 @@ use ViKon\Parser\Rule\AbstractRuleSet;
 use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\Rule\PRule;
 use ViKon\ParserMarkdown\Rule\Single\EolRule;
-use ViKon\ParserMarkdown\Rule\Single\LinkInlineRule;
-use ViKon\ParserMarkdown\Rule\Single\LinkReferenceRule;
 
 /**
  * Class ListBlockRule
