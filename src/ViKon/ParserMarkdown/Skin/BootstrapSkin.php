@@ -3,6 +3,7 @@
 namespace ViKon\ParserMarkdown\Skin;
 
 use ViKon\Parser\Renderer\AbstractSkin;
+use ViKon\ParserMarkdown\ConfigTrait;
 use ViKon\ParserMarkdown\Skin\Bootstrap\BaseBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Block\CodeBlockBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Block\FencedCodeBlockBootstrapRenderer;
@@ -28,6 +29,7 @@ use ViKon\ParserMarkdown\Skin\Bootstrap\Single\ReferenceBootstrapRenderer;
  * @package ViKon\ParserMarkdown
  */
 class BootstrapSkin extends AbstractSkin {
+    use ConfigTrait;
 
     public function __construct() {
         parent::__construct('bootstrap');
@@ -96,14 +98,5 @@ class BootstrapSkin extends AbstractSkin {
      */
     public function normalizeLineBreak(&$text) {
         $text = str_replace("\r\n", "\n", $text);
-    }
-
-    /**
-     * Is mode Github Flavored Markdown
-     *
-     * @return bool
-     */
-    public function isModeGfm() {
-        return strtolower(config('parser-markdown.mode', 'gfm')) === 'gfm';
     }
 }
