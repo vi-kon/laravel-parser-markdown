@@ -94,7 +94,7 @@ class MarkdownRuleSet extends AbstractRuleSet {
         }
 
         // END OF LINE
-        $this->addRule(new EolRule(), self::CATEGORY_NONE);
+        $this->addRule(new EolRule(), self::CATEGORY_SINGLE);
 
         // LIST RULE
         $this->addRule(new ListBlockRule(), self::CATEGORY_BLOCK);
