@@ -14,6 +14,7 @@ use ViKon\ParserMarkdown\Skin\Bootstrap\Format\StrikethroughBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Format\StrongBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\PBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Single\EolBootstrapRenderer;
+use ViKon\ParserMarkdown\Skin\Bootstrap\Single\EscapeBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Single\HeaderBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Single\ImageBootstrapRenderer;
 use ViKon\ParserMarkdown\Skin\Bootstrap\Single\LinkBootstrapRenderer;
@@ -35,6 +36,9 @@ class BootstrapSkin extends AbstractSkin {
 
         // Base rule
         $this->addRuleRenderer(new BaseBootstrapRenderer());
+
+        // ESCAPE
+        $this->addRuleRenderer(new EscapeBootstrapRenderer());
 
         // HEADER
         $this->addRuleRenderer(new HeaderBootstrapRenderer());

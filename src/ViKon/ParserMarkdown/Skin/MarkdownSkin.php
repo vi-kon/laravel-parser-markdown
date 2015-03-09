@@ -14,6 +14,7 @@ use ViKon\ParserMarkdown\Skin\Markdown\Format\StrikethroughMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Format\StrongMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\PMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Single\EolMarkdownRenderer;
+use ViKon\ParserMarkdown\Skin\Markdown\Single\EscapeMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Single\HeaderMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Single\ImageMarkdownRenderer;
 use ViKon\ParserMarkdown\Skin\Markdown\Single\LinkMarkdownRenderer;
@@ -35,6 +36,9 @@ class MarkdownSkin extends AbstractSkin {
 
         // Base rule
         $this->addRuleRenderer(new BaseMarkdownRenderer());
+
+        // ESCAPE
+        $this->addRuleRenderer(new EscapeMarkdownRenderer());
 
         // HEADER
         $this->addRuleRenderer(new HeaderMarkdownRenderer());

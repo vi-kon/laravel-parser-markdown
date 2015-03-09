@@ -30,7 +30,7 @@ Alt-H2
 
 # Emphasis
 
-Emphasis, aka italics, with *asterisks* or _underscores_.
+Emphasis, aka italics, with *asterisks* or _underscores_asd_.
 
 Strong emphasis, aka bold, with **asterisks** or __underscores__.
 
@@ -55,6 +55,8 @@ There are two ways to create links.
 Or leave it empty and use the [link text itself]
 
 Some text to show that the reference links can follow later.
+
+As GFM syntax supports native URL, just simple write down URL and it turns into links http://example.com
 
 [arbitrary case-insensitive reference text]: https://www.mozilla.org
 [1]: http://slashdot.org
@@ -124,3 +126,51 @@ But let's throw in a <b>tag</b>.
 * Unordered list can use asterisks
 - Or minuses
 + Or pluses
+
+# Tables
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
+| Name | Description          |
+| ------------- | ----------- |
+| Help      | Display the help window.|
+| Close     | Closes a window     |
+
+| Name | Description          |
+| ------------- | ----------- |
+| Help      | ~~Display the~~ help window.|
+| Close     | _Closes_ a window     |
+
+| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |
+
+# Escape
+
+The following characters can escape by prepending \\ character
+
+* \\
+* \`
+* \*
+* \_
+* \{
+* \}
+* \[
+* \]
+* \(
+* \)
+* \#
+* \+
+* \-
+* \.
+* \!

@@ -17,6 +17,7 @@ use ViKon\ParserMarkdown\Rule\Format\StrongAltRule;
 use ViKon\ParserMarkdown\Rule\Format\StrongRule;
 use ViKon\ParserMarkdown\Rule\PRule;
 use ViKon\ParserMarkdown\Rule\Single\EolRule;
+use ViKon\ParserMarkdown\Rule\Single\EscapeRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderAtxRule;
 use ViKon\ParserMarkdown\Rule\Single\HeaderSetextRule;
 use ViKon\ParserMarkdown\Rule\Single\ImageInlineRule;
@@ -44,6 +45,9 @@ class MarkdownRuleSet extends AbstractRuleSet {
 
         // Base rule
         $this->setStartRule(new BaseRule(), self::CATEGORY_NONE);
+
+        // ESCAPE
+        $this->addRule(new EscapeRule(), self::CATEGORY_FORMAT);
 
         // HEADER
         $this->addRule(new HeaderAtxRule(), self::CATEGORY_SINGLE);
