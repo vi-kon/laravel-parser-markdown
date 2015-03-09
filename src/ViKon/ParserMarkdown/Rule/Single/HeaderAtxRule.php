@@ -4,7 +4,6 @@ namespace ViKon\ParserMarkdown\Rule\Single;
 
 use ViKon\Parser\Rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class Header
@@ -30,10 +29,9 @@ class HeaderAtxRule extends AbstractSingleRule {
      *
      * # H1 #
      *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n#{1,6}[^\n]+(?=\n)', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\n#{1,6}[^\n]+(?=\n)');
     }
 
     /**

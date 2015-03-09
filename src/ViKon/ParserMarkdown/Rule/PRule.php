@@ -6,7 +6,8 @@ use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractBlockRule;
 use ViKon\Parser\Rule\AbstractRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
+use ViKon\ParserMarkdown\ConfigTrait;
+use ViKon\ParserMarkdown\MarkdownRuleSet;
 use ViKon\ParserMarkdown\Rule\Single\EolRule;
 
 /**
@@ -17,22 +18,27 @@ use ViKon\ParserMarkdown\Rule\Single\EolRule;
  * @package ViKon\ParserMarkdown\Rule
  */
 class PRule extends AbstractRule {
+    use ConfigTrait;
+
     const NAME = 'P';
     const ORDER = 230;
 
+    /** @var string[] */
     protected $additionalOpeningTokens = [];
+    /** @var string[] */
     protected $additionalClosingTokens = [];
 
+    /** @var string[] */
     protected $openingTokens = [];
+    /** @var string[] */
     protected $closingTokens = [];
 
     /**
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
-     * @param array                             $openingTokens additional opening tokens
-     * @param array                             $closingTokens additional closing tokens
+     * @param string[] $openingTokens additional opening tokens
+     * @param string[] $closingTokens additional closing tokens
      */
-    public function __construct(MarkdownSet $set, array $openingTokens = [], array $closingTokens = []) {
-        parent::__construct(self::NAME, self::ORDER, $set);
+    public function __construct(array $openingTokens = [], array $closingTokens = []) {
+        parent::__construct(self::NAME, self::ORDER);
 
         $this->additionalOpeningTokens = $openingTokens;
         $this->additionalClosingTokens = $closingTokens;
@@ -62,7 +68,7 @@ class PRule extends AbstractRule {
                 continue;
             }
 
-            if ($this->set->isModeGfm() && $eolCount === 1 && $pOpened) {
+            if ($this->isModeGfm() && $eolCount === 1 && $pOpened) {
                 $tokenList->insertTokenAt($this->name . '_EOL', $position - $eolCount, $i - $eolCount);
             }
 
@@ -127,12 +133,12 @@ class PRule extends AbstractRule {
         $this->openingTokens = $this->additionalOpeningTokens;
         $this->closingTokens = $this->additionalClosingTokens;
 
-        $singleRuleNames = $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_SINGLE);
+        $singleRuleNames = $this->set->getRuleNamesByCategory(MarkdownRuleSet::CATEGORY_SINGLE);
         foreach ($singleRuleNames as $singleRuleName) {
             $this->closingTokens[] = $singleRuleName;
         }
 
-        $blockRuleNames = $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_BLOCK);
+        $blockRuleNames = $this->set->getRuleNamesByCategory(MarkdownRuleSet::CATEGORY_BLOCK);
         foreach ($blockRuleNames as $blockRuleName) {
             $this->openingTokens[] = $blockRuleName . AbstractBlockRule::CLOSE;
             $this->closingTokens[] = $blockRuleName . AbstractBlockRule::OPEN;

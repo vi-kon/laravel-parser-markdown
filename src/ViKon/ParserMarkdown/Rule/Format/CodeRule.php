@@ -5,7 +5,6 @@ namespace ViKon\ParserMarkdown\Rule\Format;
 use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractFormatRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class CodeRule
@@ -22,11 +21,9 @@ class CodeRule extends AbstractFormatRule {
      * Match
      *
      * `code`
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '`(?=[^\n]*`)', '`', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '`(?=[^\n]*`)', '`');
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace ViKon\ParserMarkdown\Rule\Format;
 
 use ViKon\Parser\Rule\AbstractFormatRule;
-use ViKon\ParserMarkdown\MarkdownSet;
+use ViKon\ParserMarkdown\ConfigTrait;
 
 /**
  * Class ItalicAltRule
@@ -13,6 +13,8 @@ use ViKon\ParserMarkdown\MarkdownSet;
  * @package ViKon\ParserMarkdown\Rule\Format
  */
 class ItalicAltRule extends AbstractFormatRule {
+    use ConfigTrait;
+
     const NAME = 'ITALIC_ALT';
     const ORDER = 110;
 
@@ -22,14 +24,12 @@ class ItalicAltRule extends AbstractFormatRule {
      * _italic_
      *
      * _italic_gfm_style_
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
+    public function __construct() {
         $startPattern = '_(?=(?:\\\\.|[^\n_\\\\])*_)';
-        if ($set->isModeGfm()) {
+        if ($this->isModeGfm()) {
             $startPattern = '_(?=(?:\\\\.|[^\n_\\\\])*_\w)';
         }
-        parent::__construct(self::NAME, self::ORDER, $startPattern, '_', $set);
+        parent::__construct(self::NAME, self::ORDER, $startPattern, '_');
     }
 }

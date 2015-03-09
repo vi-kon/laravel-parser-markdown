@@ -4,7 +4,6 @@ namespace ViKon\ParserMarkdown\Rule\Single;
 
 use ViKon\Parser\Rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class ReferenceRule
@@ -20,10 +19,10 @@ class ReferenceRule extends AbstractSingleRule {
     /**
      * Match
      *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
+     * [reference name]: url
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n[ \t]*\[(?:\\\\.|[^]\\\\])*\]:[ \t]*[^ \t\n]+[ \t]*\n?[ \t]*(?:"(?:\\\\.|[^"\\\\])+"|\'(?:\\\\.|[^\'\\\\])+\'|\((?:\\\\.|[^\(\\\\])+\))?(?=\n)', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\n[ \t]*\[(?:\\\\.|[^]\\\\])*\]:[ \t]*[^ \t\n]+[ \t]*\n?[ \t]*(?:"(?:\\\\.|[^"\\\\])+"|\'(?:\\\\.|[^\'\\\\])+\'|\((?:\\\\.|[^\(\\\\])+\))?(?=\n)');
     }
 
     /**

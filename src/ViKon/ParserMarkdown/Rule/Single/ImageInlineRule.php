@@ -5,7 +5,6 @@ namespace ViKon\ParserMarkdown\Rule\Single;
 
 use ViKon\Parser\Rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 class ImageInlineRule extends AbstractSingleRule {
     const NAME = 'IMAGE';
@@ -15,11 +14,9 @@ class ImageInlineRule extends AbstractSingleRule {
      * Match
      *
      * ![alt text](https://path/to/image.jpg "Image Title Text 1")
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '!\\[(?:\\\\.|[^]\\\\])+\\][\\t ]*\\([\\t ]*(?:\\\\.|[^\\)\\\\ ])+[\\t ]*(?:"(?:\\\\.|[^"\\\\])+")?\\)', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '!\\[(?:\\\\.|[^]\\\\])+\\][\\t ]*\\([\\t ]*(?:\\\\.|[^\\)\\\\ ])+[\\t ]*(?:"(?:\\\\.|[^"\\\\])+")?\\)');
     }
 
     /**

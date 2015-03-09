@@ -5,7 +5,6 @@ namespace ViKon\ParserMarkdown\Rule\Block;
 use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractBlockRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class FencedCodeBlockRule
@@ -25,11 +24,9 @@ class FencedCodeBlockRule extends AbstractBlockRule {
      * var s = "JavaScript syntax highlighting";
      * alert(s);
      * ```
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n```(?:[^\n]*)?', '\n```(?=\n)', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\n```(?:[^\n]*)?', '\n```(?=\n)');
     }
 
     /**

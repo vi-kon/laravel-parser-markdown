@@ -5,7 +5,7 @@ namespace ViKon\ParserMarkdown\Rule;
 use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
+use ViKon\ParserMarkdown\MarkdownRuleSet;
 
 /**
  * Class BaseRule
@@ -18,8 +18,8 @@ class BaseRule extends AbstractRule {
     const NAME = 'BASE';
     const ORDER = 0;
 
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER);
     }
 
     /**
@@ -44,9 +44,9 @@ class BaseRule extends AbstractRule {
      */
     public function prepare(Lexer $lexer) {
         $this->acceptedRuleNames = array_merge(
-            $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_BLOCK),
-            $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_FORMAT),
-            $this->set->getRuleNamesByCategory(MarkdownSet::CATEGORY_SINGLE)
+            $this->set->getRuleNamesByCategory(MarkdownRuleSet::CATEGORY_BLOCK),
+            $this->set->getRuleNamesByCategory(MarkdownRuleSet::CATEGORY_FORMAT),
+            $this->set->getRuleNamesByCategory(MarkdownRuleSet::CATEGORY_SINGLE)
         );
 
         return $this;

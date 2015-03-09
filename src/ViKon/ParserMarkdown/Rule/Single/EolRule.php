@@ -3,7 +3,6 @@
 namespace ViKon\ParserMarkdown\Rule\Single;
 
 use ViKon\Parser\Rule\AbstractSingleRule;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class EolRule
@@ -22,10 +21,8 @@ class EolRule extends AbstractSingleRule {
      * new line feed (\n)
      *
      * match all empty characters
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n(?:[ \t]*(?=\n))?', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\n(?:[ \t]*(?=\n))?');
     }
 }

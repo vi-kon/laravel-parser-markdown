@@ -3,7 +3,6 @@
 namespace ViKon\ParserMarkdown\Rule\Format;
 
 use ViKon\Parser\Rule\AbstractFormatRule;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class ItalicRule
@@ -20,10 +19,8 @@ class ItalicRule extends AbstractFormatRule {
      * Match
      *
      * *italic*
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\*(?=(?:\\\\.|[^\n*\\\\])*\*)', '\*', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\*(?=(?:\\\\.|[^\n*\\\\])*\*)', '\*');
     }
 }

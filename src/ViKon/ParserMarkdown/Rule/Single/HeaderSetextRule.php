@@ -4,7 +4,6 @@ namespace ViKon\ParserMarkdown\Rule\Single;
 
 use ViKon\Parser\Rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class HeaderSetextRule
@@ -25,10 +24,9 @@ class HeaderSetextRule extends AbstractSingleRule {
      *
      * Alt-H2
      *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n[^\n]*\n[=-]{2,}(?=\n)', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\n[^\n]*\n[=-]{2,}(?=\n)');
     }
 
 

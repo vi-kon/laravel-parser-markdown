@@ -5,7 +5,6 @@ namespace ViKon\ParserMarkdown\Rule\Single;
 use ViKon\Parser\Rule\AbstractSingleRule;
 use ViKon\Parser\Token;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class LinkReference
@@ -26,11 +25,9 @@ class LinkReferenceRule extends AbstractSingleRule {
      * [You can use numbers for reference-style link definitions][1]
      *
      * [link text itself]
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\\[(?:\\\\.|[^]\\\\])+\\](?: ?\\[(?:\\\\.|[^]\\\\])+\\])?', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\\[(?:\\\\.|[^]\\\\])+\\](?: ?\\[(?:\\\\.|[^]\\\\])+\\])?');
     }
 
     /**

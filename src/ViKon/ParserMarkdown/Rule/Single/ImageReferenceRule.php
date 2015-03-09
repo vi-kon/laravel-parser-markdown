@@ -6,7 +6,6 @@ namespace ViKon\ParserMarkdown\Rule\Single;
 use ViKon\Parser\Rule\AbstractSingleRule;
 use ViKon\Parser\Token;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 class ImageReferenceRule extends AbstractSingleRule {
     const NAME = 'IMAGE_REFERENCE';
@@ -16,11 +15,9 @@ class ImageReferenceRule extends AbstractSingleRule {
      * Match
      *
      * ![alt text][image]
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '!\\[(?:\\\\.|[^]\\\\])+\\][\\t ]*\\[(?:\\\\.|[^]\\\\])*\\]', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '!\\[(?:\\\\.|[^]\\\\])+\\][\\t ]*\\[(?:\\\\.|[^]\\\\])*\\]');
     }
 
     /**

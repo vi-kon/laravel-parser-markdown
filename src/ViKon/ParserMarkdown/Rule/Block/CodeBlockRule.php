@@ -5,7 +5,6 @@ namespace ViKon\ParserMarkdown\Rule\Block;
 use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractBlockRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class CodeBlockRule
@@ -23,11 +22,9 @@ class CodeBlockRule extends AbstractBlockRule {
      *
      *     code block
      *     code block
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n(?: {4}|\t)', '(?=\n)', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\n(?: {4}|\t)', '(?=\n)');
     }
 
     /**
@@ -37,13 +34,13 @@ class CodeBlockRule extends AbstractBlockRule {
      *
      *     code block
      *
-     * @param string                    $parentRuleNameName
+     * @param string                    $ruleNameName
      * @param \ViKon\Parser\Lexer\Lexer $lexer
      *
      * @return $this
      */
-    public function embedInto($parentRuleNameName, Lexer $lexer) {
-        parent::embedInto($parentRuleNameName, $lexer);
+    public function embedInto($ruleNameName, Lexer $lexer) {
+        parent::embedInto($ruleNameName, $lexer);
         $lexer->addSimplePattern('(?:\n[ \t]*)*\n(?: {4}|\t)', $this->name);
 
         return $this;

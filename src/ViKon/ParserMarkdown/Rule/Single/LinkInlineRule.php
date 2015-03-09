@@ -4,7 +4,6 @@ namespace ViKon\ParserMarkdown\Rule\Single;
 
 use ViKon\Parser\Rule\AbstractSingleRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 
 /**
  * Class LinkInline
@@ -25,11 +24,9 @@ class LinkInlineRule extends AbstractSingleRule {
      * [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
      *
      * [I'm a relative reference to a repository file](../blob/master/LICENSE)
-     *
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\\[(?:\\\\.|[^]\\\\])+\\][\\t ]*\\([\\t ]*(?:\\\\.|[^\\)\\\\ ])+[\\t ]*(?:"(?:\\\\.|[^"\\\\])+")?\\)', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\[(?:\\\\.|[^]\\\\])+\][\t ]*\([\t ]*(?:\\\\.|[^\)\\\\ ])+[\t ]*(?:"(?:\\\\.|[^"\\\\])+")?\)');
     }
 
     /**
@@ -43,7 +40,7 @@ class LinkInlineRule extends AbstractSingleRule {
      * @param \ViKon\Parser\TokenList $tokenList
      */
     protected function handleSingleState($content, $position, TokenList $tokenList) {
-        preg_match('/\\[((?:\\\\.|[^]\\\\])+)\\][\\t ]*\\([\\t ]*((?:\\\\.|[^\\)\\\\ ])+)[\\t ]*(?:"((?:\\\\.|[^"\\\\])+)")?\\)/', $content, $matches);
+        preg_match('/\[((?:\\\\.|[^]\\\\])+)\][\t ]*\([\t ]*((?:\\\\.|[^\)\\\\ ])+)[\t ]*(?:"((?:\\\\.|[^"\\\\])+)")?\)/', $content, $matches);
 
         $tokenList->addToken($this->name, $position)
             ->set('label', $matches[1])

@@ -5,7 +5,6 @@ namespace ViKon\ParserMarkdown\Rule\Block;
 use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractBlockRule;
 use ViKon\Parser\TokenList;
-use ViKon\ParserMarkdown\MarkdownSet;
 use ViKon\ParserMarkdown\Rule\PRule;
 use ViKon\ParserMarkdown\Rule\Single\EolRule;
 use ViKon\ParserMarkdown\Rule\Single\LinkInlineRule;
@@ -22,24 +21,37 @@ class ListBlockRule extends AbstractBlockRule {
     const NAME = 'LIST_BLOCK';
     const ORDER = 50;
 
+    /** @var bool[] */
     protected $open;
+    /** @var int */
     protected $level;
 
     /**
-     * @param \ViKon\ParserMarkdown\MarkdownSet $set
+     * Match
+     *
+     * * list item 1
+     * * list item 2
+     *   * sublist item 1
+     *   * sublist item 2
+     *
+     *     paragraph in sublist item 2
+     *
+     * * list item 3
+     *
+     * * list item 4
      */
-    public function __construct(MarkdownSet $set) {
-        parent::__construct(self::NAME, self::ORDER, '\n(?: {2}|\t)*(?:[\-\+\*]|\d+\.)(?: |\t)+', '(?=\n)', $set);
+    public function __construct() {
+        parent::__construct(self::NAME, self::ORDER, '\n(?: {2}|\t)*(?:[\-\+\*]|\d+\.)(?: |\t)+', '(?=\n)');
     }
 
     /**
-     * @param string                    $parentRuleNameName
+     * @param string                    $ruleNameName
      * @param \ViKon\Parser\Lexer\Lexer $lexer
      *
      * @return $this
      */
-    public function embedInto($parentRuleNameName, Lexer $lexer) {
-        parent::embedInto($parentRuleNameName, $lexer);
+    public function embedInto($ruleNameName, Lexer $lexer) {
+        parent::embedInto($ruleNameName, $lexer);
         // Match next list item indicator
         $lexer->addSimplePattern('(?:\n[ \t]*)*\n(?: {2}|\t)*(?:[\-\+\*]|\d+\.)(?: |\t)+', $this->name);
         // Match next line indicator
