@@ -64,8 +64,8 @@ class MarkdownRuleSet extends AbstractRuleSet {
         }
 
         // IMAGE
-        $this->addRule(new ImageInlineRule(), self::CATEGORY_SINGLE);
-        $this->addRule(new ImageReferenceRule(), self::CATEGORY_SINGLE);
+        $this->addRule(new ImageInlineRule(), self::CATEGORY_FORMAT);
+        $this->addRule(new ImageReferenceRule(), self::CATEGORY_FORMAT);
 
         // EMPHASIS / ITALIC
         $this->addRule(new ItalicRule(), self::CATEGORY_FORMAT);
@@ -93,7 +93,7 @@ class MarkdownRuleSet extends AbstractRuleSet {
         }
 
         // END OF LINE
-        $this->addRule(new EolRule(), self::CATEGORY_SINGLE);
+        $this->addRule(new EolRule(), self::CATEGORY_NONE);
 
         // LIST RULE
         $this->addRule(new ListBlockRule(), self::CATEGORY_BLOCK);

@@ -4,6 +4,7 @@ namespace ViKon\ParserMarkdown\Rule\Block;
 
 use ViKon\Parser\Lexer\Lexer;
 use ViKon\Parser\Rule\AbstractBlockRule;
+use ViKon\Parser\Rule\AbstractRuleSet;
 use ViKon\Parser\TokenList;
 use ViKon\ParserMarkdown\Rule\PRule;
 use ViKon\ParserMarkdown\Rule\Single\EolRule;
@@ -79,14 +80,19 @@ class ListBlockRule extends AbstractBlockRule {
         }
     }
 
+    /**
+     * Prepare rule before connecting
+     *
+     * @param \ViKon\Parser\Lexer\Lexer $lexer lexer instance
+     *
+     * @return $this
+     */
     public function prepare(Lexer $lexer) {
         $this->acceptedRuleNames = array_merge([
             CodeBlockRule::NAME,
             FencedCodeBlockRule::NAME,
             EolRule::NAME,
-            LinkInlineRule::NAME,
-            LinkReferenceRule::NAME,
-        ]);
+        ], $this->set->getRuleNamesByCategory(AbstractRuleSet::CATEGORY_FORMAT));
     }
 
     /**
