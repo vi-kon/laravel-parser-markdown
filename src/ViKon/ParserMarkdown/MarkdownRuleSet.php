@@ -45,7 +45,7 @@ class MarkdownRuleSet extends AbstractRuleSet {
         \Event::listen('vikon.parser.before.parse', [$this, 'normalizeLineBreak']);
 
         // Base rule
-        $this->setStartRule(new BaseRule(), self::CATEGORY_NONE);
+        $this->setStartRule(new BaseRule());
 
         // ESCAPE
         $this->addRule(new EscapeRule(), self::CATEGORY_FORMAT);
