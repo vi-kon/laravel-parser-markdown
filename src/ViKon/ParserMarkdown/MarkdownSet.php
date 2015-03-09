@@ -7,6 +7,7 @@ use ViKon\ParserMarkdown\Renderer\Bootstrap\BaseBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\CodeBlockBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\FencedCodeBlockBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\ListBlockBootstrapRenderer;
+use ViKon\ParserMarkdown\Renderer\Bootstrap\Block\TableBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\CodeBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\ItalicBootstrapRenderer;
 use ViKon\ParserMarkdown\Renderer\Bootstrap\Format\StrikethroughBootstrapRenderer;
@@ -21,6 +22,7 @@ use ViKon\ParserMarkdown\Renderer\Markdown\BaseMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Block\CodeBlockMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Block\FencedCodeBlockMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Block\ListBlockMarkdownRenderer;
+use ViKon\ParserMarkdown\Renderer\Markdown\Block\TableMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\CodeMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\ItalicMarkdownRenderer;
 use ViKon\ParserMarkdown\Renderer\Markdown\Format\StrikethroughMarkdownRenderer;
@@ -35,6 +37,7 @@ use ViKon\ParserMarkdown\Rule\BaseRule;
 use ViKon\ParserMarkdown\Rule\Block\CodeBlockRule;
 use ViKon\ParserMarkdown\Rule\Block\FencedCodeBlockRule;
 use ViKon\ParserMarkdown\Rule\Block\ListBlockRule;
+use ViKon\ParserMarkdown\Rule\Block\TableRule;
 use ViKon\ParserMarkdown\Rule\Format\CodeAltRule;
 use ViKon\ParserMarkdown\Rule\Format\CodeRule;
 use ViKon\ParserMarkdown\Rule\Format\ItalicAltRule;
@@ -151,6 +154,13 @@ class MarkdownSet extends AbstractSet {
         ]), self::CATEGORY_NONE);
         $this->addRuleRenderer(new PBootstrapRenderer($this));
         $this->addRuleRenderer(new PMarkdownRenderer($this));
+
+        // TABLE
+        if ($this->isModeGfm()) {
+            $this->addRule(new TableRule($this), self::CATEGORY_BLOCK);
+            $this->addRuleRenderer(new TableBootstrapRenderer($this));
+            $this->addRuleRenderer(new TableMarkdownRenderer($this));
+        }
     }
 
     /**
