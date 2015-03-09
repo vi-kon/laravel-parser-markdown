@@ -81,21 +81,21 @@ class TableMarkdownRenderer extends AbstractRenderer {
             }
         }
 
-        return $content . "\n";
+        return "\n" . $content;
     }
 
     /**
      * @return string
      */
     public function renderRowOpen() {
-        return '|';
+        return "\n|";
     }
 
     /**
      * @return string
      */
     public function renderRowClose() {
-        return "\n";
+        return '';
     }
 
     /**
