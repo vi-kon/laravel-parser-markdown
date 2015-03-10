@@ -14,12 +14,15 @@ class Test {
         $lexer = new Lexer();
         $renderer = new Renderer();
 
+        // Initialize parser with markdown rules
         $ruleSet = new MarkdownRuleSet();
         $ruleSet->init($parser, $lexer);
 
+        // Set bootstrap renderer
         $bootstrapSkin = new BootstrapSkin();
         $bootstrapSkin->init($parser, $renderer);
 
+        // Set markdown renderer
         $markdownSkin = new MarkdownSkin();
         $markdownSkin->init($parser, $renderer);
 
@@ -42,7 +45,7 @@ class Test {
 //        echo $parser->parse($contents);
 //        echo '<hr/>';
 
-        echo $parser->render($contents, 'bootstrap');
+//        echo $parser->render($contents, 'bootstrap');
 //        echo '<hr/>';
 //        echo '<pre>';
 //        echo $parser->render($contents, 'markdown');
